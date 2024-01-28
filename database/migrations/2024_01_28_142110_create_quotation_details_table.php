@@ -15,10 +15,12 @@ class CreateQuotationDetailsTable extends Migration
     {
         Schema::create('quotation_details', function (Blueprint $table) {
             $table->id();
-            $table->string('quotation_code');
-            $table->string('product_code');
-            $table->string('product_name');
-            $table->decimal('price', 12, 2);
+            $table->string('quotation_code')->nullable();
+            $table->string('product_code')->nullable();
+            $table->string('product_name')->nullable();
+            $table->decimal('qty', 12, 2)->nullable();
+            $table->decimal('unit_price', 12, 2)->nullable();
+            $table->decimal('total_price', 12, 2)->nullable();
             $table->timestamps();
         });
     }

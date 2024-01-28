@@ -8,9 +8,11 @@ use App\Http\Controllers\MasterData\ProductsController;
 use App\Http\Controllers\Sales\CustomerOrderDetailsController;
 use App\Http\Controllers\Sales\CustomerOrdersController;
 use App\Http\Controllers\Sales\CustomersController;
+use App\Http\Controllers\Sales\QuotationController;
 use App\Http\Controllers\UserManagement\PermissionsController;
 use App\Http\Controllers\UserManagement\RolesController;
 use App\Http\Controllers\UserManagement\UsersController;
+use App\Http\Livewire\CheckoutComponents;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Pages\MasterData\BusinessTypeComponents;
 use App\Http\Livewire\Pages\MasterData\ParameterComponents;
@@ -22,6 +24,10 @@ use App\Http\Livewire\Pages\Sales\Customers\AddCustomerComponents;
 use App\Http\Livewire\Pages\Sales\Customers\CustomerComponents;
 use App\Http\Livewire\Pages\Sales\Customers\DetailsCustomerComponents;
 use App\Http\Livewire\Pages\Sales\Customers\EditCustomerComponents;
+use App\Http\Livewire\Pages\Sales\Orders\AddQuotationComponents;
+use App\Http\Livewire\Pages\Sales\Orders\DetailQuotationComponents;
+use App\Http\Livewire\Pages\Sales\Orders\EditQuotationComponents;
+use App\Http\Livewire\Pages\Sales\Orders\QuotationComponents;
 use App\Http\Livewire\Pages\UserManagement\PermissionsComponents;
 use App\Http\Livewire\Pages\UserManagement\RolesComponents;
 use App\Http\Livewire\Pages\UserManagement\UsersComponents;
@@ -42,8 +48,8 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/', [AuthenticatedSessionController::class, 'create']);
 });
 
-Route::prefix('barcode')->group(function () {
-    Route::get('/work-order/{id}', [BarcodeController::class, 'work_order'])->name('barcode.workOrder');
+Route::prefix('quotations')->group(function () {
+    Route::get('/{code}', [QuotationController::class, 'checkout'])->name('checkout');
 });
 
 
@@ -67,6 +73,14 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/import', [CustomersController::class, 'import'])->name('customer.import');
             Route::post('/import-address', [CustomersController::class, 'importAddress'])->name('customerAddress.import');
         
+        });
+
+        Route::prefix('quotation')->group(function () {
+            Route::get('/', QuotationComponents::class)->name('quotation.index');
+            Route::get('/create', AddQuotationComponents::class)->name('quotation.create');
+            Route::get('/edit/{code}', EditQuotationComponents::class)->name('quotation.edit');
+            Route::get('/detail/{code}', DetailQuotationComponents::class)->name('quotation.detail');
+            Route::resource('/quotation-data', QuotationController::class);
         });
     });
     // User Management

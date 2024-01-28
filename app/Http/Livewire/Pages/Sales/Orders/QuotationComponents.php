@@ -8,6 +8,6 @@ class QuotationComponents extends Component
 {
     public function render()
     {
-        return view('livewire.pages.sales.orders.quotation-components');
+        return view('livewire.pages.sales.orders.quotation-components')->layout('layouts.admin');
     }
 }

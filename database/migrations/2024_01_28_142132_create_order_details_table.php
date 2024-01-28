@@ -15,6 +15,12 @@ class CreateOrderDetailsTable extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
+            $table->string('order_code')->nullable();
+            $table->string('product_code')->nullable();
+            $table->string('product_name')->nullable();
+            $table->decimal('qty', 12, 2)->nullable();
+            $table->decimal('unit_price', 12, 2)->nullable();
+            $table->decimal('total_price', 12, 2)->nullable();
             $table->timestamps();
         });
     }

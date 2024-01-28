@@ -15,13 +15,16 @@ class CreateQuotationsTable extends Migration
     {
         Schema::create('quotations', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->string('customer_code');
-            $table->string('customer_name');
-            $table->dateTime('date');
-            $table->dateTime('valid_until');
-            $table->string('valid');
-            $table->decimal('total', 12, 2);
+            $table->string('code')->nullable();
+            $table->string('customer_code')->nullable();
+            $table->string('customer_name')->nullable();
+            $table->dateTime('date')->nullable();
+            $table->dateTime('valid_until')->nullable();
+            $table->string('valid')->nullable();
+            $table->integer('status')->nullable();
+            $table->string('created_by')->nullable();
+            $table->decimal('total', 12, 2)->nullable();
+            $table->longText('notes')->nullable();
             $table->timestamps();
         });
     }

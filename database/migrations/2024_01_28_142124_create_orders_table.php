@@ -15,6 +15,15 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('code')->nullable();
+            $table->string('quotation_code')->nullable();
+            $table->string('customer_code')->nullable();
+            $table->string('customer_name')->nullable();
+            $table->dateTime('date')->nullable();
+            $table->integer('status')->nullable();
+            $table->string('created_by')->nullable();
+            $table->decimal('total', 12, 2);
+            $table->longText('notes')->nullable();
             $table->timestamps();
         });
     }

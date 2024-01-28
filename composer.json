@@ -20,10 +20,12 @@
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.5",
         "milon/barcode": "^9.0",
+        "phpmailer/phpmailer": "^6.9",
         "spatie/laravel-permission": "^5.5",
         "tightenco/ziggy": "^1.4",
         "tonysm/turbo-laravel": "^1.6",
         "wulfheart/pretty_routes": "^0.3.0",
+        "xendit/xendit-php": "2.13",
         "yajra/laravel-datatables": "^1.5",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
