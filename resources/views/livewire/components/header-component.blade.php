@@ -40,7 +40,7 @@
             <a class="btn btn-hover-scale ml-0 pl-0  pt-5 fw-bolder text-center " href="javascript:void(0);">
                 <h1 class="flex " style="background: #1a5ded;
                 -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent; letter-spacing: 3px; font-weight:bolder">mas yogs</h1>
+                -webkit-text-fill-color: transparent; letter-spacing: 3px; font-weight:bolder"></h1>
             </a>
             <!--begin::Toolbar wrapper-->
             <div class="d-flex align-items-stretch flex-shrink-0">
