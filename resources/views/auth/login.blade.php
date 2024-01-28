@@ -52,11 +52,11 @@ License: For each use you must have a valid license purchased only from above li
 					<div class="d-flex flex-center flex-lg-start flex-column">
 						<!--begin::Logo-->
 						<a href="../../demo1/dist/index.html" class="mb-7">
-							<img alt="Logo" src="assets/media/logos/custom-3.svg" />
+							<img alt="Logo" src="assets/media/logos/logo3x.png" />
 						</a>
 						<!--end::Logo-->
 						<!--begin::Title-->
-						<h2 class="text-white fw-normal m-0">Branding tools designed for your business</h2>
+						<h2 class="text-white fw-normal m-0">Halaman Khusus Member Area</h2>
 						<!--end::Title-->
 					</div>
 					<!--begin::Aside-->
