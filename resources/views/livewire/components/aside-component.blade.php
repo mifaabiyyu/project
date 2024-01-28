@@ -3,7 +3,7 @@
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
         <h4 href="../../demo1/dist/index.html" class="text-white font-bolder">
-            <img alt="Logo" src="{{ asset('hectorapplogo1.png') }}" class="h-35px logo" />
+            <img alt="Logo" src="{{ asset('logo3.png') }}" class="h-35px logo" />
         </h4>
         <!--end::Logo-->
         <!--begin::Aside toggler-->
