@@ -153,7 +153,7 @@
                                 <th class="min-w-125px">Date</th>
                                 <th class="min-w-125px">Valid Until</th>
                                 <th class="min-w-100px">Status</th>
-                                <th class="text-center min-w-100px">Actions</th>
+                                {{-- <th class="text-center min-w-100px">Actions</th> --}}
                             </tr>
                             <!--end::Table row-->
                         </thead>

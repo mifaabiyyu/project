@@ -50,6 +50,8 @@ Route::middleware(['guest'])->group(function () {
 
 Route::prefix('quotations')->group(function () {
     Route::get('/{code}', [QuotationController::class, 'checkout'])->name('checkout');
+    Route::get('/success/{code}', [QuotationController::class, 'successPayment'])->name('success');
+    Route::get('/fail', [QuotationController::class, 'failPayment'])->name('fail');
 });
 
 

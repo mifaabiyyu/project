@@ -85,111 +85,6 @@
                                 <!--end::Input-->
                             </div>
                             <div class="col-md-6 fv-row mb-7">
-                                <label class="required fw-bold fs-6 mb-2">Stock</label>
-                                <div class="input-group mb-5">
-                                    <input type="number" name="stock" id="stock" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Stock" aria-label="Weight" aria-describedby="basic-addon1"/>
-                                    <span class="input-group-text" id="basic-addon1">Sack</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end::Input group-->
-                        <div class="row">
-                            <!--begin::Input group-->
-                            <div class="col-md-6 fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class="required fw-bold fs-6 mb-2">Product Type</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="product_type" id="product_type" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Product Type"/>
-                                <!--end::Input-->
-                            </div>
-                            <div class="col-md-6 fv-row mb-7">
-                                <label class="required fw-bold fs-6 mb-2">Weight</label>
-                                <div class="input-group mb-5">
-                                    <input type="number" name="weight" id="weight" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Weight" aria-label="Weight" aria-describedby="basic-addon1"/>
-                                    <span class="input-group-text" id="basic-addon1">KG</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <!--begin::Input group-->
-                            <div class="col-md-6 fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class="required fw-bold fs-6 mb-2">Mesh</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="mesh" id="mesh" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Mesh"/>
-                                <!--end::Input-->
-                            </div>
-                            <div class="col-md-6 fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class=" fw-bold fs-6 mb-2">SSA</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="ssa" id="ssa" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="SSA"/>
-                                <!--end::Input-->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <!--begin::Input group-->
-                            <div class="col-md-6 fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class=" fw-bold fs-6 mb-2">D-50</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="d_50" id="d_50" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="D-50"/>
-                                <!--end::Input-->
-                            </div>
-                            <div class="col-md-6 fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class=" fw-bold fs-6 mb-2">D-98</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="d_98" id="d_98" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="D-98"/>
-                                <!--end::Input-->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <!--begin::Input group-->
-                            <div class="col-md-6 fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class=" fw-bold fs-6 mb-2">CIE 86</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="cie_86" id="cie_86" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="CIE 86"/>
-                                <!--end::Input-->
-                            </div>
-                            <div class="col-md-6 fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class=" fw-bold fs-6 mb-2">ISO 2470</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="iso_2470" id="iso_2470" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="ISO 2470"/>
-                                <!--end::Input-->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class=" fw-bold fs-6 mb-2">Residue</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="residue" id="residue" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Residue"/>
-                                <!--end::Input-->
-                            </div>
-                            <!--begin::Input group-->
-                     
-                            <div class="col-md-6 fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class=" fw-bold fs-6 mb-2">Moisture</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="moisture" id="moisture" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Moisture"/>
-                                <!--end::Input-->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 fv-row mb-7">
                                 <!--begin::Label-->
                                 <div class="form-group">
                                     <label class="required fw-bold fs-6 mb-2">Status</label>
@@ -212,6 +107,27 @@
                                 </div>
                                
                             </div>
+                        </div>
+                        <!--end::Input group-->
+                        <div class="row">
+                            <!--begin::Input group-->
+                            <div class="col-md-6 fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Product Type</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" name="product_type" id="product_type" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Product Type"/>
+                                <!--end::Input-->
+                            </div>
+                            <div class="col-md-6 fv-row mb-7">
+                                <label class="required fw-bold fs-6 mb-2">User</label>
+                                <div class="input-group mb-5">
+                                    <input type="number" name="user" id="user" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="user" aria-label="user" aria-describedby="basic-addon1"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                   
                         </div>
                         <div class="fv-row mb-7 ">
                             <label class="required fw-bold fs-6 mb-2">Description</label>

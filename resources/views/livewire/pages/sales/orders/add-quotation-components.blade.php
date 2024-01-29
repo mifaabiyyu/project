@@ -8,9 +8,6 @@
 </script>
     <script src="{{ asset('js/crud/sales/customers/quotation/action.js') }}" ></script>
     <script src="{{ asset('js/crud/sales/customers/quotation/add.js') }}" ></script>
-    <script src="{{ asset('js/crud/master-data/products/actionBid.js') }}" ></script>
-    <script src="{{ asset('js/crud/bidding/addBidding.js') }}" ></script>
-    <script src="{{ asset('js/crud/master-data/products/addByBidding.js') }}" ></script>
 @endsection
 
 <div class="content d-flex flex-column flex-column-fluid pt-4 pb-30" id="kt_content" wire:ignore.self>

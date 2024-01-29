@@ -31,6 +31,18 @@ License: For each use you must have a valid license purchased only from above li
 		<!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
 		<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		@routes
+        @livewireScripts
+		{{-- <script type="module" src="{{ mix('js/app.js') }}" defer  ></script> --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.0.0/turbolinks.min.js" integrity="sha512-ifx27fvbS52NmHNCt7sffYPtKIvIzYo38dILIVHQ9am5XGDQ2QjSXGfUZ54Bs3AXdVi7HaItdhAtdhKz8fOFrA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false"></script>
+		<script src="{{ asset('assets/js/scripts.bundle.js')}}"></script>
+        <script src="{{ asset('assets/plugins/global/plugins.bundle.js')}}"></script>
+		<!--end::Global Javascript Bundle-->
+		
+		<!--end::Page Custom Javascript-->
+        @livewireStyles()
+        @routes
 		<!--end::Global Stylesheets Bundle-->
 	</head>
 	<!--end::Head-->
@@ -71,6 +83,7 @@ License: For each use you must have a valid license purchased only from above li
 							<!--begin::Form-->
 							<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" method="POST">
 								<!--begin::Heading-->
+								@csrf
 								<div class="text-center mb-11">
 									<!--begin::Title-->
 									<h1 class="text-dark fw-bolder mb-3">Masuk</h1>

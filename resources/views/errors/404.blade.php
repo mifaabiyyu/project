@@ -13,17 +13,7 @@ License: For each use you must have a valid license purchased only from above li
 <html lang="en">
 	<!--begin::Head-->
 	<head><base href="../../">
-		<title>404 Not Found - PT Dwi Selo Girimas</title>
-		<meta charset="utf-8" />
-		<meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
-		<meta name="keywords" content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta property="og:locale" content="en_US" />
-		<meta property="og:type" content="article" />
-		<meta property="og:title" content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular &amp; Laravel Admin Dashboard Theme" />
-		<meta property="og:url" content="https://keenthemes.com/metronic" />
-		<meta property="og:site_name" content="Keenthemes | Metronic" />
-		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+		<title>404 Not Found</title>
 		<link rel="shortcut icon" href="{{ asset('logo.png') }}" />
 		<!--begin::Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
@@ -48,7 +38,7 @@ License: For each use you must have a valid license purchased only from above li
 				<h1 class="fw-bold mb-10" style="color: #A3A3C7">Seems there is nothing here</h1>
 				<!--end::Message-->
 				<!--begin::Link-->
-				<a href="{{ route('dashboard') }}" class="btn btn-primary">Return Home</a>
+				{{-- <a href="{{ route('dashboard') }}" class="btn btn-primary">Return Home</a> --}}
 				<!--end::Link-->
 			</div>
 			<!--end::Authentication - 404 Page-->

@@ -66,6 +66,7 @@ class ProductsController extends Controller
             'product_type'          => $request->product_type,
             'photo'                 => $imageName,
             'description'           => $request->description,
+            'user'           => $request->user,
             'status'                => $request->status
         ]); 
 
@@ -154,6 +155,7 @@ class ProductsController extends Controller
         $findData->code                  = $request->code;
         $findData->photo                 = $imageName;
         $findData->description           = $request->description;
+        $findData->user                  = $request->user;
         $findData->status                = $request->status;
       
         $findData->save();

@@ -5,6 +5,23 @@
  */
 
 (async () => {
+    var options = {
+        closeButton: false,
+        debug: false,
+        newestOnTop: false,
+        progressBar: false,
+        positionClass: "toast-top-right",
+        preventDuplicates: false,
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        timeOut: "5000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut",
+    };
     // "use strict";
 
     let integration;
@@ -52,15 +69,16 @@
             try {
                 const url = window.location.href;
                 const array = url.split("/");
+                const addForm = document.getElementById("postData");
+
+                var formData = new FormData(addForm);
 
                 const lastsegment = array[array.length - 1];
 
                 const response = await fetch("/api/invoice", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json;charset=utf-8",
-                    },
-                    body: JSON.stringify(lastsegment),
+                    headers: {},
+                    body: formData,
                 });
 
                 const data = await response.json();
@@ -73,11 +91,11 @@
                     invoiceUrl = data.invoice_url;
                 else alert(data.message);
             } catch (error) {
-                alert(error);
+                toastr.error("Opps, something error", options);
             }
         }
 
-        if (invoiceUrl) launchModal();
+        if (invoiceUrl) window.location.href = invoiceUrl;
 
         // loadingDemoLaunch();
     };

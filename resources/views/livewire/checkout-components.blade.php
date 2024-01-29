@@ -13,18 +13,18 @@ License: For each use you must have a valid license purchased only from above li
 <html lang="en">
 	<!--begin::Head-->
 	<head><base href="../../../">
-		<title></title>
+		<title>Checkout</title>
 		<meta charset="utf-8" />
-		<meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
-		<meta name="keywords" content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
+		<meta name="description" content="Hector App" />
+		<meta name="keywords" content="Web Application" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta property="og:locale" content="en_US" />
 		<meta property="og:type" content="article" />
-		<meta property="og:title" content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular &amp; Laravel Admin Dashboard Theme" />
-		<meta property="og:url" content="https://keenthemes.com/metronic" />
-		<meta property="og:site_name" content="Keenthemes | Metronic" />
+		<meta property="og:title" content="Checkout" />
+		{{-- <meta property="og:url" content="https://keenthemes.com/metronic" /> --}}
+		<meta property="og:site_name" content="Hector Apps" />
 		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-		<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+		<link rel="shortcut icon" href="logo.png" />
 		<!--begin::Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->
@@ -32,8 +32,26 @@ License: For each use you must have a valid license purchased only from above li
 		<link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Page Vendor Stylesheets-->
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
-		<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<script src="{{ asset('assets/js/scripts.bundle.js') }}" ></script>
+		<script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}" ></script>
+		<script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}" ></script>
+		<script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}" ></script>
+		<script src="{{ asset('js/function.js') }}" ></script>
+		{{-- <script src="{{ asset('admin/assets/js/selectize.js') }}" ></script> --}}
+		@yield('script')
+
+		<!--end::Page Vendor Stylesheets-->
+		{{-- <script type="module">
+			import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo';
+		</script> --}}
+		@livewireStyles()
+		<link rel="shortcut icon" href="{{ asset('logo.png') }}"  />
+		<!--begin::Fonts-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+		<!--end::Fonts-->
+		<link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet"   type="text/css" />
+		<link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet"   type="text/css" />
+		<link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
        
 		<!--end::Global Stylesheets Bundle-->
 	</head>
@@ -46,23 +64,23 @@ License: For each use you must have a valid license purchased only from above li
 			<!--begin::Page-->
 			<div class="post d-flex flex-column-fluid" id="kt_post">
                 <!--begin::Container-->
-                <div id="kt_content_container" class="container-xxl">
+                <div id="kt_content_container" class="container-xxl" style="max-width: 800px">
                     <!--begin::Order details page-->
                     <div class="d-flex flex-column gap-7 gap-lg-10 mt-20" style="margin-bottom:20px">
                         
                         <!--begin::Order summary-->
                         <div class="d-flex flex-column flex-xl-row gap-7 gap-lg-10">
+                           
                             <!--begin::Order details-->
                             <div class="card card-flush py-4 flex-row-fluid">
                                 <!--begin::Card header-->
-                                <div class="card-header">
-                                    <div class="card-title">
-                                        <h2>Order Details</h2>
-                                    </div>
-                                </div>
+                             
                                 <!--end::Card header-->
                                 <!--begin::Card body-->
                                 <div class="card-body pt-0">
+                                    <div class=" text-center mt-5">
+                                        <h2>Checkout</h2>
+                                    </div>
                                     <div class="table-responsive">
                                         <!--begin::Table-->
                                         <table class="table align-middle table-row-bordered mb-0 fs-6 gy-5 min-w-300px">
@@ -110,143 +128,6 @@ License: For each use you must have a valid license purchased only from above li
                                 <!--end::Card body-->
                             </div>
                             <!--end::Order details-->
-                            <!--begin::Customer details-->
-                            <div class="card card-flush py-4 flex-row-fluid">
-                                <!--begin::Card header-->
-                                <div class="card-header">
-                                    <div class="card-title">
-                                        <h2>Customer Details</h2>
-                                    </div>
-                                </div>
-                                <!--end::Card header-->
-                                <!--begin::Card body-->
-                                <div class="card-body pt-0">
-                                    <div class="table-responsive">
-                                        <!--begin::Table-->
-                                        <table class="table align-middle table-row-bordered mb-0 fs-6 gy-5 min-w-300px">
-                                            <!--begin::Table body-->
-                                            <tbody class="fw-bold text-gray-600">
-                                                <!--begin::Customer name-->
-                                                <tr>
-                                                    <td class="text-muted">
-                                                        <div class="d-flex align-items-center">
-                                                        <!--begin::Svg Icon | path: icons/duotune/communication/com006.svg-->
-                                                        <span class="svg-icon svg-icon-2 me-2">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                                <path opacity="0.3" d="M22 12C22 17.5 17.5 22 12 22C6.5 22 2 17.5 2 12C2 6.5 6.5 2 12 2C17.5 2 22 6.5 22 12ZM12 7C10.3 7 9 8.3 9 10C9 11.7 10.3 13 12 13C13.7 13 15 11.7 15 10C15 8.3 13.7 7 12 7Z" fill="black" />
-                                                                <path d="M12 22C14.6 22 17 21 18.7 19.4C17.9 16.9 15.2 15 12 15C8.8 15 6.09999 16.9 5.29999 19.4C6.99999 21 9.4 22 12 22Z" fill="black" />
-                                                            </svg>
-                                                        </span>
-                                                        <!--end::Svg Icon-->Customer</div>
-                                                    </td>
-                                                    <td class="fw-bolder text-end">
-                                                        <div class="d-flex align-items-center justify-content-end">
-                                                            <!--begin:: Avatar -->
-                                                            <div class="symbol symbol-circle symbol-25px overflow-hidden me-3">
-                                                                <a >
-                                                                    <div class="symbol-label">
-                                                                        <img src="assets/media/avatars/300-23.jpg" alt="Dan Wilson" class="w-100" />
-                                                                    </div>
-                                                                </a>
-                                                            </div>
-                                                            <!--end::Avatar-->
-                                                            <!--begin::Name-->
-                                                            <p  class="text-gray-600 text-hover-primary">{{  $data->get_customer?->name}}</p>
-                                                            <!--end::Name-->
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <!--end::Customer name-->
-                                                <!--begin::Customer email-->
-                                                <tr>
-                                                    <td class="text-muted">
-                                                        <div class="d-flex align-items-center">
-                                                        <!--begin::Svg Icon | path: icons/duotune/communication/com011.svg-->
-                                                        <span class="svg-icon svg-icon-2 me-2">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                                <path opacity="0.3" d="M21 19H3C2.4 19 2 18.6 2 18V6C2 5.4 2.4 5 3 5H21C21.6 5 22 5.4 22 6V18C22 18.6 21.6 19 21 19Z" fill="black" />
-                                                                <path d="M21 5H2.99999C2.69999 5 2.49999 5.10005 2.29999 5.30005L11.2 13.3C11.7 13.7 12.4 13.7 12.8 13.3L21.7 5.30005C21.5 5.10005 21.3 5 21 5Z" fill="black" />
-                                                            </svg>
-                                                        </span>
-                                                        <!--end::Svg Icon-->Email</div>
-                                                    </td>
-                                                    <td class="fw-bolder text-end">
-                                                        <p  class="text-gray-600 text-hover-primary">{{  $data->get_customer?->email}}</p>
-                                                    </td>
-                                                </tr>
-                                                <!--end::Payment method-->
-                                                <!--begin::Date-->
-                                                <tr>
-                                                    <td class="text-muted">
-                                                        <div class="d-flex align-items-center">
-                                                        <!--begin::Svg Icon | path: icons/duotune/electronics/elc003.svg-->
-                                                        <span class="svg-icon svg-icon-2 me-2">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                                <path d="M5 20H19V21C19 21.6 18.6 22 18 22H6C5.4 22 5 21.6 5 21V20ZM19 3C19 2.4 18.6 2 18 2H6C5.4 2 5 2.4 5 3V4H19V3Z" fill="black" />
-                                                                <path opacity="0.3" d="M19 4H5V20H19V4Z" fill="black" />
-                                                            </svg>
-                                                        </span>
-                                                        <!--end::Svg Icon-->Phone</div>
-                                                    </td>
-                                                    <p  class="text-gray-600 text-hover-primary">{{  $data->get_customer?->phone}}</p>
-                                                </tr>
-                                                <!--end::Date-->
-                                            </tbody>
-                                            <!--end::Table body-->
-                                        </table>
-                                        <!--end::Table-->
-                                    </div>
-                                </div>
-                                <!--end::Card body-->
-                            </div>
-                            <!--end::Customer details-->
-                            <!--begin::Documents-->
-                            <div class="card card-flush py-4 flex-row-fluid">
-                                <!--begin::Card header-->
-                                <div class="card-header">
-                                    <div class="card-title">
-                                        <h2>Documents</h2>
-                                    </div>
-                                </div>
-                                <!--end::Card header-->
-                                <!--begin::Card body-->
-                                <div class="card-body pt-0">
-                                    <div class="table-responsive">
-                                        <!--begin::Table-->
-                                        <table class="table align-middle table-row-bordered mb-0 fs-6 gy-5 min-w-300px">
-                                            <!--begin::Table body-->
-                                            <tbody class="fw-bold text-gray-600">
-                                                <!--begin::Invoice-->
-                                                <tr>
-                                                    <td class="text-muted">
-                                                        <div class="d-flex align-items-center">
-                                                        <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm008.svg-->
-                                                        <span class="svg-icon svg-icon-2 me-2">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                                <path opacity="0.3" d="M18 21.6C16.3 21.6 15 20.3 15 18.6V2.50001C15 2.20001 14.6 1.99996 14.3 2.19996L13 3.59999L11.7 2.3C11.3 1.9 10.7 1.9 10.3 2.3L9 3.59999L7.70001 2.3C7.30001 1.9 6.69999 1.9 6.29999 2.3L5 3.59999L3.70001 2.3C3.50001 2.1 3 2.20001 3 3.50001V18.6C3 20.3 4.3 21.6 6 21.6H18Z" fill="black" />
-                                                                <path d="M12 12.6H11C10.4 12.6 10 12.2 10 11.6C10 11 10.4 10.6 11 10.6H12C12.6 10.6 13 11 13 11.6C13 12.2 12.6 12.6 12 12.6ZM9 11.6C9 11 8.6 10.6 8 10.6H6C5.4 10.6 5 11 5 11.6C5 12.2 5.4 12.6 6 12.6H8C8.6 12.6 9 12.2 9 11.6ZM9 7.59998C9 6.99998 8.6 6.59998 8 6.59998H6C5.4 6.59998 5 6.99998 5 7.59998C5 8.19998 5.4 8.59998 6 8.59998H8C8.6 8.59998 9 8.19998 9 7.59998ZM13 7.59998C13 6.99998 12.6 6.59998 12 6.59998H11C10.4 6.59998 10 6.99998 10 7.59998C10 8.19998 10.4 8.59998 11 8.59998H12C12.6 8.59998 13 8.19998 13 7.59998ZM13 15.6C13 15 12.6 14.6 12 14.6H10C9.4 14.6 9 15 9 15.6C9 16.2 9.4 16.6 10 16.6H12C12.6 16.6 13 16.2 13 15.6Z" fill="black" />
-                                                                <path d="M15 18.6C15 20.3 16.3 21.6 18 21.6C19.7 21.6 21 20.3 21 18.6V12.5C21 12.2 20.6 12 20.3 12.2L19 13.6L17.7 12.3C17.3 11.9 16.7 11.9 16.3 12.3L15 13.6V18.6Z" fill="black" />
-                                                            </svg>
-                                                        </span>
-                                                        <!--end::Svg Icon-->Quote
-                                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="View the invoice generated by this order."></i></div>
-                                                    </td>
-                                                    <td class="fw-bolder text-end">
-                                                        <p  class="text-gray-600 text-hover-primary">{{ $data->code }}</p>
-                                                    </td>
-                                                </tr>
-                                                <!--end::Invoice-->
-                                                <!--begin::Shipping-->
-                                              
-                                            </tbody>
-                                            <!--end::Table body-->
-                                        </table>
-                                        <!--end::Table-->
-                                    </div>
-                                </div>
-                                <!--end::Card body-->
-                            </div>
-                            <!--end::Documents-->
                         </div>
                         <!--end::Order summary-->
                         <!--begin::Tab content-->
@@ -334,13 +215,13 @@ License: For each use you must have a valid license purchased only from above li
                                                                 <td>
                                                                     <div class="d-flex align-items-center">
                                                                         <!--begin::Thumbnail-->
-                                                                        <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" class="symbol symbol-50px">
+                                                                        <a class="symbol symbol-50px">
                                                                             <span class="symbol-label" style="background-image:url(logo.png);"></span>
                                                                         </a>
                                                                         <!--end::Thumbnail-->
                                                                         <!--begin::Title-->
                                                                         <div class="ms-5">
-                                                                            <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" class="fw-bolder text-gray-600 text-hover-primary">{{ $item->product_name }}</a>
+                                                                            <a class="fw-bolder text-gray-600 text-hover-primary">{{ $item->product_name }}, {{ $item->get_product->user }} User</a>
                                                                         </div>
                                                                         <!--end::Title-->
                                                                     </div>
@@ -370,19 +251,138 @@ License: For each use you must have a valid license purchased only from above li
                                                 </table>
                                                 <!--end::Table-->
                                             </div>
-                                        </div>
-                                        <div class="d-flex justify-content-center mb-10">
-                                            <!--begin::Button-->
-                                            <!--end::Button-->
-                                            <!--begin::Button-->
-                                            <button type="submit" id="kt_ecommerce_add_quote_submit" {{-- $validation==true?'':"disabled" --}} class="btn btn-success" data-kt-add-quotation="submit" >
-                                                <span class="indicator-label" >Checkout</span>
-                                                <span class="indicator-progress">Please wait...
-                                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                            </button>
-                                            <!--end::Button-->
+                                           
                                         </div>
                                         <!--end::Card body-->
+                                    </div>
+                                    <form method="POST" id="postData">
+                                        <div class="card card-flush py-4">
+                                            <!--begin::Card header-->
+                                            <div class="card-header">
+                                                <div class="card-title">
+                                                    <h2>Buat Akun Baru</h2>
+                                                </div>
+                                            </div>
+                                            <!--end::Card header-->
+                                            <!--begin::Card body-->
+                                            <div class="card-body pt-0">
+                                                <!--begin::Input group-->
+                                                <div class="d-flex flex-wrap gap-5" >
+                                                    <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                        <!--begin::Label-->
+                                                        <label class="form-label required">Username</label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <input type="text" class="form-control" name="username" id="username" placeholder="Username" value="">
+                                                        <!--end::Input-->
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-wrap gap-5" >
+                                                    <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                        <!--begin::Label-->
+                                                        <label class="form-label required">Password</label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <input type="password" class="form-control" name="password" id="password" placeholder="Password" value="">
+                                                        <!--end::Input-->
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-wrap gap-5" >
+                                                    <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                        <!--begin::Label-->
+                                                        <label class="form-label required">Confirm Password</label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" value="">
+                                                        <!--end::Input-->
+                                                    </div>
+                                                </div>
+                                                <!--end::Input group-->
+                                            
+                                            
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="params" value="{{ $params }}" id="params">
+                                        <div class="card card-flush py-4">
+                                            <!--begin::Card header-->
+                                            <div class="card-header">
+                                                <div class="card-title">
+                                                    <h2>Data Pribadi</h2>
+                                                </div>
+                                            </div>
+                                            <!--end::Card header-->
+                                            <!--begin::Card body-->
+                                            <div class="card-body pt-0">
+                                                <!--begin::Input group-->
+                                                <div class="d-flex flex-wrap gap-5" >
+                                                    <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                        <!--begin::Label-->
+                                                        <label class="form-label required">Email</label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="">
+                                                        <!--end::Input-->
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-wrap gap-5" >
+                                                    <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                        <!--begin::Label-->
+                                                        <label class="form-label required">Nama Depan</label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <input type="text" class="form-control" name="nama_depan" id="nama_depan" placeholder="Nama Depan" value="">
+                                                        <!--end::Input-->
+                                                    </div>
+                                                    <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                        <!--begin::Label-->
+                                                        <label class="form-label required">Nama Belakang</label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <input type="text" class="form-control" name="nama_belakang" id="nama_belakang" placeholder="Nama Belakang" value="">
+                                                        <!--end::Input-->
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-wrap gap-5" >
+                                                    <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                        <!--begin::Label-->
+                                                        <label class="form-label required">Nomor Whatsapp</label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <input type="text" class="form-control" name="whatsapp" id="whatsapp" placeholder="08xxxxxxxxx" value="">
+                                                        <!--end::Input-->
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-wrap gap-5" >
+                                                    <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                        <!--begin::Label-->
+                                                        <label class="form-label required">Tipe Bisnis</label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <select class="form-select customer" data-control="select2" data-placeholder="-- Select Business Type --" name="business_type" id="business_type" >
+                                                            <option></option>
+                                                            @foreach ($businessType as $item)
+                                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <!--end::Input-->
+                                                    </div>
+                                                </div>
+                                                <!--end::Input group-->
+                                            
+                                            
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="d-flex justify-content-center mb-10">
+                                        <!--begin::Button-->
+                                        <!--end::Button-->
+                                        <!--begin::Button-->
+                                        <button type="submit" id="kt_ecommerce_add_quote_submit" {{-- $validation==true?'':"disabled" --}} class="btn btn-success" data-kt-add-quotation="submit" >
+                                            <span class="indicator-label" >Checkout</span>
+                                            <span class="indicator-progress">Please wait...
+                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                        </button>
+                                        <!--end::Button-->
                                     </div>
                                     <!--end::Product List-->
                                 </div>
@@ -457,9 +457,7 @@ License: For each use you must have a valid license purchased only from above li
 		<!--begin::Page Vendors Javascript(used by this page)-->
 		<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
 		<!--end::Page Vendors Javascript-->
-        <script>
-            var params = {{$params}};
-        </script>
+    
 		<!--begin::Page Custom Javascript(used by this page)-->
 		<script src="assets/js/widgets.bundle.js"></script>
 		<script src="assets/js/custom/widgets.js"></script>

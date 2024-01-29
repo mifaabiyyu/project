@@ -8,9 +8,7 @@
 </script>
     {{-- <script src="{{ asset('js/crud/sales/customers/quotation/action.js') }}" ></script> --}}
     {{-- <script src="{{ asset('js/crud/sales/customers/quotation/add.js') }}" ></script> --}}
-    <script src="{{ asset('js/crud/master-data/products/actionBid.js') }}" ></script>
-    <script src="{{ asset('js/crud/bidding/addBidding.js') }}" ></script>
-    <script src="{{ asset('js/crud/master-data/products/addByBidding.js') }}" ></script>
+    <script src="{{ asset('js/crud/sales/customers/quotation/delete.js') }}" ></script>
 @endsection
 
 <div class="content d-flex flex-column flex-column-fluid pt-4 pb-30" id="kt_content" wire:ignore.self>
@@ -94,13 +92,13 @@
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
-                                <label class="required fw-bold fs-6 mb-2">Anyone with the link can view the invoice as seen on format pdf</label>
+                                <label class="required fw-bold fs-6 mb-2">Anyone with the link can view the invoice</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
                                 <div class="input-group">
                                     <input type="text" readonly class="form-control" id="kt_clipboard_1" value="{{ route('checkout', base64_encode($data->code)) }}" placeholder="Type some value to copy"/>
                                     <div class="input-group-append">
-                                        <a href="javascript:void(0)" class="btn btn-secondary" data-clipboard="true" data-clipboard-target="#kt_clipboard_1"><i class="la la-copy"></i></a>
+                                        {{-- <a href="javascript:void(0)" class="btn btn-secondary" onclick="myFunction()" data-clipboard="true" data-clipboard-target="#kt_clipboard_1"><i class="la la-copy"></i></a> --}}
                                     </div>
                                 </div>
                                 <!--end::Input-->
@@ -146,7 +144,7 @@
                                             <h2>{{ $data->code }}</h2>
                                         </div>
                                         <div class="text-end mb-4 mt-4 ">
-                                            <button class="btn fw-bolder btn-danger me-3 " data-bs-toggle="modal" data-bs-target="#shareLink">Share Link</button>
+                                            <button class="btn fw-bolder btn-warning me-3 " data-bs-toggle="modal" data-bs-target="#shareLink">Share Link</button>
                                             <a href="{{ url()->previous() }}" class="btn fw-bolder btn-secondary">Back</a>
                                             <h4 class="mt-5">Total : <span id='total_all'>Rp. {{ $data->total }}</span></h4>
                                         </div>
@@ -186,8 +184,8 @@
                                                 <!--begin::Input-->
                                                 <div>
                                                     <span class="font-bolder text-center badge badge-light-{{ $data->status == 1 ? 'success' : 'danger' }}">
-                                {{ $data->get_status->name }}
-                                </span>
+                                    {{ $data->get_status->name }}
+                                    </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -261,26 +259,19 @@
                                         </div>
                                         <!--end::Card header-->
                                     </div>
+                                    <div class="d-flex fv-row flex-wrap gap-3">
+                                        <a class="btn btn-primary" href="{{ route('quotation.edit', base64_encode($data->code)) }}">Edit</a>
+                                        <button type="button" class="btn btn-danger me-3" data-id="{{ base64_encode($data->code) }}" data-kt-quote-table-filter="delete_row">Delete</button>
+                                    </div>
                                     <!--end::General options-->
                                 </div>
                             </div>
                         </div>
                         <!--end::Tab pane-->
-                  
                         <!--begin::Tab pane-->
                     </div>
                     <!--end::Tab content-->
-                    <div class="d-flex justify-content-center">
-                        <!--begin::Button-->
-                        <!--end::Button-->
-                        <!--begin::Button-->
-                        <button type="submit" id="kt_ecommerce_add_quote_submit" {{-- $validation==true?'':"disabled" --}} class="btn btn-primary" data-kt-add-quotation="submit" >
-                            <span class="indicator-label" >Create Quote</span>
-                            <span class="indicator-progress">Please wait...
-                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                        </button>
-                        <!--end::Button-->
-                    </div>
+                   
                 </div>
                 <!--end::Main column-->
             </form>
@@ -380,15 +371,14 @@
 
 
     <script>
-        function shippingDiklik(checkbox) {
-            if(checkbox.checked){
-                document.getElementById('shipping').style.display = 'none'
-                document.getElementById('shipping-vendor').style.display = 'none'
+        let text = document.getElementById('kt_clipboard_1').value;
+        const myFunction = async () => {
+            try {
+            await navigator.clipboard.writeText(text);
+            console.log('Content copied to clipboard');
+            } catch (err) {
+            console.error('Failed to copy: ', err);
             }
-            else{
-                document.getElementById('shipping').style.display = 'block'
-                document.getElementById('shipping-vendor').style.display = 'block'
-            }
-        }
+        };
     </script>
 </div>

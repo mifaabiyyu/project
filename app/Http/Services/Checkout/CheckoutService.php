@@ -25,8 +25,8 @@ class CheckoutService {
         ];
 
         $data = json_decode(json_encode($args), true);
-        $defParams['failure_redirect_url'] = $data['redirect_url'];
-        $defParams['success_redirect_url'] = $data['redirect_url'];
+        $defParams['failure_redirect_url'] = route('fail');
+        $defParams['success_redirect_url'] = route('success', base64_encode(base64_encode($args['code'])));
         $params = array_merge($defParams, $data);
         $response = [];
 
