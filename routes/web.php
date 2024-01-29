@@ -79,8 +79,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::prefix('quotation')->group(function () {
             Route::get('/', QuotationComponents::class)->name('quotation.index');
-            Route::get('/create', AddQuotationComponents::class)->name('quotation.create');
-            Route::get('/edit/{code}', EditQuotationComponents::class)->name('quotation.edit');
+            Route::get('/create', AddQuotationComponents::class)->middleware(['can:Quotation.create'])->name('quotation.create');
+            Route::get('/edit/{code}', EditQuotationComponents::class)->middleware(['can:Quotation.edit'])->name('quotation.edit');
             Route::get('/detail/{code}', DetailQuotationComponents::class)->name('quotation.detail');
             Route::resource('/quotation-data', QuotationController::class);
         });

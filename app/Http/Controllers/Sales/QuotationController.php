@@ -98,8 +98,11 @@ class QuotationController extends Controller
                 $createUser = User::create([
                     'name'  => $request->nama_depan . ' ' . $request->nama_belakang,
                     'email' => $request->email,
+                    'status'=> 0,
                     'password'  =>Hash::make($request->password)
                 ]);
+
+                $createUser->assignRole('Customer');
             }
 
             $xenditData = [
