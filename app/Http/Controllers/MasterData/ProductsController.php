@@ -134,10 +134,10 @@ class ProductsController extends Controller
         $request->validate([
             'name'                  => 'required',
             'code'                  => 'required|unique:products,code,' . $id,
-            'product_type'          => 'required',
-            'weight'                => 'required|numeric',
+            // 'product_type'          => 'required',
+            // 'weight'                => 'required|numeric',
             'photo'                 => 'image|max:1024|mimes:jpeg,png,jpg,svg', // 1MB Max
-            'packing_type_id'       => 'required',
+            
         ]);
 
         $imageName = $findData->photo;
