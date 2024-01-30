@@ -32,9 +32,10 @@ class QuotationController extends Controller
         $getData    = Quotation::query()->with('get_status');
 
         if (Auth::user()->hasRole('Customer')) {
-            $getCustomer    = Customer::where('code', auth()->user()->company_id)->first();
-
-            $getData->where('company', $getCustomer->company);
+            $getCustomer    = Customer::where('id', auth()->user()->customer_id)->first();
+            if ($getCustomer) {
+                $getData->where('company', $getCustomer->company);
+            }
         }
 
         return DataTables::eloquent($getData)->make(true);

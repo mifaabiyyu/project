@@ -54,7 +54,8 @@ var KTSigninGeneral = (function () {
                     n.preventDefault(),
                         i.validate().then(function (i) {
                             var formData = new FormData(addForm);
-
+                            e.setAttribute("data-kt-indicator", "on"),
+                                (e.disabled = !0);
                             $.ajax({
                                 type: "POST",
                                 url: route("login"),
@@ -62,29 +63,10 @@ var KTSigninGeneral = (function () {
                                 processData: false,
                                 contentType: false,
                                 success: function (response) {
-                                    e.setAttribute("data-kt-indicator", "on"),
-                                        (e.disabled = !0),
-                                        setTimeout(function () {
-                                            e.removeAttribute(
-                                                "data-kt-indicator"
-                                            ),
-                                                (e.disabled = !1),
-                                                Swal.fire({
-                                                    text: "Login Success !",
-                                                    icon: "success",
-                                                    buttonsStyling: !1,
-                                                    confirmButtonText:
-                                                        "Ok, got it!",
-                                                    customClass: {
-                                                        confirmButton:
-                                                            "btn btn-primary",
-                                                    },
-                                                }).then(function (t) {
-                                                    window.location.replace(
-                                                        route("dashboard")
-                                                    );
-                                                });
-                                        }, 200);
+                                    e.removeAttribute("data-kt-indicator"),
+                                        (e.disabled = !1);
+                                    toastr.success("Login success !", options);
+                                    window.location.replace(route("dashboard"));
                                 },
                                 error: function (error) {
                                     const errors = Object.values(

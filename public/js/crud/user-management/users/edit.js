@@ -14,6 +14,7 @@ var KTUsersEditUser = (function () {
                 $("#headerForm").html("Edit Data User " + response.data.name);
                 $("#edit_name").val(response.data.name);
                 $("#edit_email").val(response.data.email);
+                $("#edit_customer_id").val(response.data.customer_id);
                 document.getElementById("preview-image-before-upload").src =
                     "../images/user/" + response.data.photo;
                 $("#edit_roles").val(response.data.get_roles.data_roles.name);

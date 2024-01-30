@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Components\Modal\User;
 
 use App\Models\Role;
+use App\Models\Sales\Customer;
 use Livewire\Component;
 
 class Edit extends Component
@@ -11,6 +12,11 @@ class Edit extends Component
 
     public function render()
     {
-        return view('livewire.components.modal.user.edit');
+        $customers  = Customer::all();
+
+        $data = [
+            'customers' => $customers
+        ];
+        return view('livewire.components.modal.user.edit', $data);
     }
 }

@@ -45,7 +45,7 @@ class UsersController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Password::defaults()],
-            'photo' => 'image|max:1024|mimes:jpeg,png,jpg,svg', // 1MB Max
+            // 'photo' => 'image|max:1024|mimes:jpeg,png,jpg,svg', // 1MB Max
             'roles' => 'required'
         ]);
 
@@ -67,19 +67,20 @@ class UsersController extends Controller
 
         $imageName = null;
 
-        if($request->photo)
-        {
+        // if($request->photo)
+        // {
           
-            $imageName = date("Ymd").time().rand().'.'.$request->photo->extension();  
-            $request->photo->move(public_path('images/user'), $imageName);
-        }
+        //     $imageName = date("Ymd").time().rand().'.'.$request->photo->extension();  
+        //     $request->photo->move(public_path('images/user'), $imageName);
+        // }
 
         $user = User::create([
             'name'      => $request->name,
             'email'     => $request->email,
             'password'  => Hash::make($request->password),
             'photo'     => $imageName,
-            'status'    => $request->status
+            'status'    => $request->status,
+            'customer_id'=> $request->customer_id
 
         ]); 
 
@@ -120,7 +121,7 @@ class UsersController extends Controller
         $validate = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $id],
-            'photo' => 'max:1024', // 1MB Max
+            // 'photo' => 'max:1024', // 1MB Max
             'roles' => 'required'
         ]);
 
@@ -130,19 +131,20 @@ class UsersController extends Controller
 
         $imageName = $findData->photo;
    
-        if($request->hasFile('photo'))
-        {
-            if ($imageName != null) {
-                unlink("images/user/" . $findData->photo);
-            }
-            $imageName = date("Ymd").time().rand().'.'.$request->photo->extension();  
-            $request->photo->move(public_path('images/user'), $imageName);
-        }
+        // if($request->hasFile('photo'))
+        // {
+        //     if ($imageName != null) {
+        //         unlink("images/user/" . $findData->photo);
+        //     }
+        //     $imageName = date("Ymd").time().rand().'.'.$request->photo->extension();  
+        //     $request->photo->move(public_path('images/user'), $imageName);
+        // }
 
         $findData->name = $request->name;
         $findData->email = $request->email;
         $findData->photo = $imageName;
         $findData->status = $request->status;
+        $findData->customer_id = $request->customer_id;
 
         if ($request->password) {
             $findData->password = Hash::make($request->password);
