@@ -126,8 +126,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                   
+                        <div class="fv-row mb-7">
+                            <!--begin::Label-->
+                            <label class="fw-bold fs-6 mb-2">Unit Price</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="text" name="unit_price" id="unit_price" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Unit Price" />
+                            <!--end::Input-->
                         </div>
                         <div class="fv-row mb-7 ">
                             <label class="required fw-bold fs-6 mb-2">Description</label>

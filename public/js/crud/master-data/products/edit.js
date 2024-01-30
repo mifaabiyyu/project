@@ -16,22 +16,11 @@ var EditProduct = (function () {
                 );
                 $("#edit_name").val(response.data.name);
                 $("#edit_code").val(response.data.code);
-                $("#edit_stock").val(response.data.stock);
-                $("#edit_weight").val(response.data.weight);
-                $("#edit_mesh").val(response.data.mesh);
+                $("#edit_unit_price").val(response.data.unit_price);
                 $("#edit_product_type").val(response.data.product_type);
-                $("#edit_ssa").val(response.data.ssa);
-                $("#edit_d_50").val(response.data.d_50);
-                $("#edit_d_98").val(response.data.d_98);
-                $("#edit_cie_86").val(response.data.cie_86);
-                $("#edit_iso_2470").val(response.data.iso_2470);
-                $("#edit_residue").val(response.data.residue);
-                $("#edit_mean_particle_diameter	").val(
-                    response.data.mean_particle_diameter
-                );
-                $("#edit_moisture").val(response.data.moisture);
+
                 $("#edit_description").val(response.data.description);
-                $("#edit_packing_type_id").val(response.data.packing_type_id);
+
                 document.getElementById(
                     "image-input-wrapper"
                 ).style.backgroundImage =

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\MasterData;
 
 use App\Http\Controllers\Controller;
 use App\Models\MasterData\Product;
+use App\Models\Quotation;
+use App\Models\QuotationDetail;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -64,6 +66,7 @@ class ProductsController extends Controller
             'code'                  => $request->code,
             'stock'                 => $request->stock,
             'product_type'          => $request->product_type,
+            'unit_price'          => $request->unit_price,
             'photo'                 => $imageName,
             'description'           => $request->description,
             'user'           => $request->user,
@@ -155,6 +158,7 @@ class ProductsController extends Controller
         $findData->code                  = $request->code;
         $findData->photo                 = $imageName;
         $findData->description           = $request->description;
+        $findData->unit_price           = $request->unit_price;
         $findData->user                  = $request->user;
         $findData->status                = $request->status;
       
@@ -183,6 +187,13 @@ class ProductsController extends Controller
         if (!$findData) {
             return response()->json(['message' => 'Data Not Found !'], 404);
         }
+
+        $checkQuote = QuotationDetail::where('product_code', $findData->code)->first();
+
+        if (!$checkQuote) {
+            return response()->json(['message' => 'Cannot delete, this product already have quote !'], 404);
+        }
+
         $file = public_path('images/product/') . $findData->photo;
 
         if (file_exists($file)) {

@@ -31,12 +31,12 @@ class AlterTableQuotationandUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('company')->nullable();
+            $table->dropColumn('company');
         });
 
         Schema::table('quotations', function (Blueprint $table) {
-            $table->date('active_start')->nullable();
-            $table->date('active_end')->nullable();
+            $table->dropColumn('active_start');
+            $table->dropColumn('active_end');
         });
     }
 }

@@ -94,7 +94,7 @@
                                                     <!--begin::Label-->
                                                     <label class=" form-label">Customer</label>
                                                     <!--end::Label-->
-                                                    <button  type="button" data-bs-toggle="modal" id="add-customer" data-bs-target="#add_customer" wire:click.prevent="nambahItem()" class="badge fw-bolder badge-secondary mb-1" style="border: 0" onclick="document.getElementById('check-shipping').checked = true;">Add New</button>
+                                                    {{-- <button  type="button" data-bs-toggle="modal" id="add-customer" data-bs-target="#add_customer" wire:click.prevent="nambahItem()" class="badge fw-bolder badge-secondary mb-1" style="border: 0" onclick="document.getElementById('check-shipping').checked = true;">Add New</button> --}}
                                                     {{-- <a href="{{ route('admin.sales.index') }}" class="badge fw-bolder badge-secondary mb-4">Add Contractor</a> --}}
                                                 </div>
                                                 <!--begin::Input-->
@@ -324,15 +324,19 @@
 
 
     <script>
-        function shippingDiklik(checkbox) {
-            if(checkbox.checked){
-                document.getElementById('shipping').style.display = 'none'
-                document.getElementById('shipping-vendor').style.display = 'none'
-            }
-            else{
-                document.getElementById('shipping').style.display = 'block'
-                document.getElementById('shipping-vendor').style.display = 'block'
-            }
+        const convertToDateTimeLocalString = (date) => {
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, "0");
+        const day = date.getDate().toString().padStart(2, "0");
+        const hours = date.getHours().toString().padStart(2, "0");
+        const minutes = date.getMinutes().toString().padStart(2, "0");
+
+        return `${year}-${month}-${day}T${hours}:${minutes}`;
         }
+        const currentTime = new Date();
+        currentTime.setDate(currentTime.getDate()+3);
+        document.getElementById('expiry_date').value = convertToDateTimeLocalString(currentTime)
+        
+        // $('#expiry_date').val(dt);
     </script>
 </div>

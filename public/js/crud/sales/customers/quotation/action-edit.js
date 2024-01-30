@@ -22,7 +22,7 @@ $.ajax({
                 .add([
                     '<select id="product' +
                         last +
-                        '" data-placeholder="-- Select Product --" name="product[]" data-control="select2" class="form-select products"  data-id=' +
+                        '" data-placeholder="-- Select Product --" name="product[]" onchange="countItem(this)" data-control="select2" class="form-select products"  data-id=' +
                         last +
                         "><option></option>" +
                         products.map((element) => {
@@ -33,8 +33,8 @@ $.ajax({
                             }>${element.name}</option>`;
                         }) +
                         `</select>`,
-                    `<input type="text" class="bg-transparent form-control" name="qty[]" id="qty${last}" value="${el.qty}" onchange="countItem(this)" data-id=${last}>`,
-                    `<input type="text" class="bg-transparent form-control" name="unit_price[]" value="${el.unit_price}" onchange="countItem(this)" id="unit_price${last}" data-id=${last}>`,
+                    `<input type="text" class="bg-transparent form-control" name="qty[]" id="qty${last}" value="${el.qty}" onkeyup="countItem(this)" data-id=${last}>`,
+                    `<input type="text" class="bg-transparent form-control" name="unit_price[]" value="${el.unit_price}" onkeyup="countItem(this)" id="unit_price${last}" data-id=${last}>`,
                     `<input type="text" class="bg-secondary totalPrice form-control" readonly name="total_price[]" value="${el.total_price}"  id="total_price${last}" data-id=${last}>`,
 
                     ` <a href="javascript:;"  class="btn btn-sm btn-light-danger deleteData " data-id=${last}>
@@ -86,15 +86,15 @@ $("#addItem").on("click", function () {
         .add([
             '<select id="product' +
                 last +
-                '" data-placeholder="-- Select Product --" name="product[]" data-control="select2" class="form-select products"  data-id=' +
+                '" data-placeholder="-- Select Product --" name="product[]" onchange="countItem(this)" data-control="select2" class="form-select products"  data-id=' +
                 last +
                 "><option></option>" +
                 products.map((element) => {
                     return `<option value="${element.id}">${element.name}</option>`;
                 }) +
                 `</select>`,
-            `<input type="text" class="bg-transparent form-control" name="qty[]" id="qty${last}" onchange="countItem(this)" data-id=${last}>`,
-            `<input type="text" class="bg-transparent form-control" name="unit_price[]" onchange="countItem(this)" id="unit_price${last}" data-id=${last}>`,
+            `<input type="text" class="bg-transparent form-control" name="qty[]" id="qty${last}" onkeyup="countItem(this)" data-id=${last}>`,
+            `<input type="text" class="bg-transparent form-control" name="unit_price[]" onkeyup="countItem(this)" id="unit_price${last}" data-id=${last}>`,
             `<input type="text" class="bg-secondary totalPrice form-control" readonly name="total_price[]"  id="total_price${last}" data-id=${last}>`,
 
             ` <a href="javascript:;"  class="btn btn-sm btn-light-danger deleteData " data-id=${last}>
@@ -131,6 +131,10 @@ $("#table_item tbody").on("click", ".deleteData", function () {
 
 const countItem = (t) => {
     var idData = t.getAttribute("data-id");
+    var valueProduct = $("#product" + idData).val();
+    const valPrd = products.find((element) => element.id == valueProduct);
+    $("#unit_price" + idData).val(valPrd.unit_price * 1);
+
     var qtyData = $("#qty" + idData).val();
     var unitPriceData = $("#unit_price" + idData).val();
 
