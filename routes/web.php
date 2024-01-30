@@ -9,6 +9,7 @@ use App\Http\Controllers\Sales\CustomerOrderDetailsController;
 use App\Http\Controllers\Sales\CustomerOrdersController;
 use App\Http\Controllers\Sales\CustomersController;
 use App\Http\Controllers\Sales\QuotationController;
+use App\Http\Controllers\UserCompanyController;
 use App\Http\Controllers\UserManagement\PermissionsController;
 use App\Http\Controllers\UserManagement\RolesController;
 use App\Http\Controllers\UserManagement\UsersController;
@@ -28,6 +29,7 @@ use App\Http\Livewire\Pages\Sales\Orders\AddQuotationComponents;
 use App\Http\Livewire\Pages\Sales\Orders\DetailQuotationComponents;
 use App\Http\Livewire\Pages\Sales\Orders\EditQuotationComponents;
 use App\Http\Livewire\Pages\Sales\Orders\QuotationComponents;
+use App\Http\Livewire\Pages\UserCompany\UserCompanyComponents;
 use App\Http\Livewire\Pages\UserManagement\PermissionsComponents;
 use App\Http\Livewire\Pages\UserManagement\RolesComponents;
 use App\Http\Livewire\Pages\UserManagement\UsersComponents;
@@ -109,6 +111,12 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('/permission-data', PermissionsController::class);
         });
     });
+
+    Route::prefix('users-company')->group(function () {
+        Route::get('/', UserCompanyComponents::class)->name('users-company.index');
+        Route::resource('/user-company-data', UserCompanyController::class);
+    });
+    
 
     // Master Data
     Route::prefix('master-data')->group(function () {

@@ -41,6 +41,7 @@ var QuotationDataTable = (function () {
                     },
                 },
                 { data: "customer_name" },
+
                 {
                     data: "total",
                     searchable: false,
@@ -59,6 +60,20 @@ var QuotationDataTable = (function () {
                     </a>
                        `
                         );
+                    },
+                },
+                {
+                    data: "active_start",
+                    render: function (data, type) {
+                        var time = moment(data).format("DD-MM-YYYY");
+                        return time;
+                    },
+                },
+                {
+                    data: "active_end",
+                    render: function (data, type) {
+                        var time = moment(data).format("DD-MM-YYYY");
+                        return time;
                     },
                 },
                 // { data: "date" },

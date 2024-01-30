@@ -265,13 +265,14 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="d-flex flex-wrap gap-5" >
                                                     <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
                                                         <!--begin::Label-->
-                                                        <label class="form-label required">Username</label>
+                                                        <label class="form-label required">Email</label>
                                                         <!--end::Label-->
                                                         <!--begin::Input-->
-                                                        <input type="text" class="form-control" name="username" id="username" placeholder="Username" value="">
+                                                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="">
                                                         <!--end::Input-->
                                                     </div>
                                                 </div>
+                                          
                                                 <div class="d-flex flex-wrap gap-5" >
                                                     <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
                                                         <!--begin::Label-->
@@ -312,10 +313,10 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="d-flex flex-wrap gap-5" >
                                                     <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
                                                         <!--begin::Label-->
-                                                        <label class="form-label required">Email</label>
+                                                        <label class="form-label required">Username</label>
                                                         <!--end::Label-->
                                                         <!--begin::Input-->
-                                                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="">
+                                                        <input type="text" class="form-control" name="username" id="username" placeholder="Username" value="">
                                                         <!--end::Input-->
                                                     </div>
                                                 </div>
