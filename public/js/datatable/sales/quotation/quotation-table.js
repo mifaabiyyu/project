@@ -61,8 +61,8 @@ var QuotationDataTable = (function () {
                         );
                     },
                 },
-                { data: "date" },
-                { data: "valid_until" },
+                // { data: "date" },
+                // { data: "valid_until" },
                 {
                     data: "status",
                     render: function (data, type, row) {

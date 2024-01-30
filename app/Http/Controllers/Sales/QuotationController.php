@@ -12,8 +12,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Services\Checkout\CheckoutService as Service;
 use App\Models\MasterData\BusinessType;
+use App\Models\MasterData\Parameter;
 use App\Models\User;
 use DateTime;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Yajra\DataTables\Facades\DataTables;
@@ -28,6 +30,12 @@ class QuotationController extends Controller
     public function index()
     {
         $getData    = Quotation::query()->with('get_status');
+
+        if (Auth::user()->hasRole('Customer')) {
+            $getCustomer    = Customer::where('code', auth()->user()->company_id)->first();
+
+            $getData->where('company', $getCustomer->company);
+        }
 
         return DataTables::eloquent($getData)->make(true);
     }
@@ -46,6 +54,8 @@ class QuotationController extends Controller
             'username'      => 'required',
             'password'      => 'required|confirmed',
             'whatsapp'      => 'required',
+            'alamat'        => 'required',
+            'company'       => 'required',
             // 'business_type' => 'required',
         ]);
     
@@ -62,7 +72,30 @@ class QuotationController extends Controller
         }
 
         if ($findData->status == 5) {
-            return view('livewire.pages.success');
+            $getParamPhone = Parameter::where('code', 'whatsappPhone')->first();
+
+            if (!$getParamPhone) {
+                $getParamPhone = Parameter::create([
+                    'code'  => 'whatsappPhone',
+                    'name'  => 'Nomor WhatsApp',
+                    'value' => '6281515141186'
+                ]);
+            }
+
+            $getParamText = Parameter::where('code', 'whatsappText')->first();
+
+            
+            if (!$getParamText) {
+                $getParamText = Parameter::create([
+                    'code'  => 'whatsappText',
+                    'name'  => 'Text WhatsApp',
+                    'value' => 'Saya telah melakukan pembayaran dengan nomor Invoice ...'
+                ]);
+            }
+
+            $linkWa  = 'https://api.whatsapp.com/send/?phone='. $getParamPhone .'&text='. $getParamText .'&type=phone_number&app_absent=0';
+
+            return view('livewire.pages.success', compact('linkWa'));
         }
 
         DB::beginTransaction();
@@ -98,8 +131,9 @@ class QuotationController extends Controller
                 $createUser = User::create([
                     'name'  => $request->nama_depan . ' ' . $request->nama_belakang,
                     'email' => $request->email,
-                    'status'=> 0,
-                    'password'  =>Hash::make($request->password)
+                    'status'=> 1,
+                    'password'  =>Hash::make($request->password),
+                    'customer_id' => $codeCust
                 ]);
 
                 $createUser->assignRole('Customer');
@@ -130,19 +164,42 @@ class QuotationController extends Controller
 
     public function successPayment($code)
     {
-        $code = base64_decode(base64_decode($code));
-        $findData = Quotation::where('code', $code)->first();
+        // $code = base64_decode(base64_decode($code));
+        // $findData = Quotation::where('code', $code)->first();
 
-        if (!$findData) {
-            abort(404);
+        // if (!$findData) {
+        //     abort(404);
+        // }
+
+        // $findData->update([
+        //     'status'    => 5,
+        //     'paid_at'   => date('Y-m-d H:i:s')
+        // ]);
+        $getParamPhone = Parameter::where('code', 'whatsappPhone')->first();
+        
+        if (!$getParamPhone) {
+            $getParamPhone = Parameter::create([
+                'code'  => 'whatsappPhone',
+                'name'  => 'Nomor WhatsApp',
+                'value' => '6281515141186'
+            ]);
         }
 
-        $findData->update([
-            'status'    => 5,
-            'paid_at'   => date('Y-m-d H:i:s')
-        ]);
+        $getParamText = Parameter::where('code', 'whatsappText')->first();
 
-        return view('livewire.pages.success');
+        
+        if (!$getParamText) {
+            $getParamText = Parameter::create([
+                'code'  => 'whatsappText',
+                'name'  => 'Text WhatsApp',
+                'value' => 'Saya telah melakukan pembayaran dengan nomor Invoice ...'
+            ]);
+        }
+
+        $linkWa  = 'https://api.whatsapp.com/send/?phone='. $getParamPhone->value .'&text='. $getParamText->value .'&type=phone_number&app_absent=0';
+        // dd($linkWa);
+        return view('livewire.pages.success', compact('linkWa'));
+
     }
 
     public function failPayment($code)
@@ -207,8 +264,8 @@ class QuotationController extends Controller
         $codeQuote = IdGenerator::generate([
             'table' => (new Quotation())->getTable(),
             'field' => 'code',
-            'length' => 7,
-            'prefix' => 'SQ-',
+            'length' => 8,
+            'prefix' => 'INV-',
             'reset_on_prefix_change' => true
         ]);
 
@@ -235,6 +292,8 @@ class QuotationController extends Controller
                 'notes'         => $request->notes,
                 'created_by'    => auth()->user()->id,
                 'status'        => $request->status,
+                'active_start'        => $request->active_start,
+                'active_end'        => $request->active_end,
             ]);
 
             foreach ($request->product as $key => $value) {
@@ -342,6 +401,8 @@ class QuotationController extends Controller
                 'total'         => $totalAll,
                 'notes'         => $request->notes,
                 'status'        => $request->status,
+                'active_start'        => $request->active_start,
+                'active_end'        => $request->active_end,
             ]);
 
             $findDetail = QuotationDetail::where('quotation_code', $code)->get();

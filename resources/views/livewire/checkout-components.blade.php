@@ -199,9 +199,9 @@ License: For each use you must have a valid license purchased only from above li
                                                     <!--begin::Table head-->
                                                     <thead>
                                                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                                            <th class="min-w-175px">Product</th>
-                                                            <th class="min-w-70px text-end">Qty</th>
-                                                            <th class="min-w-100px text-end">Unit Price</th>
+                                                            <th class="min-w-100px">Product</th>
+                                                            <th class="min-w-50px text-end">Qty</th>
+                                                            {{-- <th class="min-w-100px text-end">Unit Price</th> --}}
                                                             <th class="min-w-100px text-end">Total</th>
                                                         </tr>
                                                     </thead>
@@ -214,11 +214,6 @@ License: For each use you must have a valid license purchased only from above li
                                                                 <!--begin::Product-->
                                                                 <td>
                                                                     <div class="d-flex align-items-center">
-                                                                        <!--begin::Thumbnail-->
-                                                                        <a class="symbol symbol-50px">
-                                                                            <span class="symbol-label" style="background-image:url(logo.png);"></span>
-                                                                        </a>
-                                                                        <!--end::Thumbnail-->
                                                                         <!--begin::Title-->
                                                                         <div class="ms-5">
                                                                             <a class="fw-bolder text-gray-600 text-hover-primary">{{ $item->product_name }}, {{ $item->get_product->user }} User</a>
@@ -233,7 +228,7 @@ License: For each use you must have a valid license purchased only from above li
                                                                 <!--begin::Quantity-->
                                                                 <!--end::Quantity-->
                                                                 <!--begin::Price-->
-                                                                <td class="text-end">{{ "Rp " . number_format($item->unit_price,0,'','.') }}</td>
+                                                                {{-- <td class="text-end">{{ "Rp " . number_format($item->unit_price,0,'','.') }}</td> --}}
                                                                 <!--end::Price-->
                                                                 <!--begin::Total-->
                                                                 <td class="text-end">{{ "Rp " . number_format($item->total_price,0,'','.') }}</td>
@@ -242,7 +237,7 @@ License: For each use you must have a valid license purchased only from above li
                                                         @endforeach
                                                         <!--begin::Grand total-->
                                                         <tr>
-                                                            <td colspan="3" class="fs-3 text-dark text-end">Grand Total</td>
+                                                            <td colspan="2" class="fs-3 text-dark text-end">Grand Total</td>
                                                             <td class="text-dark fs-3 fw-boldest text-end">{{ "Rp " . number_format($data->total,0,'','.') }}</td>
                                                         </tr>
                                                         <!--end::Grand total-->
@@ -355,6 +350,26 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="d-flex flex-wrap gap-5" >
                                                     <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
                                                         <!--begin::Label-->
+                                                        <label class="form-label required">Alamat</label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat" value="">
+                                                        <!--end::Input-->
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-wrap gap-5" >
+                                                    <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                        <!--begin::Label-->
+                                                        <label class="form-label required">Company</label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <input type="text" class="form-control" name="company" id="company" placeholder="Company" value="">
+                                                        <!--end::Input-->
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-wrap gap-5" >
+                                                    <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                        <!--begin::Label-->
                                                         <label class="form-label required">Tipe Bisnis</label>
                                                         <!--end::Label-->
                                                         <!--begin::Input-->
@@ -457,7 +472,25 @@ License: For each use you must have a valid license purchased only from above li
 		<!--begin::Page Vendors Javascript(used by this page)-->
 		<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
 		<!--end::Page Vendors Javascript-->
-    
+        <script>
+			var options = {
+			closeButton: false,
+			debug: false,
+			newestOnTop: false,
+			progressBar: false,
+			positionClass: "toast-top-right",
+			preventDuplicates: false,
+			onclick: null,
+			showDuration: "300",
+			hideDuration: "1000",
+			timeOut: "5000",
+			extendedTimeOut: "1000",
+			showEasing: "swing",
+			hideEasing: "linear",
+			showMethod: "fadeIn",
+			hideMethod: "fadeOut",
+		};
+		</script>
 		<!--begin::Page Custom Javascript(used by this page)-->
 		<script src="assets/js/widgets.bundle.js"></script>
 		<script src="assets/js/custom/widgets.js"></script>
@@ -465,7 +498,8 @@ License: For each use you must have a valid license purchased only from above li
 		<script src="assets/js/custom/utilities/modals/upgrade-plan.js"></script>
 		<script src="assets/js/custom/utilities/modals/create-app.js"></script>
 		<script src="assets/js/custom/utilities/modals/users-search.js"></script>
-        <script src="js/crud/checkout.js"></script>
+        {{-- <script src="js/crud/checkout.js"></script> --}}
+        <script src="js/crud/checkout copy.js"></script>
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
 	</body>

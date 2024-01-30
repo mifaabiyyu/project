@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\UserManagement;
 
 use App\Http\Controllers\Controller;
+use App\Models\Quotation;
+use App\Models\Sales\Customer;
 use App\Models\User;
 use Illuminate\Http\Request;
 use DataTables;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
@@ -15,6 +18,12 @@ class UsersController extends Controller
     {
         $users = User::query()->with('get_roles:role_id,model_id');
 
+        if (Auth::user()->hasRole('Customer')) {
+            $getCustomer    = Customer::where('code', auth()->user()->company_id)->first();
+
+            $users->where('company', $getCustomer->company);
+        }
+        
         if ($request->filled('role')) {
             $users->whereHas('get_roles', function ($query) use($request) {
                 return $query->where('role_id', '=', $request->role);
@@ -39,6 +48,22 @@ class UsersController extends Controller
             'photo' => 'image|max:1024|mimes:jpeg,png,jpg,svg', // 1MB Max
             'roles' => 'required'
         ]);
+
+        if (Auth::user()->hasRole('Customer')) {
+            $getCustomer    = Customer::where('code', auth()->user()->company_id)->first();
+            $countUser      = 0;
+            $getQuotation   = Quotation::with('get_detail')->where('customer_code', $getCustomer->code)->where('active_end', '>', date('Y-m-d'))->get();
+
+            foreach ($getQuotation as $key => $value) {
+                $countUser += $value->get_product->user;
+            }
+
+            $getUser        = User::where('company', auth()->user()->company)->count();
+
+            if($getUser >= $countUser) {
+                return response()->json(['message' => 'User melebihi limit !'], 422);
+            }
+        }
 
         $imageName = null;
 

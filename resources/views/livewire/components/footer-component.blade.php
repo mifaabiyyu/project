@@ -4,7 +4,7 @@
         <!--begin::Copyright-->
         <div class="text-dark order-2 order-md-1">
             <span class="text-muted fw-bold me-1">{{ date('Y') }}©</span>
-            <a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">PT Dwi Selo Girimas</a>
+            <a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">Hector App</a>
         </div>
         <!--end::Copyright-->
         <!--begin::Menu-->

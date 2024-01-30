@@ -12,7 +12,7 @@ class DetailsCustomerComponents extends Component
     
     public function mount($code)
     {
-        $this->getCustomer = Customer::with('get_status', 'get_city', 'get_customer_order', 'get_address')->where('code', $code)->first();
+        $this->getCustomer = Customer::with('get_status', 'get_city')->where('code', $code)->first();
     }
 
     public function render()

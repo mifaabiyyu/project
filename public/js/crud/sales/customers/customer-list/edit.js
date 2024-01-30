@@ -18,34 +18,6 @@ var EditCustomerList = (function () {
                                 notEmpty: { message: "Code is required" },
                             },
                         },
-                        address: {
-                            validators: {
-                                notEmpty: {
-                                    message: "Address is required",
-                                },
-                            },
-                        },
-                        company_id: {
-                            validators: {
-                                notEmpty: {
-                                    message: "Company is required",
-                                },
-                            },
-                        },
-                        city: {
-                            validators: {
-                                notEmpty: {
-                                    message: "City is required",
-                                },
-                            },
-                        },
-                        npwp: {
-                            validators: {
-                                notEmpty: {
-                                    message: "NPWP is required",
-                                },
-                            },
-                        },
                         email: {
                             validators: {
                                 notEmpty: {

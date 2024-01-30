@@ -211,16 +211,6 @@
                                                 <!--end::Input-->
                                             </div>
                                             <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
-                                                <!--end::Label-->
-                                                 <!--begin::Label-->
-                                                <label class=" form-label">Fax Customer</label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <input type="number" name="fax" id="fax" class="form-control mb-2" placeholder="Fax Customer" value="" />
-                                                <!--end::Input-->
-                                                <!--begin::Description-->
-                                            </div>
-                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
                                                 <label class=" form-label">Businness Area</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
@@ -232,16 +222,7 @@
                                            
                                         </div>
                                         <div class="d-flex flex-wrap gap-5 mb-5">
-                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
-                                                 <!--begin::Label-->
-                                                <label class=" form-label">Credit</label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <input type="text" name="credit" id="credit" class="form-control mb-2" placeholder="Credit" value="" />
-                                                <!--end::Input-->
-                                                <!--begin::Description-->
-                                                <!--begin::Description-->
-                                            </div>
+                                         
                                             <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
                                                 <label class=" form-label">City Customer</label>
                                                 <!--end::Label-->
@@ -255,33 +236,18 @@
                                                 <!--end::Input-->
                                                 <!--begin::Description-->
                                             </div>
+                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
+                                                <label class=" form-label">Address Customer</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <textarea type="text" name="address" id="address" class="form-control mb-2" placeholder="Address Customer" value="" ></textarea>
+                                                <!--end::Input-->
+                                            </div>
                                            
                                         </div>
                                         <!--begin::Input group-->
                                         <!--end::Input group-->
-                                        <div class="mb-10 fv-row">
-                                            <!--begin::Label-->
-                                            <label class=" form-label">Address Customer</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <textarea type="text" name="address" id="address" class="form-control mb-2" placeholder="Address Customer" value="" ></textarea>
-                                            <!--end::Input-->
-                                            <!--begin::Description-->
-                                            <!--end::Description-->
-                                        </div>
-                                   
-                                        <div>
-                                            <!--begin::Label-->
-                                            <label class="form-label">Warehouse Address</label>
-                                            <!--end::Label-->
-                                            <!--begin::Editor-->
-                                            <textarea id="warehouse_address" name="warehouse_address" placeholder="Warehouse Address" class="form-control mb-2"></textarea>
-                                            <!--end::Editor-->
-                                            <!--begin::Description-->
-                                            <div class="text-muted fs-7">Set a description to the product for better visibility.</div>
-                                            <!--end::Description-->
-                                        </div>
-                                        <!--end::Input group-->
+                                      
                                     </div>
                                     <!--end::Card header-->
                                 </div>
@@ -296,38 +262,33 @@
                                     <!--end::Card header-->
                                     <!--begin::Card body-->
                                     <div class="card-body pt-0">
+                                        <div class="d-flex flex-wrap gap-5 mb-5">
+                                         
+                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
+                                                <label class=" form-label">PIC Name</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                                <input type="text" name="pic" id="pic" class="form-control mb-2" placeholder="PIC" value="" />
+                                            <!--end::Input-->
+                                            </div>
+                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
+                                                <label class=" form-label">PIC Position</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="pic_position" id="pic_position" class="form-control mb-2" placeholder="PIC Position" value="" />
+                                                <!--end::Input-->
+                                            </div>
+                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
+                                                <label class=" form-label">PIC Phone</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="pic_phone" id="pic_phone" class="form-control mb-2" placeholder="PIC Phone" value="" />
+                                                <!--end::Input-->
+                                            </div>
+                                           
+                                        </div>
                                         <!--begin::Input group-->
-                                        <div class="mb-10 fv-row">
-                                            <!--begin::Label-->
-                                            <label class=" form-label">PIC Name</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" name="pic" id="pic" class="form-control mb-2" placeholder="PIC" value="" />
-                                            <!--end::Input-->
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="mb-10 fv-row">
-                                            <!--begin::Label-->
-                                            <label class=" form-label">PIC Position</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" name="pic_position" id="pic_position" class="form-control mb-2" placeholder="PIC Position" value="" />
-                                            <!--end::Input-->
-                                            <!--begin::Description-->
-                                            <!--end::Description-->
-                                        </div>
-                                        <div class="mb-10 fv-row">
-                                            <!--begin::Label-->
-                                            <label class=" form-label">PIC Phone</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" name="pic_phone" id="pic_phone" class="form-control mb-2" placeholder="PIC Phone" value="" />
-                                            <!--end::Input-->
-                                            <!--begin::Description-->
-                                            <!--end::Description-->
-                                        </div>
-                                        <!--end::Input group-->
+                                     
                                     </div>
                                     <!--end::Card header-->
                                 </div>

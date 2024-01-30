@@ -220,6 +220,7 @@ BODY {
 			<!--begin::Authentication - 404 Page-->
 			<div class="d-flex flex-column flex-center flex-column-fluid p-10">
                 <h1 class="fw-bold mb-10" style="color: #373434">Pembayaran Berhasil !</h1>
+                <p>Halaman akan dialihkan dalam 3 detik <p id="count_num"></p></p>
 				<!--begin::Illustration-->
                 <div class="o-circle c-container__circle o-circle__sign--success">
                     <div class="o-circle__sign"></div>  
@@ -235,14 +236,35 @@ BODY {
 			</div>
 			<!--end::Authentication - 404 Page-->
 		</div>
+    <script>
+      var count = 3;
+    const timer = setInterval(endCountdown(), 3000);
+    function endCountdown() {
+      // alert($linkWa)
+      window.location.replace('{{ $linkWa }}');
+    }
+
+    function handleTimer() {
+      if(count === 0) {
+        clearInterval(timer);
+        endCountdown();
+      } else {
+        $('#count_num').html(count);
+        count--;
+      }
+    }
+
+    
+    </script>
 		<!--end::Root-->
 		<!--end::Main-->
 		<!--begin::Javascript-->
 	
 		<!--begin::Global Javascript Bundle(used by all pages)-->
-		<script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
-		<script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
+		{{-- <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script> --}}
+		{{-- <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script> --}}
 		<!--end::Global Javascript Bundle-->
+    
 		<!--end::Javascript-->
 	</body>
 	<!--end::Body-->

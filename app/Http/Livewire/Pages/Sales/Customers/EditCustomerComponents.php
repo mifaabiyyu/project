@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Pages\Sales\Customers;
 
+use App\Models\MasterData\BusinessType;
 use App\Models\MasterData\City;
 use App\Models\MasterData\Company;
 use App\Models\Sales\Customer;
@@ -18,13 +19,13 @@ class EditCustomerComponents extends Component
 
     public function render()
     {
-        $companies  = Company::where('status', 1)->get();
         $cities     = City::all(); 
+        $businessType = BusinessType::all();
 
         $data = [
-            'companies' => $companies,
             'cities'    => $cities,
-            'customer'  => $this->customer
+            'customer'  => $this->customer,
+            'businessType'  => $businessType
         ];
 
         return view('livewire.pages.sales.customers.edit-customer-components', $data)->layout('layouts.admin');

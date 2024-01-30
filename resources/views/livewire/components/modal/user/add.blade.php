@@ -86,7 +86,7 @@
                         </div>
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
-                            <label class="required fw-bold fs-6 mb-2">Password</label>
+                            <label class=" fw-bold fs-6 mb-2">Password</label>
                             <!--end::Label-->
                             <!--begin::Input-->
                             <input type="password" name="password" id="password" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Password"  />
@@ -94,7 +94,7 @@
                         </div>
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
-                            <label class="required fw-bold fs-6 mb-2">Confirm Password</label>
+                            <label class=" fw-bold fs-6 mb-2">Confirm Password</label>
                             <!--end::Label-->
                             <!--begin::Input-->
                             <input type="password" name="password_confirmation" id="password_confirmation" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Password Confirmation" />
@@ -107,9 +107,13 @@
                             <!--begin::Input-->
                             <select class="form-control form-control-solid mb-3 mb-lg-0" name="roles" id="roles" aria-label="Select example">
                                 <option selected disabled>--- Select Roles ---</option>
-                                @foreach ($roles as $role)
-                                    <option value="{{ $role->name }}">{{ $role->name }}</option>
-                                @endforeach
+                                @if (!Auth::user()->hasRole('Customer'))
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                    @endforeach
+                                @else
+                                    <option value="Customer">Customer</option>
+                                @endif
                             </select>
                             <!--end::Input-->
                         </div>

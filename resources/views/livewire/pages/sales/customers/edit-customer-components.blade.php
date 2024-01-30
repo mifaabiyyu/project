@@ -3,11 +3,8 @@
 @section('scriptCrud')
     <script src="{{ asset('js/crud/sales/customers/customer-list/edit.js') }}" ></script>
 @endsection
-<script>
-    var kode = "{{ $customer->code }}";
-</script>
-<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Toolbar-->
     <div class="toolbar" id="kt_toolbar">
         <!--begin::Container-->
@@ -41,7 +38,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">Add Customer</li>
+                    <li class="breadcrumb-item text-dark">Edit Customer</li>
                     <!--end::Item-->
                    
                 </ul>
@@ -105,13 +102,13 @@
                             <!--begin::Description-->
                             <div class="text-muted fs-7">Upload File NPWP. Format .jpg, .png, .jpeg, .pdf</div>
                             <!--end::Description-->
-                            <a href="{{ asset('images/customer/data_file/'.$customer->npwp_image ) }}" target="_blank" class="btn btn-danger btn-hover-scale me-5 mt-4">View NPWP</a>
+
                             <div class="mb-10 mt-10 fv-row text-left">
                                 <!--begin::Label-->
-                                <label class="required form-label ">NPWP</label>
+                                <label class=" form-label ">NPWP</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" value="{{ $customer->npwp }}" name="npwp" id="npwp" class="form-control mb-2" placeholder="Customer NPWP"  />
+                                <input type="text" name="npwp" id="npwp" class="form-control mb-2" placeholder="Customer NPWP" value="{{ $customer->npwp }}" />
                                 <!--end::Input-->
                                 <!--begin::Description-->
                                 <div class="text-muted fs-7">Format penulisan xx.yyy.yyy-z.xxx.xxx</div>
@@ -121,94 +118,7 @@
                         <!--end::Card body-->
                     </div>
                     <!--end::Thumbnail settings-->
-                    <div class="card card-flush py-4">
-                        <!--begin::Card header-->
-                        <div class="card-header">
-                            <!--begin::Card title-->
-                            <div class="card-title">
-                                <h2>NIK</h2>
-                            </div>
-                            <!--end::Card title-->
-                        </div>
-                        <!--end::Card header-->
-                        <!--begin::Card body-->
-                        <div class="card-body text-center pt-0">
-                            <!--begin::Image input-->
-                            <div id="nikData" class="image-input image-input-empty image-input-outline mb-3" data-kt-image-input="true" style="background-image: url(assets/media/svg/files/blank-image.svg)">
-                                <!--begin::Preview existing avatar-->
-                                <div id="img-add-cust2" class="image-input-wrapper w-150px h-150px"></div>
-                                <embed id="nik-file" class="fileView" src="" frameborder="0" style="display: none" width="200" height="200"></embed>
-                                <!--end::Preview existing avatar-->
-                                <!--begin::Label-->
-                                <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change NIK">
-                                    <i class="bi bi-pencil-fill fs-7"></i>
-                                    <!--begin::Inputs-->
-                                    <input type="file" name="nik_image" id="nik_image" accept=".png, .jpg, .jpeg, .pdf" />
-                                    <input type="hidden" name="avatar_remove" />
-                                    <!--end::Inputs-->
-                                </label>
-                                <!--end::Label-->
-                                <!--begin::Cancel-->
-                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel NIK">
-                                    <i class="bi bi-x fs-2"></i>
-                                </span>
-                                <!--end::Cancel-->
-                                <!--begin::Remove-->
-                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove NIK">
-                                    <i class="bi bi-x fs-2"></i>
-                                </span>
-                                <!--end::Remove-->
-                            </div>
-                            <!--end::Image input-->
-                            <!--begin::Description-->
-                            <div class="text-muted fs-7">Upload File NIK. Format .jpg, .png, .jpeg, .pdf</div>
-                            <!--end::Description-->
-                            <a href="{{ asset('images/customer/data_file/'.$customer->nik_image ) }}" target="_blank" class="btn btn-success btn-hover-scale me-5 mt-4">View NIK</a>
-                            <div class="mb-10 mt-10 fv-row text-left">
-                                <!--begin::Label-->
-                                <label class="required form-label ">NIK</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" value="{{ $customer->nik }}" name="nik" id="nik" class="form-control mb-2" placeholder="Customer NIK"  />
-                                <!--end::Input-->
-                                <!--begin::Description-->
-                                <!--end::Description-->
-                            </div>
-                        </div>
-                        <!--end::Card body-->
-                    </div>
-                         <!--begin::Status-->
-                         <div class="card card-flush py-4">
-                            <!--begin::Card header-->
-                            <div class="card-header">
-                                <!--begin::Card title-->
-                                <div class="card-title required">
-                                    <h2>Company</h2>
-                                </div>
-                                <!--end::Card title-->
-                                <!--begin::Card toolbar-->
-                                <div class="card-toolbar">
-                                    <div class="rounded-circle bg-danger w-15px h-15px"></div>
-                                </div>
-                                <!--begin::Card toolbar-->
-                            </div>
-                            <!--end::Card header-->
-                            <!--begin::Card body-->
-                            <div class="card-body pt-0">
-                                <!--begin::Select2-->
-                                <select class="form-select mb-2" name="company_id1" id="company_id">
-                                   @foreach ($companies as $company)
-                                        <option value="{{ $company->id }}" {{ $customer->company_id == $company->id ? 'selected' : '' }}>{{ $company->name }}</option>
-                                   @endforeach
-                                </select>
-                                <!--end::Select2-->
-                                <!--begin::Description-->
-                                <!--end::Description-->
-                                <!--begin::Datepicker-->
-                                <!--end::Datepicker-->
-                            </div>
-                            <!--end::Card body-->
-                        </div>
+                       
                     <!--begin::Status-->
                     <div class="card card-flush py-4">
                         <!--begin::Card header-->
@@ -268,119 +178,78 @@
                                     <!--end::Card header-->
                                     <!--begin::Card body-->
                                     <div class="card-body pt-0">
+                                        <div class="d-flex flex-wrap gap-5 mb-5">
+                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
+                                                <!--begin::Label-->
+                                                <label class="required form-label">Name Customer</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="name" id="name" class="form-control mb-2" placeholder="Name Customer" value="{{ $customer->name }}" />
+                                                <!--end::Input-->
+                                                <!--begin::Description-->
+                                                <!--end::Description-->
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
+                                                <!--begin::Label-->
+                                                <label class="required form-label">Email Customer</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="email" name="email" id="email" class="form-control mb-2" placeholder="Email Customer" value="{{ $customer->email }}" />
+                                                <!--end::Input-->
+                                                <!--begin::Description-->
+                                                <!--end::Description-->
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-wrap gap-5 mb-5">
+                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
+                                                <label class=" form-label">Phone Customer</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="number" name="phone" id="phone" class="form-control mb-2" placeholder="Phone Customer" value="{{ $customer->phone }}" />
+                                                <!--end::Input-->
+                                            </div>
+                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
+                                                <label class=" form-label">Businness Type</label>
+                                                <!--end::Label-->
+                                                <select class="form-select mb-2" name="business_type" data-control="select2" data-hide-search="true" data-placeholder="-- Select Business Type --" id="business_type">
+                                                    <option></option>
+                                                    @foreach ($businessType as $item)
+                                                        <option value="{{ $item->id }}" {{ $customer->id == $item->id ? 'selected' : '' }}>{{ $customer->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <!--begin::Description-->
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="d-flex flex-wrap gap-5 mb-5">
+                                         
+                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
+                                                <label class=" form-label">City Customer</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <select class="form-select" name="city" id="city" data-control="select2" data-placeholder="-- Select city --">
+                                                    <option></option>
+                                                    @foreach ($cities as $city)
+                                                        <option value="{{ $city->id }}" {{ $customer->city == $city->id ? 'selected' : '' }}>{{ $city->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <!--end::Input-->
+                                                <!--begin::Description-->
+                                            </div>
+                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
+                                                <label class=" form-label">Address Customer</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <textarea type="text" name="address" id="address" class="form-control mb-2" placeholder="Address Customer" value="" >{{ $customer->address }}</textarea>
+                                                <!--end::Input-->
+                                            </div>
+                                           
+                                        </div>
                                         <!--begin::Input group-->
-                                        <div class="mb-10 fv-row">
-                                            <!--begin::Label-->
-                                            <label class="required form-label">Name Customer</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" value="{{ $customer->name }}" name="name" id="name" class="form-control mb-2" placeholder="Name Customer"  />
-                                            <!--end::Input-->
-                                            <!--begin::Description-->
-                                            <!--end::Description-->
-                                        </div>
                                         <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="mb-10 fv-row">
-                                            <!--begin::Label-->
-                                            <label class="required form-label">Code Customer</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" value="{{ $customer->code }}" name="code" id="code" class="form-control mb-2" placeholder="Code Customer"  />
-                                            <!--end::Input-->
-                                            <!--begin::Description-->
-                                            <!--end::Description-->
-                                        </div>
-                                        <!--end::Input group-->
-                                        <div class="mb-10 fv-row">
-                                            <!--begin::Label-->
-                                            <label class="required form-label">Email Customer</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="email" value="{{ $customer->email }}" name="email" id="email" class="form-control mb-2" placeholder="Email Customer"  />
-                                            <!--end::Input-->
-                                            <!--begin::Description-->
-                                            <!--end::Description-->
-                                        </div>
-                                        <div class="mb-10 fv-row">
-                                            <!--begin::Label-->
-                                            <label class=" form-label">Address Customer</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <textarea type="text" name="address" id="address" class="form-control mb-2" placeholder="Address Customer" >{{ $customer->address }}</textarea>
-                                            <!--end::Input-->
-                                            <!--begin::Description-->
-                                            <!--end::Description-->
-                                        </div>
-                                        <div class="mb-10 fv-row">
-                                            <!--begin::Label-->
-                                            <label class=" form-label">City Customer</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <select class="form-select" name="city" id="city" data-control="select2" data-placeholder="-- Select city --">
-                                                <option></option>
-                                                @foreach ($cities as $city)
-                                                    <option value="{{ $city->id }}" {{ $customer->city == $city->id ? 'selected' : '' }}>{{ $city->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <!--end::Input-->
-                                            <!--begin::Description-->
-                                            <!--end::Description-->
-                                        </div>
-                                        <div class="mb-10 fv-row">
-                                            <!--begin::Label-->
-                                            <label class=" form-label">Phone Customer</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="number" value="{{ $customer->phone }}" name="phone" id="phone" class="form-control mb-2" placeholder="Phone Customer" />
-                                            <!--end::Input-->
-                                            <!--begin::Description-->
-                                            <!--end::Description-->
-                                        </div>
-                                        <!--begin::Input group-->
-                                        
-                                        <div class="mb-10 fv-row">
-                                            <!--begin::Label-->
-                                            <label class=" form-label">Fax Customer</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="number" value="{{ $customer->fax }}" name="fax" id="fax" class="form-control mb-2" placeholder="Fax Customer" />
-                                            <!--end::Input-->
-                                            <!--begin::Description-->
-                                            <!--end::Description-->
-                                        </div>
-                                        <div class="mb-10 fv-row">
-                                            <!--begin::Label-->
-                                            <label class=" form-label">Businness Area</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" value="{{ $customer->business_area }}" name="business_area" id="business_area" class="form-control mb-2" placeholder="Businness Area" />
-                                            <!--end::Input-->
-                                            <!--begin::Description-->
-                                            <!--end::Description-->
-                                        </div>
-                                        <div class="mb-10 fv-row">
-                                            <!--begin::Label-->
-                                            <label class=" form-label">Credit</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" value="{{ $customer->credit }}" name="credit" id="credit" class="form-control mb-2" placeholder="Credit" />
-                                            <!--end::Input-->
-                                            <!--begin::Description-->
-                                            <!--end::Description-->
-                                        </div>
-                                        <div>
-                                            <!--begin::Label-->
-                                            <label class="form-label">Warehouse Address</label>
-                                            <!--end::Label-->
-                                            <!--begin::Editor-->
-                                            <textarea id="warehouse_address"  name="warehouse_address" placeholder="Warehouse Address" class="form-control mb-2">{{ $customer->warehouse_address }}</textarea>
-                                            <!--end::Editor-->
-                                            <!--begin::Description-->
-                                            <div class="text-muted fs-7">Set a description to the product for better visibility.</div>
-                                            <!--end::Description-->
-                                        </div>
-                                        <!--end::Input group-->
+                                      
                                     </div>
                                     <!--end::Card header-->
                                 </div>
@@ -395,38 +264,26 @@
                                     <!--end::Card header-->
                                     <!--begin::Card body-->
                                     <div class="card-body pt-0">
+                                        <div class="d-flex flex-wrap gap-5 mb-5">
+                                         
+                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
+                                                <label class=" form-label">PIC Name</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                                <input type="text" name="pic" id="pic" class="form-control mb-2" placeholder="PIC" value="{{ $customer->pic }}" />
+                                            <!--end::Input-->
+                                            </div>
+                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
+                                                <label class=" form-label">PIC Phone</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="pic_phone" id="pic_phone" class="form-control mb-2" placeholder="PIC Phone" value="{{ $customer->pic_phone }}" />
+                                                <!--end::Input-->
+                                            </div>
+                                           
+                                        </div>
                                         <!--begin::Input group-->
-                                        <div class="mb-10 fv-row">
-                                            <!--begin::Label-->
-                                            <label class=" form-label">PIC Name</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" value="{{ $customer->pic }}" name="pic" id="pic" class="form-control mb-2" placeholder="PIC"  />
-                                            <!--end::Input-->
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="mb-10 fv-row">
-                                            <!--begin::Label-->
-                                            <label class=" form-label">PIC Position</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text"  name="pic_position" id="pic_position" class="form-control mb-2" placeholder="PIC Position" value="{{ $customer->pic_position }}" />
-                                            <!--end::Input-->
-                                            <!--begin::Description-->
-                                            <!--end::Description-->
-                                        </div>
-                                        <div class="mb-10 fv-row">
-                                            <!--begin::Label-->
-                                            <label class=" form-label">PIC Phone</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text"  name="pic_phone" id="pic_phone" class="form-control mb-2" placeholder="PIC Phone" value="{{ $customer->pic_phone }}" />
-                                            <!--end::Input-->
-                                            <!--begin::Description-->
-                                            <!--end::Description-->
-                                        </div>
-                                        <!--end::Input group-->
+                                     
                                     </div>
                                     <!--end::Card header-->
                                 </div>
@@ -456,13 +313,13 @@
         </div>
         <!--end::Container-->
     </div>
+  
     <!--end::Post-->
 </div>
 <script>
    
 $("#nik_image").on("change", function (e) {
     var file = e.target.files[0]
-    console.log(this.result);
     if(file.type == "application/pdf"){
         document.getElementById(
             "img-add-cust2"

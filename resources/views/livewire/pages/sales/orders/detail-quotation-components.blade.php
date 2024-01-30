@@ -1,4 +1,4 @@
-@section('title', 'Detail Quotation - Sales')
+@section('title', 'Detail Invoice - Sales')
 
 @section('scriptCrud')
 <script>
@@ -19,7 +19,7 @@
             <!--begin::Page title-->
             <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
                 <!--begin::Title-->
-                <h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">Detail Quotation</h1>
+                <h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">Detail Invoice</h1>
                 <!--end::Title-->
                 <!--begin::Separator-->
                 <span class="h-20px border-gray-300 border-start mx-4"></span>
@@ -45,7 +45,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">Detail Quotation</li>
+                    <li class="breadcrumb-item text-dark">Detail Invoice</li>
                     <!--end::Item-->
                    
                 </ul>
@@ -146,7 +146,7 @@
                                         <div class="text-end mb-4 mt-4 ">
                                             <button class="btn fw-bolder btn-warning me-3 " data-bs-toggle="modal" data-bs-target="#shareLink">Share Link</button>
                                             <a href="{{ url()->previous() }}" class="btn fw-bolder btn-secondary">Back</a>
-                                            <h4 class="mt-5">Total : <span id='total_all'>Rp. {{ $data->total }}</span></h4>
+                                            <h4 class="mt-5">Total : <span id='total_all'>{{ "Rp " . number_format($data->total,0,'','.') }}</span></h4>
                                         </div>
                                     </div>
                                     <!--end::Card header-->
@@ -163,7 +163,7 @@
                                                     {{-- <a href="{{ route('admin.sales.index') }}" class="badge fw-bolder badge-secondary mb-4">Add Contractor</a> --}}
                                                 </div>
                                                 <!--begin::Input-->
-                                                <h4>{{ $data->customer_name }}</h4>
+                                                <h4>{{ $data->customer_name ?? '-' }}</h4>
                                                
                                                 <!--end::Input-->
                                             </div>
@@ -173,7 +173,7 @@
                                                 <label class="form-label ">Expiry Date</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <h6>{{ $data->valid_until }}</h6>
+                                                <h6>{{ $data->valid_until ?? '-' }}</h6>
                                                 {{-- <input type="datetime-local" class="form-control" name="expiry_date" id="expiry_date" placeholder="Expiry Date" value=""> --}}
                                                 <!--end::Input-->
                                             </div>
@@ -191,13 +191,24 @@
                                         </div>
                                         <!--end::Input group-->
                                     
-                                        <div class="d-flex flex-wrap gap-5" >
+                                        <div class="d-flex flex-wrap gap-5 mt-5" >
                                             <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
                                                 <!--begin::Label-->
                                                 <label class="form-label">Notes</label>
-                                                <p>{{ $data->notes }}</p>
+                                                <p>{{ $data->notes ?? '-' }}</p>
                                             </div>
-                                       
+                                            @if (!Auth::user()->hasRole('Customer'))
+                                                <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                    <!--begin::Label-->
+                                                    <label class="form-label">Active Start</label>
+                                                    <p>{{ $data->active_start ?? '-' }}</p>
+                                                </div>
+                                                <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                    <!--begin::Label-->
+                                                    <label class="form-label">Active End</label>
+                                                    <p>{{ $data->active_end ?? '-' }}</p>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -230,6 +241,7 @@
                                                     <thead wire:ignore>
                                                         <tr class="fw-bolder text-muted text-center bg-light">
                                                             <th class="min-w-200px">Product</th>
+                                                            <th class="min-w-50px">User</th>
                                                             <th class="min-w-50px">Qty</th>
                                                             <th class="min-w-200px">Unit Price</th>
                                                             <th class="min-w-200px">Total Price</th>
@@ -245,9 +257,10 @@
                                                           @foreach ($data->get_detail as $item)
                                                               <tr>
                                                                 <td>{{ $item->product_name }}</td>
+                                                                <td>{{ $item->get_product->user }}</td>
                                                                 <td>{{ $item->qty }}</td>
-                                                                <td>{{ $item->unit_price }}</td>
-                                                                <td>{{ $item->total_price }}</td>
+                                                                <td>{{ "Rp " . number_format($item->unit_price,0,'','.') }}</td>
+                                                                <td>{{ "Rp " . number_format($item->total_price,0,'','.') }}</td>
                                                               </tr>
                                                           @endforeach
                                                         </tbody>
@@ -260,8 +273,12 @@
                                         <!--end::Card header-->
                                     </div>
                                     <div class="d-flex fv-row flex-wrap gap-3">
-                                        <a class="btn btn-primary" href="{{ route('quotation.edit', base64_encode($data->code)) }}">Edit</a>
-                                        <button type="button" class="btn btn-danger me-3" data-id="{{ base64_encode($data->code) }}" data-kt-quote-table-filter="delete_row">Delete</button>
+                                        @can('Quotation.edit')
+                                            <a class="btn btn-primary" href="{{ route('quotation.edit', base64_encode($data->code)) }}">Edit</a> 
+                                        @endcan
+                                        @can('Quotation.delete')
+                                            <button type="button" class="btn btn-danger me-3" data-id="{{ base64_encode($data->code) }}" data-kt-quote-table-filter="delete_row">Delete</button>
+                                        @endcan
                                     </div>
                                     <!--end::General options-->
                                 </div>

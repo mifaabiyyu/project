@@ -135,7 +135,22 @@
                                                 <label class="form-label">Notes</label>
                                                 <textarea type="text" name="notes" id="notes" class="form-control mb-2" placeholder="notes" rows="2"></textarea>
                                             </div>
-                                       
+                                            <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                <!--begin::Label-->
+                                                <label class="form-label">Active Start</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="date" class="form-control" name="active_start" id="active_start" placeholder="Active Start" value="">
+                                                <!--end::Input-->
+                                            </div>
+                                            <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                <!--begin::Label-->
+                                                <label class="form-label">Active End</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="date" class="form-control" name="active_end" id="active_end" placeholder="Active End" value="">
+                                                <!--end::Input-->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

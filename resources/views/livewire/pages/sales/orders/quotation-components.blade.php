@@ -150,8 +150,8 @@
                                 <th class="min-w-125px">Code</th>
                                 <th class="min-w-125px">Customer</th>
                                 <th class="min-w-125px">Total Price</th>
-                                <th class="min-w-125px">Date</th>
-                                <th class="min-w-125px">Valid Until</th>
+                                {{-- <th class="min-w-125px">Date</th>
+                                <th class="min-w-125px">Valid Until</th> --}}
                                 <th class="min-w-100px">Status</th>
                                 {{-- <th class="text-center min-w-100px">Actions</th> --}}
                             </tr>
