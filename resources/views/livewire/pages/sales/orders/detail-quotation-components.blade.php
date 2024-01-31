@@ -257,7 +257,7 @@
                                                           @foreach ($data->get_detail as $item)
                                                               <tr>
                                                                 <td>{{ $item->product_name }}</td>
-                                                                <td>{{ $item->get_product->user }}</td>
+                                                                <td>{{ $item->get_product?->user }}</td>
                                                                 <td>{{ $item->qty }}</td>
                                                                 <td>{{ "Rp " . number_format($item->unit_price,0,'','.') }}</td>
                                                                 <td>{{ "Rp " . number_format($item->total_price,0,'','.') }}</td>
