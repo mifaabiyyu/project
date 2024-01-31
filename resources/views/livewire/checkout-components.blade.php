@@ -370,7 +370,29 @@ License: For each use you must have a valid license purchased only from above li
                                                     </div>
                                                 </div>
                                                 <!--end::Input group-->
-                                               
+
+                                            
+                                                <div class="d-flex flex-column mb-5 fv-row rounded-3 p-7 border border-dashed border-gray-300">
+															<!--begin::Label-->
+															<div class="fs-5 fw-bold form-label mb-3">Syarat & Ketentuan / Akad Jual Beli
+															<i tabindex="0" class="cursor-pointer fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-html="true" data-bs-delay-hide="1000" data-bs-content="Thresholds help manage risk by limiting the unpaid usage balance a customer can accrue. Thresholds only measure and bill for metered usage (including discounts but excluding tax). &lt;a href='#'&gt;Learn more&lt;/a&gt;."></i></div>
+															<!--end::Label-->
+															<!--begin::Checkbox-->
+															
+                                                                <div class="fv-row mb-7">
+															<!--begin::Label-->
+															
+															<!--end::Label-->
+															<!--begin::Input-->
+															<textarea class="form-control form-control-solid" name="notes" placeholder="08xxxxxxxxx"></textarea>
+															<!--end::Input-->
+														</div>
+                                                        <label class="form-check form-check-custom form-check-solid">
+																<input class="form-check-input" type="checkbox" checked="checked" value="1" /> 
+																<span class="form-check-label text-gray-600">YA, Saya telah membaca dan menyetujui syarat & ketentuan / akad jual beli di atas</span>
+															</label>
+															<!--end::Checkbox-->
+														</div>
                                                         <!--begin::Notice-->
 														<div class="notice d-flex bg-light-primary rounded border-primary border border-dashed rounded-3 p-6">
 															<!--begin::Wrapper-->
