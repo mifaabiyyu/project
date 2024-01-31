@@ -177,10 +177,10 @@
                                 <a
                                   href="#"
                                   class="text-dark fw-bolder text-hover-primary fs-5"
-                                  >Omset</a
+                                  >Storage</a
                                 >
                                 <span class="text-muted fw-bold"
-                                  >27 Apr 2020</span
+                                  >27 Apr 2024</span
                                 >
                               </div>
                               <!--end:Title-->
@@ -203,7 +203,7 @@
                                 aria-valuemin="0"
                                 aria-valuemax="100"
                               ></div>
-                              <span class="fw-bolder d-flex items-center fs-3 mt-2" style="margin-left:5px">Rp. 2.000.000</span>
+                              <span class="fw-bolder d-flex items-center fs-3 mt-2" style="margin-left:5px">2048 MB</span>
                             </div>
                           </div>
                           <!--end:Stats-->
@@ -250,8 +250,8 @@
                                         </svg>
                                     </span>
                                     <!--end::Svg Icon-->
-                                    <div class="text-white fw-bolder fs-2 mb-2 mt-5">Total Orders <br><div id="count-order" class="fs-4 fw-bolder text-white">0</div></div>
-                                    <div class="fw-bolder text-white fs-4" id="total-order">1.000</div>
+                                    <div class="text-white fw-bolder fs-2 mb-2 mt-5">Total User <br><div id="count-order" class="fs-4 fw-bolder text-white">0</div></div>
+                                    <div class="fw-bolder text-white fs-4" id="total-order">23</div>
                                 </div>
                                 <!--end::Body-->
                             </a>
@@ -271,8 +271,8 @@
                                         </svg>
                                     </span>
                                     <!--end::Svg Icon-->
-                                    <div class="text-white fw-bolder fs-2 mb-2 mt-5">Total Omset <br><div id="count-omset" class="fs-4 fw-bolder text-white">0</div></div>
-                                    <div class="fw-bolder text-white fs-4" id="total-omset">Rp. 1.000.000.000</div>
+                                    <div class="text-white fw-bolder fs-2 mb-2 mt-5">Total Layanan <br><div id="count-omset" class="fs-4 fw-bolder text-white">0</div></div>
+                                    <div class="fw-bolder text-white fs-4" id="total-omset">12 Bulan</div>
                                 </div>
                                 <!--end::Body-->
                             </a>
@@ -292,8 +292,8 @@
                                         </svg>
                                     </span>
                                     <!--end::Svg Icon-->
-                                    <div class="text-white fw-bolder fs-2 mb-2 mt-5">Total Gross Profit</div>
-                                    <div class="fw-bolder text-white fs-4" id="total-invoice">1.000</div>
+                                    <div class="text-white fw-bolder fs-2 mb-2 mt-5">Due Date Invoice</div>
+                                    <div class="fw-bolder text-white fs-4" id="total-invoice">3 Bulan Lagi</div>
                                 </div>
                                 <!--end::Body-->
                             </a>
