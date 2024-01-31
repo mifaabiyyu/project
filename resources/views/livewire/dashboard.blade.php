@@ -163,7 +163,7 @@
                               <div class="symbol symbol-60px me-5">
                                 <span class="symbol-label bg-primary-light">
                                   <img
-                                    src="assets/media/svg/brand-logos/vimeo.svg"
+                                    src="assets/media/svg/files/images.png"
                                     class="h-50 align-self-center"
                                     alt=""
                                   />
@@ -230,7 +230,7 @@
                                         </svg>
                                     </span>
                                     <!--end::Svg Icon-->
-                                    <div class="text-white fw-bolder fs-2 mb-2 mt-5">Total User <br>
+                                    <div class="text-white fw-bolder fs-2 mb-2 mt-5">Jumlah User <br>
                                     <div id="count-order" class="fs-4 fw-bolder text-white"></div></div>
                                     <div class="fw-bolder text-white fs-4" id="total-order">23</div>
                                 </div>
@@ -252,7 +252,7 @@
                                         </svg>
                                     </span>
                                     <!--end::Svg Icon-->
-                                    <div class="text-white fw-bolder fs-2 mb-2 mt-5">Total Layanan <br>
+                                    <div class="text-white fw-bolder fs-2 mb-2 mt-5">Kontrak Layanan <br>
                                     <div id="count-omset" class="fs-4 fw-bolder text-white"></div></div>
                                     <div class="fw-bolder text-white fs-4" id="total-omset">12 Bulan</div>
                                 </div>
