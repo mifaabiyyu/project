@@ -1132,17 +1132,17 @@
 						<!--begin::Support-->
 						<div class="rounded border border-dashed border-gray-300 p-6 p-lg-8 mb-10">
 							<!--begin::Heading-->
-							<h2 class="fw-bolder mb-5">Support at
-							<a href="https://devs.keenthemes.com" class="">devs.keenthemes.com</a></h2>
+							<h2 class="fw-bolder mb-5">Butuh Bantuan
+							<a href="https://help.hectorapp.id" class="">help.hectorapp.id</a></h2>
 							<!--end::Heading-->
 							<!--begin::Description-->
 							<div class="fs-5 fw-bold mb-5">
 								<span class="text-gray-500">Join our developers community to find answer to your question and help others.</span>
-								<a class="explore-link d-none" href="https://keenthemes.com/licensing">FAQs</a>
+								<a class="explore-link d-none" href="https://help.hectorapp.id">FAQs</a>
 							</div>
 							<!--end::Description-->
 							<!--begin::Link-->
-							<a href="https://devs.keenthemes.com" class="btn btn-lg explore-btn-primary w-100">Get Support</a>
+							<a href="https://help.hectorapp.id" class="btn btn-lg explore-btn-primary w-100">Klik Bantuan</a>
 							<!--end::Link-->
 						</div>
 						<!--end::Support-->
@@ -1165,7 +1165,7 @@
 								<!--begin::Wrapper-->
 								<div class="d-flex flex-column me-2 me-lg-5">
 									<!--begin::Title-->
-									<a href="../../demo1/dist/documentation/getting-started.html" class="text-dark text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1">Documentation &amp; Videos</a>
+									<a href="../../demo1/dist/documentation/getting-started.html" class="text-dark text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1">Penjualan &amp; Videos</a>
 									<!--end::Title-->
 									<!--begin::Description-->
 									<div class="text-muted fw-bold fs-7 fs-lg-6">From guides and video tutorials, to live demos and code examples to get started.</div>
@@ -1204,7 +1204,7 @@
 								<!--begin::Wrapper-->
 								<div class="d-flex flex-column me-2 me-lg-5">
 									<!--begin::Title-->
-									<a href="../../demo1/dist/documentation/base/utilities.html" class="text-dark text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1">Plugins &amp; Components</a>
+									<a href="../../demo1/dist/documentation/base/utilities.html" class="text-dark text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1">Pembelian &amp;--</a>
 									<!--end::Title-->
 									<!--begin::Description-->
 									<div class="text-muted fw-bold fs-7 fs-lg-6">Check out our 300+ in-house components and customized 3rd-party plugins.</div>
@@ -1242,7 +1242,7 @@
 								<!--begin::Wrapper-->
 								<div class="d-flex flex-column me-2 me-lg-5">
 									<!--begin::Title-->
-									<a href="https://preview.keenthemes.com/metronic8/demo1/layout-builder.html" class="text-dark text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1">Layout Builder</a>
+									<a href="https://preview.keenthemes.com/metronic8/demo1/layout-builder.html" class="text-dark text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1">Stok Persedian</a>
 									<!--end::Title-->
 									<!--begin::Description-->
 									<div class="text-muted fw-bold fs-7 fs-lg-6">Build your layout, preview it and export the HTML for server side integration.</div>
@@ -1281,7 +1281,7 @@
 								<!--begin::Wrapper-->
 								<div class="d-flex flex-column me-2 me-lg-5">
 									<!--begin::Title-->
-									<a href="https://devs.keenthemes.com/metronic" class="text-dark text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1">Metronic Downloads</a>
+									<a href="https://devs.keenthemes.com/metronic" class="text-dark text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1">POS Kasir</a>
 									<!--end::Title-->
 									<!--begin::Description-->
 									<div class="text-muted fw-bold fs-7 fs-lg-6">Download your prefered framework and demo with one click.</div>

@@ -73,94 +73,7 @@
 															<span class="menu-title">eCommerce</span>
 														</a>
 													</div>
-													<div class="menu-item">
-														<a class="menu-link py-3" href="../../demo1/dist/dashboards/marketing.html">
-															<span class="menu-bullet">
-																<span class="bullet bullet-dot"></span>
-															</span>
-															<span class="menu-title">Marketing</span>
-														</a>
-													</div>
-													<div class="menu-item">
-														<a class="menu-link py-3" href="../../demo1/dist/dashboards/logistics.html">
-															<span class="menu-bullet">
-																<span class="bullet bullet-dot"></span>
-															</span>
-															<span class="menu-title">Logistics</span>
-														</a>
-													</div>
-													<div class="menu-item">
-														<a class="menu-link py-3" href="../../demo1/dist/dashboards/delivery.html">
-															<span class="menu-bullet">
-																<span class="bullet bullet-dot"></span>
-															</span>
-															<span class="menu-title">Delivery</span>
-														</a>
-													</div>
-													<div class="menu-item">
-														<a class="menu-link py-3" href="../../demo1/dist/dashboards/online-courses.html">
-															<span class="menu-bullet">
-																<span class="bullet bullet-dot"></span>
-															</span>
-															<span class="menu-title">Online Courses</span>
-														</a>
-													</div>
-													<div class="menu-item">
-														<a class="menu-link py-3" href="../../demo1/dist/dashboards/website-analytics.html">
-															<span class="menu-bullet">
-																<span class="bullet bullet-dot"></span>
-															</span>
-															<span class="menu-title">Website Analytics</span>
-														</a>
-													</div>
-													<div class="menu-item">
-														<a class="menu-link py-3" href="../../demo1/dist/dashboards/finance-performance.html">
-															<span class="menu-bullet">
-																<span class="bullet bullet-dot"></span>
-															</span>
-															<span class="menu-title">Finance Performance</span>
-														</a>
-													</div>
-													<div class="menu-item">
-														<a class="menu-link py-3" href="../../demo1/dist/dashboards/store-analytics.html">
-															<span class="menu-bullet">
-																<span class="bullet bullet-dot"></span>
-															</span>
-															<span class="menu-title">Store Analytics</span>
-														</a>
-													</div>
-													<div class="menu-item">
-														<a class="menu-link py-3" href="../../demo1/dist/dashboards/social.html">
-															<span class="menu-bullet">
-																<span class="bullet bullet-dot"></span>
-															</span>
-															<span class="menu-title">Social</span>
-														</a>
-													</div>
-													<div class="menu-item">
-														<a class="menu-link py-3" href="../../demo1/dist/dashboards/crypto.html">
-															<span class="menu-bullet">
-																<span class="bullet bullet-dot"></span>
-															</span>
-															<span class="menu-title">Crypto</span>
-														</a>
-													</div>
-													<div class="menu-item">
-														<a class="menu-link py-3" href="../../demo1/dist/dashboards/school.html">
-															<span class="menu-bullet">
-																<span class="bullet bullet-dot"></span>
-															</span>
-															<span class="menu-title">School</span>
-														</a>
-													</div>
-													<div class="menu-item">
-														<a class="menu-link py-3" href="../../demo1/dist/dashboards/bidding.html">
-															<span class="menu-bullet">
-																<span class="bullet bullet-dot"></span>
-															</span>
-															<span class="menu-title">Bidding</span>
-														</a>
-													</div>
+													
 													<div class="menu-item">
 														<a class="menu-link py-3" href="../../demo1/dist/landing.html">
 															<span class="menu-bullet">
@@ -253,33 +166,7 @@
 																	</div>
 																</div>
 															</div>
-															<div data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
-																<span class="menu-link py-3">
-																	<span class="menu-bullet">
-																		<span class="bullet bullet-dot"></span>
-																	</span>
-																	<span class="menu-title">Blog</span>
-																	<span class="menu-arrow"></span>
-																</span>
-																<div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-active-bg py-lg-4 w-lg-225px">
-																	<div class="menu-item">
-																		<a class="menu-link py-3" href="../../demo1/dist/pages/blog/home.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-																			<span class="menu-title">Blog Home</span>
-																		</a>
-																	</div>
-																	<div class="menu-item">
-																		<a class="menu-link py-3" href="../../demo1/dist/pages/blog/post.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-																			<span class="menu-title">Blog Post</span>
-																		</a>
-																	</div>
-																</div>
-															</div>
+
 															<div data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
 																<span class="menu-link py-3">
 																	<span class="menu-bullet">
