@@ -118,7 +118,7 @@ class QuotationController extends Controller
 
                 
                 $checkCustomer = Customer::create([
-                    'name'  => $request->nama_depan . ' ' . $request->nama_belakang,
+                    'name'  => $request->username,
                     'code'  => $codeCust,
                     'email' => $request->email,
                     'phone' => $request->whatsapp,
@@ -130,11 +130,11 @@ class QuotationController extends Controller
 
             if(!$checkUser) {
                 $createUser = User::create([
-                    'name'  => $request->nama_depan . ' ' . $request->nama_belakang,
+                    'name'  => $request->username,
                     'email' => $request->email,
                     'status'=> 1,
                     'password'  =>Hash::make($request->password),
-                    'customer_id' => $codeCust
+                    'customer_id' => $checkCustomer->code
                 ]);
 
                 $createUser->assignRole('Customer');
