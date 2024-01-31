@@ -1165,7 +1165,7 @@
 								<!--begin::Wrapper-->
 								<div class="d-flex flex-column me-2 me-lg-5">
 									<!--begin::Title-->
-									<a href="../../demo1/dist/documentation/getting-started.html" class="text-dark text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1">Penjualan &amp; Videos</a>
+									<a href="#" class="text-dark text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1">Penjualan &amp; Videos</a>
 									<!--end::Title-->
 									<!--begin::Description-->
 									<div class="text-muted fw-bold fs-7 fs-lg-6">From guides and video tutorials, to live demos and code examples to get started.</div>
@@ -1204,7 +1204,7 @@
 								<!--begin::Wrapper-->
 								<div class="d-flex flex-column me-2 me-lg-5">
 									<!--begin::Title-->
-									<a href="../../demo1/dist/documentation/base/utilities.html" class="text-dark text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1">Pembelian &amp;--</a>
+									<a href="#" class="text-dark text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1">Pembelian &amp;--</a>
 									<!--end::Title-->
 									<!--begin::Description-->
 									<div class="text-muted fw-bold fs-7 fs-lg-6">Check out our 300+ in-house components and customized 3rd-party plugins.</div>
@@ -1242,7 +1242,7 @@
 								<!--begin::Wrapper-->
 								<div class="d-flex flex-column me-2 me-lg-5">
 									<!--begin::Title-->
-									<a href="https://preview.keenthemes.com/metronic8/demo1/layout-builder.html" class="text-dark text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1">Stok Persedian</a>
+									<a href="#" class="text-dark text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1">Stok Persedian</a>
 									<!--end::Title-->
 									<!--begin::Description-->
 									<div class="text-muted fw-bold fs-7 fs-lg-6">Build your layout, preview it and export the HTML for server side integration.</div>
@@ -1281,7 +1281,7 @@
 								<!--begin::Wrapper-->
 								<div class="d-flex flex-column me-2 me-lg-5">
 									<!--begin::Title-->
-									<a href="https://devs.keenthemes.com/metronic" class="text-dark text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1">POS Kasir</a>
+									<a href="#" class="text-dark text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1">POS Kasir</a>
 									<!--end::Title-->
 									<!--begin::Description-->
 									<div class="text-muted fw-bold fs-7 fs-lg-6">Download your prefered framework and demo with one click.</div>
@@ -1319,7 +1319,7 @@
 								<!--begin::Wrapper-->
 								<div class="d-flex flex-column me-2 me-lg-5">
 									<!--begin::Title-->
-									<a href="../../demo1/dist/documentation/getting-started/changelog.html" class="text-dark text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1">What's New</a>
+									<a href="#" class="text-dark text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1">Project</a>
 									<!--end::Title-->
 									<!--begin::Description-->
 									<div class="text-muted fw-bold fs-7 fs-lg-6">Latest features and improvements added with our users feedback in mind.</div>
