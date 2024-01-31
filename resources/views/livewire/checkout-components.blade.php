@@ -200,7 +200,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <thead>
                                                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                                             <th class="min-w-100px">Product</th>
-                                                            <th class="min-w-50px text-end">Qty</th>
+                                                            <th class="min-w-50px text-end">Month</th>
                                                             {{-- <th class="min-w-100px text-end">Unit Price</th> --}}
                                                             <th class="min-w-100px text-end">Total</th>
                                                         </tr>
@@ -313,31 +313,14 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="d-flex flex-wrap gap-5" >
                                                     <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
                                                         <!--begin::Label-->
-                                                        <label class="form-label required">Username</label>
+                                                        <label class="form-label required">Nama Lengkap</label>
                                                         <!--end::Label-->
                                                         <!--begin::Input-->
                                                         <input type="text" class="form-control" name="username" id="username" placeholder="Username" value="">
                                                         <!--end::Input-->
                                                     </div>
                                                 </div>
-                                                <div class="d-flex flex-wrap gap-5" >
-                                                    <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
-                                                        <!--begin::Label-->
-                                                        <label class="form-label required">Nama Depan</label>
-                                                        <!--end::Label-->
-                                                        <!--begin::Input-->
-                                                        <input type="text" class="form-control" name="nama_depan" id="nama_depan" placeholder="Nama Depan" value="">
-                                                        <!--end::Input-->
-                                                    </div>
-                                                    <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
-                                                        <!--begin::Label-->
-                                                        <label class="form-label required">Nama Belakang</label>
-                                                        <!--end::Label-->
-                                                        <!--begin::Input-->
-                                                        <input type="text" class="form-control" name="nama_belakang" id="nama_belakang" placeholder="Nama Belakang" value="">
-                                                        <!--end::Input-->
-                                                    </div>
-                                                </div>
+                                              
                                                 <div class="d-flex flex-wrap gap-5" >
                                                     <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
                                                         <!--begin::Label-->
@@ -351,16 +334,6 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="d-flex flex-wrap gap-5" >
                                                     <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
                                                         <!--begin::Label-->
-                                                        <label class="form-label required">Alamat</label>
-                                                        <!--end::Label-->
-                                                        <!--begin::Input-->
-                                                        <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat" value="">
-                                                        <!--end::Input-->
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-wrap gap-5" >
-                                                    <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
-                                                        <!--begin::Label-->
                                                         <label class="form-label required">Company</label>
                                                         <!--end::Label-->
                                                         <!--begin::Input-->
@@ -368,6 +341,17 @@ License: For each use you must have a valid license purchased only from above li
                                                         <!--end::Input-->
                                                     </div>
                                                 </div>
+                                                <div class="d-flex flex-wrap gap-5" >
+                                                    <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                        <!--begin::Label-->
+                                                        <label class="form-label required">Alamat</label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat" value="">
+                                                        <!--end::Input-->
+                                                    </div>
+                                                </div>
+                                               
                                                 <div class="d-flex flex-wrap gap-5" >
                                                     <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
                                                         <!--begin::Label-->
