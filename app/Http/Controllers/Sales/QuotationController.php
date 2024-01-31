@@ -51,7 +51,7 @@ class QuotationController extends Controller
         // dd($request);
         $request->validate([
             'email'         => 'required',
-            'nama_depan'    => 'required',
+            // 'nama_depan'    => 'required',
             'username'      => 'required',
             'password'      => 'required|confirmed',
             'whatsapp'      => 'required',

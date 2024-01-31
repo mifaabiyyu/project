@@ -33,18 +33,18 @@ var Checkout = (function () {
                                 notEmpty: { message: "Whatsapp harus diisi" },
                             },
                         },
-                        nama_depan: {
-                            validators: {
-                                notEmpty: { message: "Nama Depan harus diisi" },
-                            },
-                        },
-                        nama_belakang: {
-                            validators: {
-                                notEmpty: {
-                                    message: "Nama Belakang harus diisi",
-                                },
-                            },
-                        },
+                        // nama_depan: {
+                        //     validators: {
+                        //         notEmpty: { message: "Nama Depan harus diisi" },
+                        //     },
+                        // },
+                        // nama_belakang: {
+                        //     validators: {
+                        //         notEmpty: {
+                        //             message: "Nama Belakang harus diisi",
+                        //         },
+                        //     },
+                        // },
                         business_type: {
                             validators: {
                                 notEmpty: {
@@ -123,6 +123,11 @@ var Checkout = (function () {
                                             }, 200);
                                         },
                                         error: function (error) {
+                                            onSubmit.removeAttribute(
+                                                "data-kt-indicator"
+                                            );
+
+                                            onSubmit.disabled = !1;
                                             if (error.responseJSON.errors) {
                                                 const errors = Object.values(
                                                     error.responseJSON.errors
