@@ -19,6 +19,9 @@ const rupiah = (number) => {
 };
 
 function formatRupiah(angka, prefix) {
+    if (Number.isInteger(angka)) {
+        angka = angka.toString();
+    }
     var number_string = angka.replace(/[^,\d]/g, "").toString(),
         split = number_string.split(","),
         sisa = split[0].length % 3,

@@ -183,6 +183,7 @@
                                                     <thead wire:ignore>
                                                         <tr class="fw-bolder text-muted text-center bg-light">
                                                             <th class="min-w-200px">Product</th>
+                                                            <th class="min-w-50px">User</th>
                                                             <th class="min-w-50px">Qty</th>
                                                             <th class="min-w-200px">Unit Price</th>
                                                             <th class="min-w-200px">Total Price</th>
@@ -194,7 +195,7 @@
                                                     <input type="hidden" name="tanggal_pengiriman" value="{{ json_encode($tanggal_pengiriman, true) }}">
                                                     <input type="hidden" name="qty_pengiriman" value="{{ json_encode($qty_pengiriman, true) }}"> --}}
                                                     <!--begin::Table body-->
-                                                    <tbody>
+                                                    <tbody class="text-center">
                                                           
                                                         </tbody>
                                                         <!--end::Table body-->
