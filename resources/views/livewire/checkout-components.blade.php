@@ -218,7 +218,7 @@ License: For each use you must have a valid license purchased only from above li
                                                                     <div class="d-flex align-items-center">
                                                                         <!--begin::Title-->
                                                                         <div class="ms-5">
-                                                                            <a class="fw-bolder text-gray-600 text-hover-primary">{{ $item->product_name }}, {{ $item->get_product->user }} User</a>
+                                                                            <a class="fw-bolder text-gray-600 text-hover-primary">{{ $item->product_name }}, {{ $item->get_product?->user }} User</a>
                                                                         </div>
                                                                         <!--end::Title-->
                                                                     </div>
