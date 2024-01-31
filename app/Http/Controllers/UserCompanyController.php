@@ -23,9 +23,9 @@ class UserCompanyController extends Controller
         $users = UserCompany::query();
 
         if (Auth::user()->hasRole('Customer')) {
-            $getCustomer    = Customer::where('code', auth()->user()->company_id)->first();
+            // $getCustomer    = Customer::where('code', auth()->user()->customer_id)->first();
 
-            $users->where('company', $getCustomer->company);
+            $users->where('company', auth()->user()->company);
         }
 
         if ($request->filled('company')) {
@@ -63,9 +63,9 @@ class UserCompanyController extends Controller
         ]);
 
         if (Auth::user()->hasRole('Customer')) {
-            $getCustomer    = Customer::where('code', auth()->user()->company_id)->first();
+            // $getCustomer    = Customer::where('code', auth()->user()->company_id)->first();
             $countUser      = 0;
-            $getQuotation   = Quotation::with('get_detail')->where('customer_code', $getCustomer->code)->where('active_end', '>', date('Y-m-d'))->get();
+            $getQuotation   = Quotation::with('get_detail')->where('customer_code', auth()->user()->customer_id)->where('active_end', '>', date('Y-m-d'))->get();
 
             foreach ($getQuotation as $key => $value) {
                 $countUser += $value->get_product->user;
