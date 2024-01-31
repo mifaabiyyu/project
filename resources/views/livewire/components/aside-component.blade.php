@@ -45,7 +45,7 @@
                 </div>
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Crafted</span>
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">List Menu</span>
                     </div>
                 </div>
                 @if (!Auth::user()->hasRole('Customer'))
@@ -74,7 +74,7 @@
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Customer Listing</span>
+                                        <span class="menu-title">Customer</span>
                                     </a>
                                 </div>
                         
@@ -123,7 +123,7 @@
                             </span>
                             <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-title">Users Customer</span>
+                        <span class="menu-title">Manage Licenses</span>
                     </a>
                 </div>
                 @can('UserManagement.view')
