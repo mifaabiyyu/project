@@ -171,17 +171,9 @@
                               </div>
                               <!--end:Image-->
                               <!--begin:Title-->
-                              <div
-                                class="d-flex flex-column flex-grow-1 my-lg-0 my-2 pr-3"
-                              >
-                                <a
-                                  href="#"
-                                  class="text-dark fw-bolder text-hover-primary fs-5"
-                                  >Storage</a
-                                >
-                                <span class="text-muted fw-bold"
-                                  >27 Apr 2024</span
-                                >
+                              <div class="d-flex flex-column flex-grow-1 my-lg-0 my-2 pr-3">
+                                <a href="#" class="text-dark fw-bolder text-hover-primary fs-5">Storage</a>
+                                <span class="text-muted fw-bold">27 Apr 2024</span>
                               </div>
                               <!--end:Title-->
                             </div>
@@ -222,19 +214,7 @@
             <div class="card card-xl-stretch-50 mb-5 mb-xl-8">
                 <div class="card-body p-10  overflow-hidden">
                     {{-- <h4 class="text-primary text-end" id="datee"></h4> --}}
-                    <div class="text-end input-group w-250px me-3 mb-5">
-                        <input class="form-control form-control-solid rounded rounded-end-0" placeholder="Pick date range" name="dateFilter" id="dateFilter" />
-                        <button class="btn btn-icon btn-light" id="kt_ecommerce_sales_flatpickr_clear">
-                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr088.svg-->
-                            <span class="svg-icon svg-icon-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="black" />
-                                    <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="black" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                        </button>
-                    </div>
+                    
                     <div class="row g-5 g-xl-8">
                         <div class="col-xl-4" id="target_1">
                             <!--begin::Statistics Widget 5-->
@@ -250,7 +230,8 @@
                                         </svg>
                                     </span>
                                     <!--end::Svg Icon-->
-                                    <div class="text-white fw-bolder fs-2 mb-2 mt-5">Total User <br><div id="count-order" class="fs-4 fw-bolder text-white">0</div></div>
+                                    <div class="text-white fw-bolder fs-2 mb-2 mt-5">Total User <br>
+                                    <div id="count-order" class="fs-4 fw-bolder text-white"></div></div>
                                     <div class="fw-bolder text-white fs-4" id="total-order">23</div>
                                 </div>
                                 <!--end::Body-->
@@ -271,7 +252,8 @@
                                         </svg>
                                     </span>
                                     <!--end::Svg Icon-->
-                                    <div class="text-white fw-bolder fs-2 mb-2 mt-5">Total Layanan <br><div id="count-omset" class="fs-4 fw-bolder text-white">0</div></div>
+                                    <div class="text-white fw-bolder fs-2 mb-2 mt-5">Total Layanan <br>
+                                    <div id="count-omset" class="fs-4 fw-bolder text-white"></div></div>
                                     <div class="fw-bolder text-white fs-4" id="total-omset">12 Bulan</div>
                                 </div>
                                 <!--end::Body-->
