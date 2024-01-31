@@ -49,22 +49,7 @@ class UsersController extends Controller
             'roles' => 'required'
         ]);
 
-        if (Auth::user()->hasRole('Customer')) {
-            $getCustomer    = Customer::where('code', auth()->user()->company_id)->first();
-            $countUser      = 0;
-            $getQuotation   = Quotation::with('get_detail')->where('customer_code', $getCustomer->code)->where('active_end', '>', date('Y-m-d'))->get();
-
-            foreach ($getQuotation as $key => $value) {
-                $countUser += $value->get_product->user;
-            }
-
-            $getUser        = User::where('company', auth()->user()->company)->count();
-
-            if($getUser >= $countUser) {
-                return response()->json(['message' => 'User melebihi limit !'], 422);
-            }
-        }
-
+       
         $imageName = null;
 
         // if($request->photo)

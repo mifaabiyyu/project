@@ -123,7 +123,7 @@
                             </span>
                             <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-title">Users</span>
+                        <span class="menu-title">Users Customer</span>
                     </a>
                 </div>
                 @can('UserManagement.view')

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Quotation;
 use App\Models\Sales\Customer;
 use App\Models\UserCompany;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
@@ -60,6 +61,23 @@ class UserCompanyController extends Controller
             'password' => ['required', 'confirmed', Password::defaults()],
             // 'photo' => 'image|max:1024|mimes:jpeg,png,jpg,svg', // 1MB Max
         ]);
+
+        if (Auth::user()->hasRole('Customer')) {
+            $getCustomer    = Customer::where('code', auth()->user()->company_id)->first();
+            $countUser      = 0;
+            $getQuotation   = Quotation::with('get_detail')->where('customer_code', $getCustomer->code)->where('active_end', '>', date('Y-m-d'))->get();
+
+            foreach ($getQuotation as $key => $value) {
+                $countUser += $value->get_product->user;
+            }
+
+            $getUser        = UserCompany::where('company', auth()->user()->company_id)->count();
+
+            if($getUser >= $countUser) {
+                return response()->json(['message' => 'User melebihi limit !'], 422);
+            }
+        }
+
 
         $codeCust = IdGenerator::generate([
             'table' => (new UserCompany())->getTable(),
