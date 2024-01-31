@@ -101,7 +101,7 @@ var params      = "{{ base64_encode($data->code) }}";
                                                 <select class="form-select" data-placeholder="-- Select Customer --" name="customer" id="customer" >
                                                     <option></option>
                                                     @foreach ($customers as $item)
-                                                        <option value="{{ $item->id }}" {{ $data->get_customer->id == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
+                                                        <option value="{{ $item->id }}" {{ $data->get_customer?->id == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
                                                     @endforeach
                                                 </select>
                                                
