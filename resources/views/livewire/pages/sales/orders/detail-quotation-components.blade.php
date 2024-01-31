@@ -145,7 +145,7 @@
                                         </div>
                                         <div class="text-end mb-4 mt-4 ">
                                             <button class="btn fw-bolder btn-warning me-3 " data-bs-toggle="modal" data-bs-target="#shareLink">Share Link</button>
-                                            <a href="{{ url()->previous() }}" class="btn fw-bolder btn-secondary">Back</a>
+                                            <a href="{{ route('quotation.index') }}" class="btn fw-bolder btn-secondary">Back</a>
                                             <h4 class="mt-5">Total : <span id='total_all'>{{ "Rp " . number_format($data->total,0,'','.') }}</span></h4>
                                         </div>
                                     </div>

@@ -81,7 +81,7 @@ var params      = "{{ base64_encode($data->code) }}";
                                         <div class="text-end mb-4 mt-4 ">
                                             {{-- <button class="btn fw-bolder btn-danger me-3 " data-bs-toggle="modal" data-bs-target="#biddingDuration">Bidding duration</button> --}}
                                             <a href="{{ url()->previous() }}" class="btn fw-bolder btn-secondary">Back</a>
-                                            <h4 class="mt-5">Total : <span id='total_all'>Rp. 0</span></h4>
+                                            <h4 class="mt-5">Total : <span id='total_all'>{{ "Rp " . number_format($data->total,0,'','.') }}</span></h4>
                                         </div>
                                     </div>
                                     <!--end::Card header-->

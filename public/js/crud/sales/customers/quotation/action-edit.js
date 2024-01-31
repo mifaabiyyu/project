@@ -132,9 +132,13 @@ $("#table_item tbody").on("click", ".deleteData", function () {
 const countItem = (t) => {
     var idData = t.getAttribute("data-id");
     var valueProduct = $("#product" + idData).val();
-    const valPrd = products.find((element) => element.id == valueProduct);
-    $("#unit_price" + idData).val(valPrd.unit_price * 1);
-
+    if (
+        $("#unit_price" + idData).val() == 0 ||
+        $("#unit_price" + idData).val() == ""
+    ) {
+        const valPrd = products.find((element) => element.id == valueProduct);
+        $("#unit_price" + idData).val(valPrd.unit_price * 1);
+    }
     var qtyData = $("#qty" + idData).val();
     var unitPriceData = $("#unit_price" + idData).val();
 
