@@ -72,7 +72,8 @@ var KTSigninGeneral = (function () {
                                     const errors = Object.values(
                                         error.responseJSON.errors
                                     );
-
+                                    e.removeAttribute("data-kt-indicator"),
+                                        (e.disabled = !1);
                                     errors.forEach((element) => {
                                         toastr.error(element[0], options);
                                     });
