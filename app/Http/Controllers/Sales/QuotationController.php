@@ -272,7 +272,7 @@ class QuotationController extends Controller
 
         try {
             foreach ($request->product as $key => $value) {
-                $totalAll += $request->total_price[$key];
+                $totalAll += (int)preg_replace('/[. ]/','',$request->total_price[$key]);
             }
 
             $findCust   = Customer::find($request->customer);
@@ -309,8 +309,8 @@ class QuotationController extends Controller
                     'product_code'      => $findProduct->code,
                     'product_name'      => $findProduct->name,
                     'qty'               => $request->qty[$key],
-                    'unit_price'        => $request->unit_price[$key],
-                    'total_price'       => $request->total_price[$key],
+                    'unit_price'        => (int)preg_replace('/[. ]/','',$request->unit_price[$key]),
+                    'total_price'       => (int)preg_replace('/[. ]/','',$request->total_price[$key]),
                 ]);
             }
             DB::commit();
@@ -383,7 +383,7 @@ class QuotationController extends Controller
 
         try {
             foreach ($request->product as $key => $value) {
-                $totalAll += $request->total_price[$key];
+                $totalAll += (int)preg_replace('/[. ]/','',$request->total_price[$key]);
             }
 
             $findCust   = Customer::find($request->customer);
@@ -422,8 +422,8 @@ class QuotationController extends Controller
                     'product_code'      => $findProduct->code,
                     'product_name'      => $findProduct->name,
                     'qty'               => $request->qty[$key],
-                    'unit_price'        => $request->unit_price[$key],
-                    'total_price'       => $request->total_price[$key],
+                    'unit_price'        => (int)preg_replace('/[. ]/','',$request->unit_price[$key]),
+                    'total_price'       => (int)preg_replace('/[. ]/','',$request->total_price[$key]),
                 ]);
             }
             DB::commit();
