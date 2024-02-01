@@ -80,11 +80,11 @@ class CustomersController extends Controller
         //     return response()->json(['message' => 'Nomor NPWP tidak sesuai dengan Alamat Kota'], 422);
         // }
 
-        if($request->npwp_image)
-        {
-            $npwp_image = date("Ymd").time().rand().'.'.$request->npwp_image->extension();  
-            $request->npwp_image->move(public_path('images/customer/data_file'), $npwp_image);
-        }
+        // if($request->npwp_image)
+        // {
+        //     $npwp_image = date("Ymd").time().rand().'.'.$request->npwp_image->extension();  
+        //     $request->npwp_image->move(public_path('images/customer/data_file'), $npwp_image);
+        // }
 
         // if($request->nik_image)
         // {
@@ -104,7 +104,7 @@ class CustomersController extends Controller
             'name'              => $request->name,
             'code'              => $codeCust,
             'address'           => $request->address,
-            'company_id'        => 1,
+            'companies'         => $request->company,
             // 'npwp_image'        => $npwp_image,
             // 'nik_image'         => $nik_image,
             'city'              => $request->city,
@@ -116,7 +116,7 @@ class CustomersController extends Controller
             'business_area'     => $request->business_area,
             'warehouse_address' => $request->warehouse_address,
             'status'            => $request->status,
-            'pic'               => $request->pic,
+            'pic'               => $request->pic?? '-',
             'pic_position'      => $request->pic_position,
             'pic_phone'         => $request->pic_phone,
         ]); 
@@ -179,72 +179,34 @@ class CustomersController extends Controller
 
         $request->validate([
             'name'          => 'required',
-            'code'          => 'required|unique:customers,code,' . $findData->id,
-            'address'       => 'required',
-            'company_id1'   => 'required',
-            'npwp_image'    => 'max:1024|mimes:jpeg,png,jpg,svg,pdf', // 1MB Max
-            'nik_image'     => 'max:1024|mimes:jpeg,png,jpg,svg,pdf', // 1MB Max
-            'city'          => 'required',
-            'npwp'          => 'required',
+            // 'code'          => 'required|unique:customers,code',
+            // 'address'       => 'required',
+            // 'company_id1'    => 'required',
+            // 'npwp_image'    => 'max:1024|mimes:jpeg,png,jpg,svg,pdf', // 1MB Max
+            // 'nik_image'     => 'max:1024|mimes:jpeg,png,jpg,svg,pdf', // 1MB Max
+            // 'city'          => 'required',
             'email'         => 'required|email'
         ]);
 
-        $npwpArray      = explode("-", $request->npwp);
-        $getKppNPWP     = explode('.', $npwpArray[1]);
-
-        $npwp_image = $request->npwp_image;
-        $nik_image = $request->nik_image;
-
-        $findCityNPWP   = NpwpMaster::where('npwp_number', $getKppNPWP[0])->first();
-        if (!$findCityNPWP) {
-            return response()->json(['message' => 'Kota tidak ditemukan NPWP'], 422);
-        }
-
-        if ($findCityNPWP->city_id != $request->city) {
-            return response()->json(['message' => 'Nomor NPWP tidak sesuai dengan Alamat Kota'], 422);
-        }
-
-        if($request->hasFile('npwp_image'))
-        {
-            if ($findData->npwp_image != null) {
-                unlink("images/customer/data_file/" . $findData->npwp_image);
-            }
-
-            $npwp_image = date("Ymd").time().rand().'.'.$request->npwp_image->extension();  
-            $request->npwp_image->move(public_path('images/customer/data_file'), $npwp_image);
-        }
-
-        if($request->hasFile('nik_image'))
-        {
-            if ($findData->nik_image != null) {
-                unlink("images/customer/data_file/" . $findData->nik_image);
-            }
-
-            $nik_image = date("Ymd").time().rand().'.'.$request->nik_image->extension();  
-            $request->nik_image->move(public_path('images/customer/data_file'), $nik_image);
-        }
-
+     
        $findData->update([
             'name'              => $request->name,
-            'code'              => $request->code,
             'address'           => $request->address,
-            'company_id'        => $request->company_id1,
-            'npwp_image'        => $npwp_image,
-            'nik_image'         => $nik_image,
+            'companies'         => $request->company,
+            // 'npwp_image'        => $npwp_image,
+            // 'nik_image'         => $nik_image,
             'city'              => $request->city,
             'npwp'              => $request->npwp,
             'nik'               => $request->nik,
-            'credit'            => $request->credit,
             'email'             => $request->email,
             'phone'             => $request->phone,
-            'fax'               => $request->fax,
+            // 'fax'               => $request->fax,
             'business_area'     => $request->business_area,
             'warehouse_address' => $request->warehouse_address,
             'status'            => $request->status,
             'pic'               => $request->pic,
             'pic_position'      => $request->pic_position,
             'pic_phone'         => $request->pic_phone,
-            'created_by'        => auth()->id()
         ]); 
 
         $updated = Customer::where('code', $code)->first();
@@ -269,17 +231,6 @@ class CustomersController extends Controller
 
         if (!$findData) {
             return response()->json(['message' => 'Data Not Found !'], 404);
-        }
-
-        $fileNpwp = public_path('images/customer/data_file') . $findData->npwp_image;
-        $fileNik = public_path('images/customer/data_file') . $findData->nik_image;
-
-        if (file_exists($fileNpwp)) {
-            @unlink($fileNpwp);
-        }
-
-        if (file_exists($fileNik)) {
-            @unlink($fileNik);
         }
 
         $findData->delete();

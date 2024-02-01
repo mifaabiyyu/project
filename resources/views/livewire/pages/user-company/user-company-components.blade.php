@@ -9,6 +9,9 @@
 @endsection
 
 @section('scriptCrud')
+    <script>
+        var isCustomer = "{{ $isCustomer }}";
+    </script>
     <script src="{{ asset('js/datatable/user-management/user-company/users-table.js') }}" ></script>
     <script src="{{ asset('js/crud/user-management/users-company/add.js') }}" ></script>
     <script src="{{ asset('js/crud/user-management/users-company/edit.js') }}" ></script>
@@ -217,6 +220,15 @@
                                 <input type="password" name="password_confirmation" id="password_confirmation" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Password Confirmation" />
                                 <!--end::Input-->
                             </div>
+                            <div class="mb-10">
+                                <label class="form-label fs-6 fw-bold">Role:</label>
+                                <select class="form-select form-select-solid fw-bolder" data-dropdown-parent="#kt_modal_add_user" name="role" id="role" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-user-table-filter="role" >
+                                    <option></option>
+                                    @foreach ($rolesCustomer as $role)
+                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
                                 <label class="required fw-bold fs-6 mb-2">Position</label>
@@ -231,32 +243,33 @@
                                 <label class="required fw-bold fs-6 mb-2">Phone</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" name="phone" id="phone" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Posisi" />
+                                <input type="text" name="phone" id="phone" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Phone" />
                                 <!--end::Input-->
                             </div>
-                          
-                            <div class="fv-row mb-7 ">
-                                <div class="form-group">
-                                    <label class="required fw-bold fs-6 mb-2">Status</label>
-                                <!--begin::Label-->
-                                    <div class="radio-inline row">
-                                        <div class="col-1"></div>
-                                        <div class="form-check form-check-custom col-2 radio form-check-success form-check-solid form-check-md">
-                                            <input class="form-check-input" type="radio" name="status" value="1" id="flexCheckboxSm"  />
-                                            <label class="form-check-label" for="flexCheckboxSm">
-                                                Active
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-custom col-3 radio form-check-danger form-check-solid form-check-md">
-                                            <input class="form-check-input" type="radio" name="status" value="0" id="flexCheckboxSm"  />
-                                            <label class="form-check-label" for="flexCheckboxSm">
-                                                Non Active
-                                            </label>
+                            @if (!Auth::user()->hasRole('Customer'))
+                                <div class="fv-row mb-7 ">
+                                    <div class="form-group">
+                                        <label class="required fw-bold fs-6 mb-2">Status</label>
+                                    <!--begin::Label-->
+                                        <div class="radio-inline row">
+                                            <div class="col-1"></div>
+                                            <div class="form-check form-check-custom col-2 radio form-check-success form-check-solid form-check-md">
+                                                <input class="form-check-input" type="radio" name="status" value="1" id="flexCheckboxSm"  />
+                                                <label class="form-check-label" for="flexCheckboxSm">
+                                                    Active
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-custom col-3 radio form-check-danger form-check-solid form-check-md">
+                                                <input class="form-check-input" type="radio" name="status" value="0" id="flexCheckboxSm"  />
+                                                <label class="form-check-label" for="flexCheckboxSm">
+                                                    Request
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
+                                
                                 </div>
-                               
-                            </div>
+                            @endif
                             <!--end::Input group-->
                             <!--begin::Input group-->
                      
@@ -333,21 +346,24 @@
                                 <input type="email" name="email" id="edit_email" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="example@domain.com"/>
                                 <!--end::Input-->
                             </div>
+                            @if (!Auth::user()->hasRole('Customer'))
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
-                                <label class="required fw-bold fs-6 mb-2">Password</label>
+                                <label class=" fw-bold fs-6 mb-2">Password</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="password" name="password" id="edit_password" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Password"  />
+                                <input type="text" name="password" id="edit_password" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Password"  />
                                 <!--end::Input-->
                             </div>
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class="required fw-bold fs-6 mb-2">Confirm Password</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="password" name="password_confirmation" id="edit_password_confirmation" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Password Confirmation" />
-                                <!--end::Input-->
+                            @endif
+                            <div class="mb-10">
+                                <label class="form-label fs-6 fw-bold">Role:</label>
+                                <select class="form-select form-select-solid fw-bolder" data-dropdown-parent="#kt_modal_edit_user" name="role" id="edit_role" data-control="select2" data-placeholder="Select option" data-allow-clear="true" >
+                                    <option></option>
+                                    @foreach ($rolesCustomer as $role)
+                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
@@ -369,28 +385,30 @@
                            
                             <!--end::Input group-->
                             <!--begin::Input group-->
-                            <div class="fv-row mb-7 ">
-                                <div class="form-group">
-                                    <label class="required fw-bold fs-6 mb-2">Status</label>
-                                <!--begin::Label-->
-                                    <div class="radio-inline row">
-                                        <div class="col-1"></div>
-                                        <div class="form-check form-check-custom col-2 radio form-check-success form-check-solid form-check-md">
-                                            <input class="form-check-input" type="radio" name="status" id="status" value="1" id="flexCheckboxSm"  />
-                                            <label class="form-check-label" for="flexCheckboxSm">
-                                                Active
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-custom col-3 radio form-check-danger form-check-solid form-check-md">
-                                            <input class="form-check-input" type="radio" name="status" id="status" value="0" id="flexCheckboxSm"  />
-                                            <label class="form-check-label" for="flexCheckboxSm">
-                                                Non Active
-                                            </label>
+                            @if (!Auth::user()->hasRole('Customer'))
+                                <div class="fv-row mb-7 ">
+                                    <div class="form-group">
+                                        <label class="required fw-bold fs-6 mb-2">Status</label>
+                                    <!--begin::Label-->
+                                        <div class="radio-inline row">
+                                            <div class="col-1"></div>
+                                            <div class="form-check form-check-custom col-2 radio form-check-success form-check-solid form-check-md">
+                                                <input class="form-check-input" type="radio" name="status" value="1" id="flexCheckboxSm"  />
+                                                <label class="form-check-label" for="flexCheckboxSm">
+                                                    Active
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-custom col-3 radio form-check-danger form-check-solid form-check-md">
+                                                <input class="form-check-input" type="radio" name="status" value="0" id="flexCheckboxSm"  />
+                                                <label class="form-check-label" for="flexCheckboxSm">
+                                                    Request
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
+                                
                                 </div>
-                               
-                            </div>
+                            @endif
                             <!--end::Input group-->
                         </div>
                         <!--end::Scroll-->

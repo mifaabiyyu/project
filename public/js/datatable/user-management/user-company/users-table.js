@@ -5,6 +5,7 @@ var UserDatatable = (function () {
     // Shared variables
     var table;
     var oTable;
+    var kode;
     var filterRoles;
     var filterStatus;
     var filterData = {};
@@ -28,10 +29,8 @@ var UserDatatable = (function () {
                                 <div class="symbol symbol-50px me-5">
                                     <span class="symbol-label bg-light">
                                         <img
-                                            src="../images/user/` +
-                            row.photo +
-                            `"
-                                            class="h-75 align-self-end"
+                                            src="logo.png"
+                                            class="h-100 align-self-end"
                                             alt=""
                                         />
                                     </span>
@@ -83,12 +82,40 @@ var UserDatatable = (function () {
                     orderable: false,
                     className: "text-end",
                     render: function (data, type, row) {
+                        var check = "";
+                        if (!isCustomer && row.status == 0) {
+                            check =
+                                `
+                            <a href="javascript:void(0)" data-id="` +
+                                btoa(btoa(row.id)) +
+                                `"  id="activate-data" class="btn btn-icon btn-bg-light btn-success btn-active-color-secondary btn-sm me-1">
+                                <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
+                                <span class="svg-icon svg-icon-3">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </a>
+                            
+                            `;
+                        } else {
+                            check =
+                                `<a href="javascript:void(0)" data-id="` +
+                                btoa(btoa(row.id)) +
+                                `"  id="deactivate-data" class="btn btn-icon btn-bg-light btn-danger btn-active-color-secondary btn-sm me-1">
+                            <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
+                            <span class="svg-icon svg-icon-3">
+                                <i class="fas fa-times"></i>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </a>`;
+                        }
+
                         return (
                             `
                         <div class="d-flex justify-content-center flex-shrink-0">
-                         
+                            ${check}
                             <a href="javascript:void(0)" data-bs-toggle="modal" data-id="` +
-                            row.id +
+                            btoa(row.id) +
                             `" data-bs-target="#kt_modal_edit_user" id="edit-data" class="btn btn-icon btn-bg-light btn-primary btn-active-color-secondary btn-sm me-1">
                                 <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                 <span class="svg-icon svg-icon-3">
@@ -100,7 +127,7 @@ var UserDatatable = (function () {
                                 <!--end::Svg Icon-->
                             </a>
                             <a href="javascript:void(0)" data-id="` +
-                            row.id +
+                            btoa(row.id) +
                             `" data-kt-user-table-filter="delete_row" class="btn btn-icon btn-bg-light btn-danger btn-active-color-secondary btn-sm">
                                 <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                                 <span class="svg-icon svg-icon-3">
@@ -267,6 +294,81 @@ var UserDatatable = (function () {
         });
     };
 
+    // Reset Filter
+    var activateData = () => {
+        // Select reset button
+        $("body").on("click", "#activate-data", function () {
+            kode = $(this).data("id");
+
+            Swal.fire({
+                text: "Are you sure you want to activate user ?",
+                icon: "warning",
+                showCancelButton: true,
+                buttonsStyling: false,
+                confirmButtonText: "Yes, Activate!",
+                cancelButtonText: "No, cancel",
+                customClass: {
+                    confirmButton: "btn fw-bold btn-success",
+                    cancelButton: "btn fw-bold btn-active-light-primary",
+                },
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        type: "POST",
+                        url: route("user-company-data.activate", kode),
+                        data: {
+                            _token: csrf,
+                        },
+                        success: function (response) {
+                            toastr.success(response.message, options);
+                            oTable.draw(false);
+                        },
+                        error: function (error) {
+                            toastr.error(error.responseJSON.message, options);
+                        },
+                    });
+                }
+            });
+        });
+    };
+
+    var deactivateData = () => {
+        // Select reset button
+        $("body").on("click", "#deactivate-data", function () {
+            kode = $(this).data("id");
+
+            Swal.fire({
+                text: "Are you sure you want to deactivate user ?",
+                icon: "warning",
+                showCancelButton: true,
+                buttonsStyling: false,
+                confirmButtonText: "Yes, Deactivate!",
+                cancelButtonText: "No, cancel",
+                customClass: {
+                    confirmButton: "btn fw-bold btn-danger",
+                    cancelButton: "btn fw-bold btn-active-light-primary",
+                },
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        type: "POST",
+                        url: route("user-company-data.deactivate", kode),
+                        data: {
+                            _token: csrf,
+                        },
+                        success: function (response) {
+                            toastr.success(response.message, options);
+                            oTable.draw(false);
+                        },
+                        error: function (error) {
+                            toastr.error(error.responseJSON.message, options);
+                        },
+                    });
+                }
+            });
+        });
+    };
+
     // Export
 
     // Public methods
@@ -276,6 +378,8 @@ var UserDatatable = (function () {
             handleSearchDatatable();
             // handleFilterDatatable();
             handleDeleteRows();
+            deactivateData();
+            activateData();
             handleResetForm();
         },
     };

@@ -118,6 +118,7 @@ class QuotationController extends Controller
                     'name'  => $request->username,
                     'code'  => $codeCust,
                     'email' => $request->email,
+                    'companies' => $request->company,
                     'phone' => $request->whatsapp,
                     'business_type' => $request->business_type
                 ]);
@@ -306,6 +307,7 @@ class QuotationController extends Controller
                     'quotation_code'    => $codeQuote,
                     'product_code'      => $findProduct->code,
                     'product_name'      => $findProduct->name,
+                    'user'              => $findProduct->user,
                     'qty'               => $request->qty[$key],
                     'unit_price'        => (int)preg_replace('/[. ]/','',$request->unit_price[$key]),
                     'total_price'       => (int)preg_replace('/[. ]/','',$request->total_price[$key]),

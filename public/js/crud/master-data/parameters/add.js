@@ -15,20 +15,6 @@ var KTAddParameters = (function () {
                                 notEmpty: { message: "Name is required" },
                             },
                         },
-                        code: {
-                            validators: {
-                                notEmpty: {
-                                    message: "Code is required",
-                                },
-                            },
-                        },
-                        value: {
-                            validators: {
-                                notEmpty: {
-                                    message: "Value is required",
-                                },
-                            },
-                        },
                     },
                     plugins: {
                         trigger: new FormValidation.plugins.Trigger(),
@@ -51,7 +37,7 @@ var KTAddParameters = (function () {
 
                                 $.ajax({
                                     type: "POST",
-                                    url: route("parameter-data.store"),
+                                    url: route("roles-data.store"),
                                     data: formData,
                                     processData: false,
                                     contentType: false,

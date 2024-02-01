@@ -5,6 +5,7 @@ use App\Http\Controllers\BarcodeController;
 use App\Http\Controllers\MasterData\BusinessTypeController;
 use App\Http\Controllers\MasterData\ParametersController;
 use App\Http\Controllers\MasterData\ProductsController;
+use App\Http\Controllers\MasterData\RolesCustomerController;
 use App\Http\Controllers\Sales\CustomerOrderDetailsController;
 use App\Http\Controllers\Sales\CustomerOrdersController;
 use App\Http\Controllers\Sales\CustomersController;
@@ -18,6 +19,7 @@ use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Pages\MasterData\BusinessTypeComponents;
 use App\Http\Livewire\Pages\MasterData\ParameterComponents;
 use App\Http\Livewire\Pages\MasterData\ProductComponents;
+use App\Http\Livewire\Pages\MasterData\RolesCustomerComponents;
 use App\Http\Livewire\Pages\Sales\CustomerOrders\AddCustomerOrderComponents;
 use App\Http\Livewire\Pages\Sales\CustomerOrders\CustomerOrderComponents;
 use App\Http\Livewire\Pages\Sales\CustomerOrders\EditCustomerOrderComponents;
@@ -115,6 +117,8 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('users-company')->group(function () {
         Route::get('/', UserCompanyComponents::class)->name('users-company.index');
         Route::resource('/user-company-data', UserCompanyController::class);
+        Route::post('/user-company-data/activate/{id}', [UserCompanyController::class, 'activate'])->name('user-company-data.activate');
+        Route::post('/user-company-data/deactivate/{id}', [UserCompanyController::class, 'deactivate'])->name('user-company-data.deactivate');
     });
     
 
@@ -137,6 +141,12 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('business')->group(function () {
             Route::get('/', BusinessTypeComponents::class)->name('business.index');
             Route::resource('/business-data', BusinessTypeController::class);
+        });
+
+          //master-data/general
+        Route::prefix('roles-customer')->group(function () {
+            Route::get('/', RolesCustomerComponents::class)->name('rolesCustomer.index');
+            Route::resource('/roles-data', RolesCustomerController::class);
         });
     });
 });

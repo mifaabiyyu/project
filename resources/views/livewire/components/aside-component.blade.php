@@ -216,6 +216,7 @@
                                 </a>
                             </div>
                            
+                           
                             <div class="menu-item {{ request()->routeIs('product.index') ? 'here' : '' }}">
                                 <a class="menu-link" href="{{ route('product.index') }}">
                                     <span class="menu-bullet">
@@ -230,6 +231,14 @@
                                         <span class="bullet bullet-dot"></span>
                                     </span>
                                     <span class="menu-title">Business Type</span>
+                                </a>
+                            </div>
+                            <div class="menu-item {{ request()->routeIs('rolesCustomer.index') ? 'here' : '' }} menu-accordion mb-1">
+                                <a class="menu-link" href="{{ route('rolesCustomer.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Roles Customer</span>
                                 </a>
                             </div>
                            

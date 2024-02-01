@@ -1,73 +1,31 @@
 "use strict";
-var KTUsersEditUser = (function () {
-    const modal = document.getElementById("kt_modal_edit_user");
-    const editForm = modal.querySelector("#kt_modal_edit_user_form");
-    var kode = "";
-    editForm.reset();
-    $("body").on("click", "#edit-data", function () {
-        kode = $(this).data("id");
-        $.ajax({
-            type: "GET",
-            url: route("user-company-data.show", kode),
-
-            success: function (response) {
-                $("#headerForm").html("Edit Data User " + response.data.name);
-                $("#edit_name").val(response.data.name);
-                $("#edit_email").val(response.data.email);
-                $("#edit_company").val(response.data.company);
-                $("#edit_password").val(response.data.password);
-                $("#edit_role").val(response.data.roles).change();
-                $("#edit_position").val(response.data.position);
-                $("#edit_phone").val(response.data.phone);
-
-                $(
-                    "input[name=status][value=" + response.data.status + "]"
-                ).prop("checked", true);
-            },
-            error: function (error) {
-                toastr.error(error.responseJSON.message, options);
-            },
-        });
-    });
+var KTAddroles = (function () {
+    const modal = document.getElementById("add_roles");
+    const addForm = modal.querySelector("#add_roles_form");
 
     const initModal = new bootstrap.Modal(modal);
+
     return {
         init: function () {
             (() => {
-                var validation = FormValidation.formValidation(editForm, {
+                var validation = FormValidation.formValidation(addForm, {
                     fields: {
                         name: {
                             validators: {
                                 notEmpty: { message: "Name is required" },
                             },
                         },
-                        email: {
+                        code: {
                             validators: {
                                 notEmpty: {
-                                    message: "Email address is required",
-                                },
-                                emailAddress: {
-                                    message: "Valid email address is required",
+                                    message: "Code is required",
                                 },
                             },
                         },
-                        password: {
+                        value: {
                             validators: {
-                                stringLength: {
-                                    min: 8,
-                                    message: "Password length min 8 character",
-                                },
-                            },
-                        },
-                        password_confirmation: {
-                            validators: {
-                                identical: {
-                                    compare: function () {
-                                        return editForm.querySelector(
-                                            '[name="password"]'
-                                        ).value;
-                                    },
-                                    message: "Password not same as above",
+                                notEmpty: {
+                                    message: "Value is required",
                                 },
                             },
                         },
@@ -82,23 +40,21 @@ var KTUsersEditUser = (function () {
                     },
                 });
                 const onSubmit = modal.querySelector(
-                    '[data-kt-edit-users-modal-action="submit"]'
+                    '[data-kt-roles-modal-action="submit"]'
                 );
 
                 onSubmit.addEventListener("click", (t) => {
                     t.preventDefault(),
                         validation &&
                             validation.validate().then(function (t) {
-                                var formData = new FormData(editForm);
+                                var formData = new FormData(addForm);
+
                                 $.ajax({
                                     type: "POST",
-                                    url: route(
-                                        "user-company-data.update",
-                                        kode
-                                    ),
-                                    contentType: false,
+                                    url: route("roles-data.store"),
                                     data: formData,
                                     processData: false,
+                                    contentType: false,
                                     success: function (response) {
                                         onSubmit.setAttribute(
                                             "data-kt-indicator",
@@ -123,10 +79,10 @@ var KTUsersEditUser = (function () {
                                                     }).then(function (t) {
                                                         t.isConfirmed &&
                                                             initModal.hide();
-                                                        editForm.reset();
+                                                        addForm.reset();
                                                         var oTable =
                                                             $(
-                                                                "#user_table"
+                                                                "#roles_table"
                                                             ).DataTable();
                                                         oTable.draw(false);
                                                     });
@@ -155,9 +111,7 @@ var KTUsersEditUser = (function () {
                             });
                 }),
                     modal
-                        .querySelector(
-                            '[data-kt-edit-users-modal-action="cancel"]'
-                        )
+                        .querySelector('[data-kt-roles-modal-action="cancel"]')
                         .addEventListener("click", (t) => {
                             t.preventDefault(),
                                 Swal.fire({
@@ -173,7 +127,7 @@ var KTUsersEditUser = (function () {
                                     },
                                 }).then(function (t) {
                                     t.value
-                                        ? (editForm.reset(), initModal.hide())
+                                        ? (addForm.reset(), initModal.hide())
                                         : "cancel" === t.dismiss &&
                                           Swal.fire({
                                               text: "Your form has not been cancelled!.",
@@ -188,9 +142,7 @@ var KTUsersEditUser = (function () {
                                 });
                         }),
                     modal
-                        .querySelector(
-                            '[data-kt-edit-users-modal-action="close"]'
-                        )
+                        .querySelector('[data-kt-roles-modal-action="close"]')
                         .addEventListener("click", (t) => {
                             t.preventDefault(),
                                 Swal.fire({
@@ -206,7 +158,7 @@ var KTUsersEditUser = (function () {
                                     },
                                 }).then(function (t) {
                                     t.value
-                                        ? (editForm.reset(), initModal.hide())
+                                        ? (addForm.reset(), initModal.hide())
                                         : "cancel" === t.dismiss &&
                                           Swal.fire({
                                               text: "Your form has not been cancelled!.",
@@ -225,5 +177,5 @@ var KTUsersEditUser = (function () {
     };
 })();
 KTUtil.onDOMContentLoaded(function () {
-    KTUsersEditUser.init();
+    KTAddroles.init();
 });

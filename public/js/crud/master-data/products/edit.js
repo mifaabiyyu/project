@@ -16,6 +16,7 @@ var EditProduct = (function () {
                 );
                 $("#edit_name").val(response.data.name);
                 $("#edit_code").val(response.data.code);
+                $("#edit_user").val(response.data.user);
                 $("#edit_unit_price").val(response.data.unit_price);
                 $("#edit_product_type").val(response.data.product_type);
 

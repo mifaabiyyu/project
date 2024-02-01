@@ -1,31 +1,30 @@
 "use strict";
-var KTUsersEditUser = (function () {
-    const modal = document.getElementById("kt_modal_edit_user");
-    const editForm = modal.querySelector("#kt_modal_edit_user_form");
+var KTEditroles = (function () {
+    const modal = document.getElementById("edit_roles");
+    const editForm = modal.querySelector("#edit_roles_form");
     var kode = "";
     editForm.reset();
     $("body").on("click", "#edit-data", function () {
         kode = $(this).data("id");
+        // showUrl.replace(":id", kode);
         $.ajax({
             type: "GET",
-            url: route("user-company-data.show", kode),
+            url: route("roles-data.show", kode),
 
             success: function (response) {
-                $("#headerForm").html("Edit Data User " + response.data.name);
+                $("#modalHeader").html("Edit Data  " + response.data.name);
                 $("#edit_name").val(response.data.name);
-                $("#edit_email").val(response.data.email);
-                $("#edit_company").val(response.data.company);
-                $("#edit_password").val(response.data.password);
-                $("#edit_role").val(response.data.roles).change();
-                $("#edit_position").val(response.data.position);
-                $("#edit_phone").val(response.data.phone);
-
-                $(
-                    "input[name=status][value=" + response.data.status + "]"
-                ).prop("checked", true);
             },
             error: function (error) {
-                toastr.error(error.responseJSON.message, options);
+                Swal.fire({
+                    text: error.responseJSON.message,
+                    icon: "error",
+                    buttonsStyling: !1,
+                    confirmButtonText: "Ok, got it!",
+                    customClass: {
+                        confirmButton: "btn btn-primary",
+                    },
+                });
             },
         });
     });
@@ -41,36 +40,6 @@ var KTUsersEditUser = (function () {
                                 notEmpty: { message: "Name is required" },
                             },
                         },
-                        email: {
-                            validators: {
-                                notEmpty: {
-                                    message: "Email address is required",
-                                },
-                                emailAddress: {
-                                    message: "Valid email address is required",
-                                },
-                            },
-                        },
-                        password: {
-                            validators: {
-                                stringLength: {
-                                    min: 8,
-                                    message: "Password length min 8 character",
-                                },
-                            },
-                        },
-                        password_confirmation: {
-                            validators: {
-                                identical: {
-                                    compare: function () {
-                                        return editForm.querySelector(
-                                            '[name="password"]'
-                                        ).value;
-                                    },
-                                    message: "Password not same as above",
-                                },
-                            },
-                        },
                     },
                     plugins: {
                         trigger: new FormValidation.plugins.Trigger(),
@@ -82,20 +51,19 @@ var KTUsersEditUser = (function () {
                     },
                 });
                 const onSubmit = modal.querySelector(
-                    '[data-kt-edit-users-modal-action="submit"]'
+                    '[data-kt-roles-modal-action="submit"]'
                 );
 
                 onSubmit.addEventListener("click", (t) => {
                     t.preventDefault(),
                         validation &&
                             validation.validate().then(function (t) {
-                                var formData = new FormData(editForm);
+                                var formData = new URLSearchParams(
+                                    new FormData(editForm)
+                                );
                                 $.ajax({
-                                    type: "POST",
-                                    url: route(
-                                        "user-company-data.update",
-                                        kode
-                                    ),
+                                    type: "PUT",
+                                    url: route("roles-data.update", kode),
                                     contentType: false,
                                     data: formData,
                                     processData: false,
@@ -126,7 +94,7 @@ var KTUsersEditUser = (function () {
                                                         editForm.reset();
                                                         var oTable =
                                                             $(
-                                                                "#user_table"
+                                                                "#roles_table"
                                                             ).DataTable();
                                                         oTable.draw(false);
                                                     });
@@ -155,9 +123,7 @@ var KTUsersEditUser = (function () {
                             });
                 }),
                     modal
-                        .querySelector(
-                            '[data-kt-edit-users-modal-action="cancel"]'
-                        )
+                        .querySelector('[data-kt-roles-modal-action="cancel"]')
                         .addEventListener("click", (t) => {
                             t.preventDefault(),
                                 Swal.fire({
@@ -188,9 +154,7 @@ var KTUsersEditUser = (function () {
                                 });
                         }),
                     modal
-                        .querySelector(
-                            '[data-kt-edit-users-modal-action="close"]'
-                        )
+                        .querySelector('[data-kt-roles-modal-action="close"]')
                         .addEventListener("click", (t) => {
                             t.preventDefault(),
                                 Swal.fire({
@@ -225,5 +189,5 @@ var KTUsersEditUser = (function () {
     };
 })();
 KTUtil.onDOMContentLoaded(function () {
-    KTUsersEditUser.init();
+    KTEditroles.init();
 });

@@ -62,22 +62,7 @@ class UserCompanyController extends Controller
             // 'photo' => 'image|max:1024|mimes:jpeg,png,jpg,svg', // 1MB Max
         ]);
 
-        if (Auth::user()->hasRole('Customer')) {
-            // $getCustomer    = Customer::where('code', auth()->user()->company_id)->first();
-            $countUser      = 0;
-            $getQuotation   = Quotation::with('get_detail')->where('customer_code', auth()->user()->customer_id)->where('active_end', '>', date('Y-m-d'))->get();
-
-            foreach ($getQuotation as $key => $value) {
-                $countUser += $value->get_product->user;
-            }
-
-            $getUser        = UserCompany::where('company', auth()->user()->company_id)->count();
-
-            if($getUser >= $countUser) {
-                return response()->json(['message' => 'User melebihi limit !'], 422);
-            }
-        }
-
+       
 
         $codeCust = IdGenerator::generate([
             'table' => (new UserCompany())->getTable(),
@@ -91,8 +76,8 @@ class UserCompanyController extends Controller
             'name'      => $request->name,
             'email'     => $request->email,
             'password'  => $request->password,
-            'status'    => $request->status,
-            'company'   => $request->company,
+            'status'    => 0,
+            'company'   => auth()->user()->company,
             'phone'     => $request->phone,
             'position'  => $request->position,
             'code'      => $codeCust,
@@ -104,6 +89,62 @@ class UserCompanyController extends Controller
         ];
       
         return response()->json($response, 200);
+    }
+
+    public function activate($id)
+    {
+        $id = base64_decode(base64_decode($id));
+
+        $findData   = UserCompany::find($id);
+
+        if (!$findData || Auth::user()->hasRole('Customer')) {
+            return response()->json(['message'  => 'Data not found'], 422);
+        }
+        
+        $getQuotation   = Quotation::with('get_detail')->where('customer_code', auth()->user()->customer_id)->where('active_end', '>', date('Y-m-d'))->get();
+
+        foreach ($getQuotation as $key => $value) {
+            foreach ($value as $keys => $values) {
+                $getUser    = UserCompany::where('company', auth()->user()->company)->where('product_code', $values->product_code)->count();
+
+                if ($getUser < $values->user) {
+                    $findData->update([
+                        'status'    => 1,
+                        'product_code'  => $values->product_code
+                    ]);
+
+
+                    return response()->json(['message' => 'User activate successfully !'], 200);
+                }
+            }
+           
+        }
+
+        return response()->json(['message'  => 'User melebihi batas aktivasi !'], 422);
+       
+
+    }
+
+    public function deactivate($id)
+    {
+        $id = base64_decode(base64_decode($id));
+
+        $findData   = UserCompany::find($id);
+
+        if (!$findData || Auth::user()->hasRole('Customer')) {
+            return response()->json(['message'  => 'Data not found'], 422);
+        }
+        
+        $findData->update([
+            'status'    => 0,
+            // 'product_code'  => $values->product_code
+        ]);
+
+
+        return response()->json(['message' => 'User deactivate successfully !'], 200);
+
+       
+
     }
 
     /**

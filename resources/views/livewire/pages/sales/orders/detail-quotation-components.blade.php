@@ -258,7 +258,7 @@
                                                               <tr>
                                                                 <td>{{ $item->product_name }}</td>
                                                                 <td>{{ $item->get_product?->user }}</td>
-                                                                <td>{{ $item->qty }}</td>
+                                                                <td>{{ $item->qty * 1 }}</td>
                                                                 <td>{{ "Rp " . number_format($item->unit_price,0,'','.') }}</td>
                                                                 <td>{{ "Rp " . number_format($item->total_price,0,'','.') }}</td>
                                                               </tr>

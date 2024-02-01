@@ -57,108 +57,7 @@
             <!--begin::Form-->
             <form id="edit_customer" method="POST" action="javascript:void(0)" enctype="multipart/form-data" class="form d-flex flex-column flex-lg-row">
                 @csrf
-                <!--begin::Aside column-->
-                <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
-                    <!--begin::Thumbnail settings-->
-                    <div class="card card-flush py-4">
-                        <!--begin::Card header-->
-                        <div class="card-header">
-                            <!--begin::Card title-->
-                            <div class="card-title">
-                                <h2>NPWP</h2>
-                            </div>
-                            <!--end::Card title-->
-                        </div>
-                        <!--end::Card header-->
-                        <!--begin::Card body-->
-                        <div class="card-body text-center pt-0">
-                            <!--begin::Image input-->
-                            <div id="npwpData" class="image-input image-input-empty image-input-outline mb-3" data-kt-image-input="true" style="background-image: url(assets/media/svg/files/blank-image.svg)">
-                                <!--begin::Preview existing avatar-->
-                                <div id="img-add-cust" class="image-input-wrapper w-150px h-150px"></div>
-                                <embed id="npwp-file" src="" class="fileView" frameborder="0" style="display: none" width="200" height="200"></embed>
-                                <!--end::Preview existing avatar-->
-                                <!--begin::Label-->
-                                <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change NPWP">
-                                    <i class="bi bi-pencil-fill fs-7"></i>
-                                    <!--begin::Inputs-->
-                                    <input type="file" name="npwp_image" id="npwp_image" accept=".png, .jpg, .jpeg, .pdf" />
-                                    <input type="hidden" name="avatar_remove" />
-                                    <!--end::Inputs-->
-                                </label>
-                                <!--end::Label-->
-                                <!--begin::Cancel-->
-                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel NPWP">
-                                    <i class="bi bi-x fs-2"></i>
-                                </span>
-                                <!--end::Cancel-->
-                                <!--begin::Remove-->
-                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove NPWP">
-                                    <i class="bi bi-x fs-2"></i>
-                                </span>
-                                <!--end::Remove-->
-                            </div>
-                            <!--end::Image input-->
-                            <!--begin::Description-->
-                            <div class="text-muted fs-7">Upload File NPWP. Format .jpg, .png, .jpeg, .pdf</div>
-                            <!--end::Description-->
 
-                            <div class="mb-10 mt-10 fv-row text-left">
-                                <!--begin::Label-->
-                                <label class=" form-label ">NPWP</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="npwp" id="npwp" class="form-control mb-2" placeholder="Customer NPWP" value="{{ $customer->npwp }}" />
-                                <!--end::Input-->
-                                <!--begin::Description-->
-                                <div class="text-muted fs-7">Format penulisan xx.yyy.yyy-z.xxx.xxx</div>
-                                <!--end::Description-->
-                            </div>
-                        </div>
-                        <!--end::Card body-->
-                    </div>
-                    <!--end::Thumbnail settings-->
-                       
-                    <!--begin::Status-->
-                    <div class="card card-flush py-4">
-                        <!--begin::Card header-->
-                        <div class="card-header">
-                            <!--begin::Card title-->
-                            <div class="card-title">
-                                <h2>Status</h2>
-                            </div>
-                            <!--end::Card title-->
-                            <!--begin::Card toolbar-->
-                            <div class="card-toolbar">
-                                <div class="rounded-circle bg-success w-15px h-15px" id="kt_ecommerce_add_product_status"></div>
-                            </div>
-                            <!--begin::Card toolbar-->
-                        </div>
-                        <!--end::Card header-->
-                        <!--begin::Card body-->
-                        <div class="card-body pt-0">
-                            <!--begin::Select2-->
-                            <select class="form-select mb-2" name="status" data-control="select2" data-hide-search="true" data-placeholder="-- Select status --" id="status">
-                                <option></option>
-                                <option value="1" {{ $customer->status == 1 ? 'selected' : '' }}>Active</option>
-                                <option value="0" {{ $customer->status == 0 ? 'selected' : '' }}>Non Active</option>
-                            </select>
-                            <!--end::Select2-->
-                            <!--begin::Description-->
-                            <!--end::Description-->
-                            <!--begin::Datepicker-->
-                            <div class="d-none mt-10">
-                                <label for="kt_ecommerce_add_product_status_datepicker" class="form-label">Select publishing date and time</label>
-                                <input class="form-control" id="kt_ecommerce_add_product_status_datepicker" placeholder="Pick date &amp; time" />
-                            </div>
-                            <!--end::Datepicker-->
-                        </div>
-                        <!--end::Card body-->
-                    </div>
-                    <!--end::Status-->
-                 
-                </div>
-                <!--end::Aside column-->
                 <!--begin::Main column-->
                 <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                     <!--end:::Tabs-->
@@ -201,6 +100,16 @@
                                                 <!--begin::Description-->
                                                 <!--end::Description-->
                                             </div>
+                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
+                                                <!--begin::Label-->
+                                                <label class="required form-label">Company</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="company" id="company" class="form-control mb-2" placeholder="Company" value="{{ $customer->companies }}" />
+                                                <!--end::Input-->
+                                                <!--begin::Description-->
+                                                <!--end::Description-->
+                                            </div>
                                         </div>
                                         <div class="d-flex flex-wrap gap-5 mb-5">
                                             <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
@@ -218,6 +127,16 @@
                                                     @foreach ($businessType as $item)
                                                         <option value="{{ $item->id }}" {{ $customer->id == $item->id ? 'selected' : '' }}>{{ $customer->name }}</option>
                                                     @endforeach
+                                                </select>
+                                                <!--begin::Description-->
+                                            </div>
+                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
+                                                <label class=" form-label">Status</label>
+                                                <!--end::Label-->
+                                                <select class="form-select mb-2" name="status" data-control="select2" data-hide-search="true" data-placeholder="-- Select status --" id="status">
+                                                    <option></option>
+                                                    <option value="1" {{ $customer->status == 1 ? 'selected' : '' }}>Active</option>
+                                                    <option value="0" {{ $customer->status == 0 ? 'selected' : '' }}>Non Active</option>
                                                 </select>
                                                 <!--begin::Description-->
                                             </div>
@@ -316,37 +235,3 @@
   
     <!--end::Post-->
 </div>
-<script>
-   
-$("#nik_image").on("change", function (e) {
-    var file = e.target.files[0]
-    if(file.type == "application/pdf"){
-        document.getElementById(
-            "img-add-cust2"
-        ).style.display = "none";
-        document.getElementById(
-            "nik-file"
-        ).style.display = "block";
-        $("#nik-file").attr("src", URL.createObjectURL(event.target.files[0]));
-    } else{
-        document.getElementById("nik-file").style.display = "none"
-        document.getElementById("img-add-cust2").style.display = "block"
-    }
-})
-$("#npwp_image").on("change", function (e) {
-    var file = e.target.files[0]
-    if(file.type == "application/pdf"){
-        document.getElementById(
-            "img-add-cust"
-        ).style.display = "none";
-        document.getElementById(
-            "npwp-file"
-        ).style.display = "block";
-        $("#npwp-file").attr("src", URL.createObjectURL(event.target.files[0]));
-    }else{
-        document.getElementById("npwp-file").style.display = "none"
-        document.getElementById("img-add-cust").style.display = "block"
-    }
-});
- 
-</script>
