@@ -238,7 +238,7 @@ BODY {
 		</div>
     <script>
       var count = 3;
-    const timer = setInterval(endCountdown(), 3000);
+    const timer = setInterval(endCountdown(), 5000);
     function endCountdown() {
       // alert($linkWa)
       window.location.replace('{{ $linkWa }}');
