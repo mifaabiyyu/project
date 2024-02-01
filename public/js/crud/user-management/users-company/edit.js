@@ -89,9 +89,11 @@ var KTUsersEditUser = (function () {
                     t.preventDefault(),
                         validation &&
                             validation.validate().then(function (t) {
-                                var formData = new FormData(editForm);
+                                var formData = new URLSearchParams(
+                                    new FormData(editForm)
+                                );
                                 $.ajax({
-                                    type: "POST",
+                                    type: "PUT",
                                     url: route(
                                         "user-company-data.update",
                                         kode
