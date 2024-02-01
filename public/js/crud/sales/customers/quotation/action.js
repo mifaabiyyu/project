@@ -134,7 +134,7 @@ const countItemPrd = (t) => {
         $("#unit_price" + idData).val() == ""
     ) {
         const valPrd = products.find((element) => element.id == valueProduct);
-        $("#unit_price" + idData).val(formatRupiah(valPrd.unit_price));
+        $("#unit_price" + idData).val(formatRupiah(valPrd.unit_price * 1));
         $("#user" + idData).html(valPrd.user);
     }
 
