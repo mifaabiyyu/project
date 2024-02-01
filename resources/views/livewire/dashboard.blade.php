@@ -232,7 +232,7 @@
                                     <!--end::Svg Icon-->
                                     <div class="text-white fw-bolder fs-2 mb-2 mt-5">Jumlah User <br>
                                     <div id="count-order" class="fs-4 fw-bolder text-white"></div></div>
-                                    <div class="fw-bolder text-white fs-4" id="total-order">23</div>
+                                    <div class="fw-bolder text-white fs-4" id="total-order">{{ $getUser }}</div>
                                 </div>
                                 <!--end::Body-->
                             </a>

@@ -55,6 +55,7 @@ var UserDatatable = (function () {
                     },
                 },
                 { data: "email" },
+                { data: "company" },
                 {
                     data: "status",
                     render: function (data, type) {

@@ -133,6 +133,7 @@
                             <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
                                 <th class="min-w-125px">Name</th>
                                 <th class="min-w-125px">Email</th>
+                                <th class="min-w-125px">Company</th>
                                 <th class="min-w-125px">Status</th>
                                 <th class="text-center min-w-100px">Actions</th>
                             </tr>

@@ -418,7 +418,7 @@ class QuotationController extends Controller
                 ]);
             }
     
-            $linkWa  = 'https://api.whatsapp.com/send/?phone='. $getParamPhone->value .'&text='. $getParamText->value . ' ' $findData->code ;
+            $linkWa  = 'https://api.whatsapp.com/send/?phone='. $getParamPhone->value .'&text='. $getParamText->value . ' ' . $findData->code ;
             // dd($linkWa);
             return view('livewire.pages.success', compact('linkWa'));
         }
