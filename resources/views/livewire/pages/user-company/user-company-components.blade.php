@@ -184,7 +184,40 @@
                         <!--begin::Scroll-->
                         @csrf
                         <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
-                  
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="d-block fw-bold fs-6 mb-5">Avatar</label>
+                                <!--end::Label-->
+                                <!--begin::Image input-->
+                                <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                    <!--begin::Preview existing avatar-->
+                                    <div class="image-input-wrapper w-125px h-125px" style="background-image: url(./../img.png);"></div>
+                                    <!--end::Preview existing avatar-->
+                                    <!--begin::Label-->
+                                    <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
+                                        <i class="bi bi-pencil-fill fs-7"></i>
+                                        <!--begin::Inputs-->
+                                        <input type="file" id="photo" name="photo" accept=".png, .jpg, .jpeg, .svg" />
+                                        <input type="hidden" name="avatar_remove" />
+                                        <!--end::Inputs-->
+                                    </label>
+                                    <!--end::Label-->
+                                    <!--begin::Cancel-->
+                                    <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
+                                        <i class="bi bi-x fs-2"></i>
+                                    </span>
+                                    <!--end::Cancel-->
+                                    <!--begin::Remove-->
+                                    <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+                                        <i class="bi bi-x fs-2"></i>
+                                    </span>
+                                    <!--end::Remove-->
+                                </div>
+                                <!--end::Image input-->
+                                <!--begin::Hint-->
+                                <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+                                <!--end::Hint-->
+                            </div>
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
@@ -209,15 +242,7 @@
                                 <label class=" fw-bold fs-6 mb-2">Password</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="password" name="password" id="password" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Password"  />
-                                <!--end::Input-->
-                            </div>
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class=" fw-bold fs-6 mb-2">Confirm Password</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Password Confirmation" />
+                                <input type="text" name="password" id="password" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Password"  />
                                 <!--end::Input-->
                             </div>
                             <div class="mb-10">
@@ -247,6 +272,14 @@
                                 <!--end::Input-->
                             </div>
                             @if (!Auth::user()->hasRole('Customer'))
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Company</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" name="company" id="company" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="company" />
+                                <!--end::Input-->
+                            </div>
                                 <div class="fv-row mb-7 ">
                                     <div class="form-group">
                                         <label class="required fw-bold fs-6 mb-2">Status</label>
@@ -327,7 +360,40 @@
                         <!--begin::Scroll-->
                         @csrf
                         <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_edit_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_edit_user_header" data-kt-scroll-wrappers="#kt_modal_edit_user_scroll" data-kt-scroll-offset="300px">
-                     
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="d-block fw-bold fs-6 mb-5">Avatar</label>
+                                <!--end::Label-->
+                                <!--begin::Image input-->
+                                <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                    <!--begin::Preview existing avatar-->
+                                    <div class="image-input-wrapper w-125px h-125px" style="background-image: url(./../img.png);"></div>
+                                    <!--end::Preview existing avatar-->
+                                    <!--begin::Label-->
+                                    <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
+                                        <i class="bi bi-pencil-fill fs-7"></i>
+                                        <!--begin::Inputs-->
+                                        <input type="file" id="photo" name="photo" accept=".png, .jpg, .jpeg, .svg" />
+                                        <input type="hidden" name="avatar_remove" />
+                                        <!--end::Inputs-->
+                                    </label>
+                                    <!--end::Label-->
+                                    <!--begin::Cancel-->
+                                    <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
+                                        <i class="bi bi-x fs-2"></i>
+                                    </span>
+                                    <!--end::Cancel-->
+                                    <!--begin::Remove-->
+                                    <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+                                        <i class="bi bi-x fs-2"></i>
+                                    </span>
+                                    <!--end::Remove-->
+                                </div>
+                                <!--end::Image input-->
+                                <!--begin::Hint-->
+                                <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+                                <!--end::Hint-->
+                            </div>
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
                                 <label class="required fw-bold fs-6 mb-2">Full Name</label>
@@ -370,7 +436,7 @@
                                 <label class="required fw-bold fs-6 mb-2">Position</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" name="position" id="position" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Posisi" />
+                                <input type="text" name="position" id="edit_position" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Posisi" />
                                 <!--end::Input-->
                             </div>
                           
@@ -382,10 +448,17 @@
                                 <input type="text" name="phone" id="edit_phone" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Posisi" />
                                 <!--end::Input-->
                             </div>
-                           
                             <!--end::Input group-->
                             <!--begin::Input group-->
                             @if (!Auth::user()->hasRole('Customer'))
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Company</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="text" name="company" id="edit_company" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="company" />
+                                    <!--end::Input-->
+                                </div>
                                 <div class="fv-row mb-7 ">
                                     <div class="form-group">
                                         <label class="required fw-bold fs-6 mb-2">Status</label>

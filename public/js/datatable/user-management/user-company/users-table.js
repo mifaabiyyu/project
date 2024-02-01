@@ -29,7 +29,11 @@ var UserDatatable = (function () {
                                 <div class="symbol symbol-50px me-5">
                                     <span class="symbol-label bg-light">
                                         <img
-                                            src="logo.png"
+                                            src="${
+                                                row.photo != null
+                                                    ? "images/user/" + row.photo
+                                                    : "image.jpg"
+                                            }"
                                             class="h-100 align-self-end"
                                             alt=""
                                         />

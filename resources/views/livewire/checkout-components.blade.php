@@ -253,125 +253,206 @@ License: For each use you must have a valid license purchased only from above li
                                         <!--end::Card body-->
                                     </div>
                                     <form method="POST" id="postData">
-                                        <div class="card card-flush py-4">
-                                            <!--begin::Card header-->
-                                            <div class="card-header">
-                                                <div class="card-title">
-                                                    <h2>Buat Akun Baru</h2>
+                                        @if ($data->get_customer == null)
+                                            <div class="card card-flush py-4">
+                                                <!--begin::Card header-->
+                                                <div class="card-header">
+                                                    <div class="card-title">
+                                                        <h2>Buat Akun Baru</h2>
+                                                    </div>
+                                                </div>
+                                                <!--end::Card header-->
+                                                <!--begin::Card body-->
+                                                <div class="card-body pt-0">
+                                                    <!--begin::Input group-->
+                                                    <div class="d-flex flex-wrap gap-5" >
+                                                        <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                            <!--begin::Label-->
+                                                            <label class="form-label required">Email</label>
+                                                            <!--end::Label-->
+                                                            <!--begin::Input-->
+                                                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="">
+                                                            <!--end::Input-->
+                                                        </div>
+                                                    </div>
+                                            
+                                                    <div class="d-flex flex-wrap gap-5" >
+                                                        <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                            <!--begin::Label-->
+                                                            <label class="form-label required">Password</label>
+                                                            <!--end::Label-->
+                                                            <!--begin::Input-->
+                                                            <input type="password" class="form-control" name="password" id="password" placeholder="Password" value="">
+                                                            <!--end::Input-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-wrap gap-5" >
+                                                        <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                            <!--begin::Label-->
+                                                            <label class="form-label required">Confirm Password</label>
+                                                            <!--end::Label-->
+                                                            <!--begin::Input-->
+                                                            <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" value="">
+                                                            <!--end::Input-->
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Input group-->
+                                                
+                                                
                                                 </div>
                                             </div>
-                                            <!--end::Card header-->
-                                            <!--begin::Card body-->
-                                            <div class="card-body pt-0">
-                                                <!--begin::Input group-->
-                                                <div class="d-flex flex-wrap gap-5" >
-                                                    <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
-                                                        <!--begin::Label-->
-                                                        <label class="form-label required">Email</label>
-                                                        <!--end::Label-->
-                                                        <!--begin::Input-->
-                                                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="">
-                                                        <!--end::Input-->
-                                                    </div>
-                                                </div>
-                                          
-                                                <div class="d-flex flex-wrap gap-5" >
-                                                    <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
-                                                        <!--begin::Label-->
-                                                        <label class="form-label required">Password</label>
-                                                        <!--end::Label-->
-                                                        <!--begin::Input-->
-                                                        <input type="password" class="form-control" name="password" id="password" placeholder="Password" value="">
-                                                        <!--end::Input-->
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-wrap gap-5" >
-                                                    <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
-                                                        <!--begin::Label-->
-                                                        <label class="form-label required">Confirm Password</label>
-                                                        <!--end::Label-->
-                                                        <!--begin::Input-->
-                                                        <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" value="">
-                                                        <!--end::Input-->
-                                                    </div>
-                                                </div>
-                                                <!--end::Input group-->
-                                            
-                                            
-                                            </div>
-                                        </div>
+                                        @endif
                                         <input type="hidden" name="params" value="{{ $params }}" id="params">
                                         <div class="card card-flush py-4">
                                             <!--begin::Card header-->
                                             <div class="card-header">
                                                 <div class="card-title">
+                                                    {{-- @if ($data->get_customer == null) --}}
                                                     <h2>Data Pribadi</h2>
+                                                    {{-- @endif --}}
                                                 </div>
                                             </div>
                                             <!--end::Card header-->
                                             <!--begin::Card body-->
                                             <div class="card-body pt-0">
                                                 <!--begin::Input group-->
+                                                @if ($data->get_customer == null)
+                                                    <div class="d-flex flex-wrap gap-5" >
+                                                        <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                            <!--begin::Label-->
+                                                            <label class="form-label required">Nama Lengkap</label>
+                                                            <!--end::Label-->
+                                                            <!--begin::Input-->
+                                                            <input type="text" class="form-control" name="username" id="username" placeholder="Username" value="">
+                                                            <!--end::Input-->
+                                                        </div>
+                                                    </div>
+                                                
+                                                    <div class="d-flex flex-wrap gap-5" >
+                                                        <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                            <!--begin::Label-->
+                                                            <label class="form-label required">Nomor Whatsapp</label>
+                                                            <!--end::Label-->
+                                                            <!--begin::Input-->
+                                                            <input type="text" class="form-control" name="whatsapp" id="whatsapp" placeholder="08xxxxxxxxx" value="">
+                                                            <!--end::Input-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-wrap gap-5" >
+                                                        <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                            <!--begin::Label-->
+                                                            <label class="form-label required">Company</label>
+                                                            <!--end::Label-->
+                                                            <!--begin::Input-->
+                                                            <input type="text" class="form-control" name="company" id="company" placeholder="Company" value="">
+                                                            <!--end::Input-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-wrap gap-5" >
+                                                        <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                            <!--begin::Label-->
+                                                            <label class="form-label required">Alamat</label>
+                                                            <!--end::Label-->
+                                                            <!--begin::Input-->
+                                                            <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat" value="">
+                                                            <!--end::Input-->
+                                                        </div>
+                                                    </div>
+                                                
+                                                    <div class="d-flex flex-wrap gap-5" >
+                                                        <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                            <!--begin::Label-->
+                                                            <label class="form-label required">Tipe Bisnis</label>
+                                                            <!--end::Label-->
+                                                            <!--begin::Input-->
+                                                            <select class="form-select customer" data-control="select2" data-placeholder="-- Select Business Type --" name="business_type" id="business_type" >
+                                                                <option></option>
+                                                                @foreach ($businessType as $item)
+                                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            <!--end::Input-->
+                                                        </div>
+                                                    </div>
+                                                @else
                                                 <div class="d-flex flex-wrap gap-5" >
                                                     <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
                                                         <!--begin::Label-->
-                                                        <label class="form-label required">Nama Lengkap</label>
+                                                        <label class="form-label ">Email</label>
                                                         <!--end::Label-->
                                                         <!--begin::Input-->
-                                                        <input type="text" class="form-control" name="username" id="username" placeholder="Username" value="">
+                                                        <input type="text" readonly class="form-control" name="email" placeholder="-" value="{{ $data->get_customer->email }}">
                                                         <!--end::Input-->
                                                     </div>
                                                 </div>
-                                              
                                                 <div class="d-flex flex-wrap gap-5" >
                                                     <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
                                                         <!--begin::Label-->
-                                                        <label class="form-label required">Nomor Whatsapp</label>
+                                                        <label class="form-label ">Nama Lengkap</label>
                                                         <!--end::Label-->
                                                         <!--begin::Input-->
-                                                        <input type="text" class="form-control" name="whatsapp" id="whatsapp" placeholder="08xxxxxxxxx" value="">
+                                                        <input type="text" readonly class="form-control"  placeholder="-" value="{{ $data->get_customer->name }}">
+                                                        <!--end::Input-->
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="d-flex flex-wrap gap-5" >
+                                                    <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                                        <!--begin::Label-->
+                                                        <label class="form-label ">Nomor Whatsapp</label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <input type="text" readonly class="form-control" name="whatsapp" placeholder="-" value="{{ $data->get_customer->phone }}">
                                                         <!--end::Input-->
                                                     </div>
                                                 </div>
                                                 <div class="d-flex flex-wrap gap-5" >
                                                     <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
                                                         <!--begin::Label-->
-                                                        <label class="form-label required">Company</label>
+                                                        <label class="form-label ">Company</label>
                                                         <!--end::Label-->
                                                         <!--begin::Input-->
-                                                        <input type="text" class="form-control" name="company" id="company" placeholder="Company" value="">
+                                                        <input type="text"  class="form-control"  placeholder="-" readonly value="{{ $data->get_customer->company }}">
                                                         <!--end::Input-->
                                                     </div>
                                                 </div>
                                                 <div class="d-flex flex-wrap gap-5" >
                                                     <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
                                                         <!--begin::Label-->
-                                                        <label class="form-label required">Alamat</label>
+                                                        <label class="form-label ">Alamat</label>
                                                         <!--end::Label-->
                                                         <!--begin::Input-->
-                                                        <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat" value="">
+                                                        <input type="text"  class="form-control" placeholder="-" readonly value="{{ $data->get_customer->address }}">
                                                         <!--end::Input-->
                                                     </div>
                                                 </div>
-                                               
+                                            
                                                 <div class="d-flex flex-wrap gap-5" >
                                                     <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
                                                         <!--begin::Label-->
-                                                        <label class="form-label required">Tipe Bisnis</label>
+                                                        <label class="form-label ">Tipe Bisnis</label>
                                                         <!--end::Label-->
                                                         <!--begin::Input-->
-                                                        <select class="form-select customer" data-control="select2" data-placeholder="-- Select Business Type --" name="business_type" id="business_type" >
+                                                        <select class="form-select form-control-secondary customer" disabled data-placeholder="-"  name="business_type" id="business_type" >
                                                             <option></option>
                                                             @foreach ($businessType as $item)
-                                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                                <option value="{{ $item->id }}" {{ $data->get_customer->business_type == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
                                                             @endforeach
                                                         </select>
                                                         <!--end::Input-->
                                                     </div>
                                                 </div>
+                                                @endif
                                                 <!--end::Input group-->
 
-                                            
+                                                <iframe
+                                                id="inlineFrameExample"
+                                                title="Inline Frame Example"
+                                                style="width: 100%;"
+                                                height="700"
+                                                src="{{ $xenditUrl }}">
+                                              </iframe>
+                                              
                                                 <div class="d-flex flex-column mb-5 fv-row rounded-3 p-7 border border-dashed border-gray-300">
 															<!--begin::Label-->
 															<div class="fs-5 fw-bold form-label mb-3">Syarat & Ketentuan / Akad Jual Beli
@@ -394,7 +475,7 @@ License: For each use you must have a valid license purchased only from above li
 															<!--end::Checkbox-->
 														</div>
                                                         <!--begin::Notice-->
-														<div class="notice d-flex bg-light-primary rounded border-primary border border-dashed rounded-3 p-6">
+														{{-- <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed rounded-3 p-6">
 															<!--begin::Wrapper-->
 															<div class="d-flex flex-stack flex-grow-1">
 																<!--begin::Content-->
@@ -405,7 +486,7 @@ License: For each use you must have a valid license purchased only from above li
 																<!--end::Content-->
 															</div>
 															<!--end::Wrapper-->
-														</div>
+														</div> --}}
 														<!--end::Notice-->
                                                         <br>
                                         <button type="submit" id="kt_ecommerce_add_quote_submit" {{-- $validation==true?'':"disabled" --}} class="btn btn-primary w-100" data-kt-add-quotation="submit" >

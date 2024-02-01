@@ -18,6 +18,7 @@ var KTUsersEditUser = (function () {
                 $("#edit_password").val(response.data.password);
                 $("#edit_role").val(response.data.roles).change();
                 $("#edit_position").val(response.data.position);
+                $("#edit_company").val(response.data.company);
                 $("#edit_phone").val(response.data.phone);
 
                 $(

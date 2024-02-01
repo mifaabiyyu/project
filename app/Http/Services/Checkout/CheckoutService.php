@@ -20,13 +20,13 @@ class CheckoutService {
             'external_id' => $args['code'] . $date->getTimestamp(),
             'payer_email' => 'mifaabiyyu@gmail.com', 
             'description' => 'Payment', 
-            'failure_redirect_url' => $redirectUrl, 
-            'success_redirect_url' => $redirectUrl
+            // 'failure_redirect_url' => $redirectUrl, 
+            // 'success_redirect_url' => $redirectUrl
         ];
 
         $data = json_decode(json_encode($args), true);
-        $defParams['failure_redirect_url'] = route('fail');
-        $defParams['success_redirect_url'] = route('success', base64_encode(base64_encode($args['code'])));
+        // $defParams['failure_redirect_url'] = route('fail');
+        // $defParams['success_redirect_url'] = route('success', base64_encode(base64_encode($args['code'])));
         $params = array_merge($defParams, $data);
         $response = [];
 

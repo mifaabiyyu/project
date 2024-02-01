@@ -58,11 +58,18 @@ class UserCompanyController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Password::defaults()],
+            'password' => ['required'],
             // 'photo' => 'image|max:1024|mimes:jpeg,png,jpg,svg', // 1MB Max
         ]);
 
-       
+        $imageName = null;
+
+        if($request->photo)
+        {
+          
+            $imageName = date("Ymd").time().rand().'.'.$request->photo->extension();  
+            $request->photo->move(public_path('images/user'), $imageName);
+        }
 
         $codeCust = IdGenerator::generate([
             'table' => (new UserCompany())->getTable(),
@@ -76,8 +83,10 @@ class UserCompanyController extends Controller
             'name'      => $request->name,
             'email'     => $request->email,
             'password'  => $request->password,
+            'photo'  => $imageName,
+            'roles'  => $request->role,
             'status'    => 0,
-            'company'   => auth()->user()->company,
+            'company'   => $request->company ?? auth()->user()->company,
             'phone'     => $request->phone,
             'position'  => $request->position,
             'code'      => $codeCust,
@@ -204,13 +213,26 @@ class UserCompanyController extends Controller
             // 'photo' => 'image|max:1024|mimes:jpeg,png,jpg,svg', // 1MB Max
         ]);
 
+        $imageName = $findData->photo;
+   
+        if($request->hasFile('photo'))
+        {
+            if ($imageName != null) {
+                unlink("images/user/" . $findData->photo);
+            }
+            $imageName = date("Ymd").time().rand().'.'.$request->photo->extension();  
+            $request->photo->move(public_path('images/user'), $imageName);
+        }
+
         $findData->update([
             'name'      => $request->name,
             'email'     => $request->email,
+            'roles'     => $request->role,
             'password'  => $request->password,
             'status'    => $request->status,
-            'company'   => $request->company,
+            'company'   => $request->company ?? auth()->user()->company,
             'phone'     => $request->phone,
+            'photo'     => $imageName,
             'position'  => $request->position,
         ]); 
 

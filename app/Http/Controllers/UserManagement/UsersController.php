@@ -52,12 +52,12 @@ class UsersController extends Controller
        
         $imageName = null;
 
-        // if($request->photo)
-        // {
+        if($request->photo)
+        {
           
-        //     $imageName = date("Ymd").time().rand().'.'.$request->photo->extension();  
-        //     $request->photo->move(public_path('images/user'), $imageName);
-        // }
+            $imageName = date("Ymd").time().rand().'.'.$request->photo->extension();  
+            $request->photo->move(public_path('images/user'), $imageName);
+        }
 
         $user = User::create([
             'name'      => $request->name,
@@ -116,14 +116,14 @@ class UsersController extends Controller
 
         $imageName = $findData->photo;
    
-        // if($request->hasFile('photo'))
-        // {
-        //     if ($imageName != null) {
-        //         unlink("images/user/" . $findData->photo);
-        //     }
-        //     $imageName = date("Ymd").time().rand().'.'.$request->photo->extension();  
-        //     $request->photo->move(public_path('images/user'), $imageName);
-        // }
+        if($request->hasFile('photo'))
+        {
+            if ($imageName != null) {
+                unlink("images/user/" . $findData->photo);
+            }
+            $imageName = date("Ymd").time().rand().'.'.$request->photo->extension();  
+            $request->photo->move(public_path('images/user'), $imageName);
+        }
 
         $findData->name = $request->name;
         $findData->email = $request->email;

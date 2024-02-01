@@ -237,22 +237,13 @@ BODY {
 			<!--end::Authentication - 404 Page-->
 		</div>
     <script>
-      var count = 3;
-    const timer = setInterval(endCountdown(), 5000);
-    function endCountdown() {
-      // alert($linkWa)
-      window.location.replace('{{ $linkWa }}');
-    }
+      // var count = 3;
 
-    function handleTimer() {
-      if(count === 0) {
-        clearInterval(timer);
-        endCountdown();
-      } else {
-        $('#count_num').html(count);
-        count--;
-      }
-    }
+    function makeAlert(){ 
+      window.location.replace('{{ $linkWa }}');
+};
+
+setInterval(makeAlert, 2000);
 
     
     </script>
