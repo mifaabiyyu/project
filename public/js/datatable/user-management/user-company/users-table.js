@@ -56,6 +56,10 @@ var UserDatatable = (function () {
                 },
                 { data: "email" },
                 { data: "company" },
+                { data: "database" },
+                { data: "link" },
+                { data: "hosting" },
+                { data: "storage" },
                 {
                     data: "status",
                     render: function (data, type) {

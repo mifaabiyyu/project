@@ -444,14 +444,13 @@ License: For each use you must have a valid license purchased only from above li
                                                 </div>
                                                 @endif
                                                 <!--end::Input group-->
-
-                                                <iframe
+                                                {{-- <iframe
                                                 id="inlineFrameExample"
                                                 title="Inline Frame Example"
                                                 style="width: 100%;"
                                                 height="700"
                                                 src="{{ $xenditUrl }}">
-                                              </iframe>
+                                              </iframe> --}}
                                               
                                                 <div class="d-flex flex-column mb-5 fv-row rounded-3 p-7 border border-dashed border-gray-300">
 															<!--begin::Label-->

@@ -134,6 +134,10 @@
                                 <th class="min-w-125px">Name</th>
                                 <th class="min-w-125px">Email</th>
                                 <th class="min-w-125px">Company</th>
+                                <th class="min-w-125px">Database</th>
+                                <th class="min-w-125px">Link</th>
+                                <th class="min-w-125px">Hosting</th>
+                                <th class="min-w-125px">Storage</th>
                                 <th class="min-w-125px">Status</th>
                                 <th class="text-center min-w-100px">Actions</th>
                             </tr>
@@ -448,6 +452,30 @@
                                 <!--begin::Input-->
                                 <input type="text" name="phone" id="edit_phone" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Posisi" />
                                 <!--end::Input-->
+                            </div>
+                            <div class="d-flex flex-wrap gap-5" >
+                                <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                    <!--begin::Label-->
+                                    <label class="form-label">Database</label>
+                                    <input type="text" class="form-control" {{ Auth::user()->hasRole('Customer') ? 'disabled' : '' }} name="database" id="edit_database" placeholder="Database" value="">
+                                </div>
+                                <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                    <!--begin::Label-->
+                                    <label class="form-label">Link</label>
+                                    <input type="text" class="form-control" name="link" {{ Auth::user()->hasRole('Customer') ? 'disabled' : '' }} id="edit_link" placeholder="Link" value="">
+                                </div>
+                            </div>
+                            <div class="d-flex flex-wrap gap-5" >
+                                <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                    <!--begin::Label-->
+                                    <label class="form-label">Storage</label>
+                                    <input type="text" class="form-control" name="storage" {{ Auth::user()->hasRole('Customer') ? 'disabled' : '' }} id="edit_storage" placeholder="Storage" value="">
+                                </div>
+                                <div class="mb-5 fv-row w-100 flex-md-root" wire:ignore>
+                                    <!--begin::Label-->
+                                    <label class="form-label">Hosting</label>
+                                    <input type="text" class="form-control" name="hosting" {{ Auth::user()->hasRole('Customer') ? 'disabled' : '' }} id="edit_hosting" placeholder="Hosting" value="">
+                                </div>
                             </div>
                             <!--end::Input group-->
                             <!--begin::Input group-->

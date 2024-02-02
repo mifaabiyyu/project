@@ -46,7 +46,6 @@ class QuotationController extends Controller
      */
     public function create(Request $request)
     {
-        // dd($request);
         $request->validate([
             'email'         => 'required|sometimes',
             // 'nama_depan'    => 'required',
@@ -58,7 +57,7 @@ class QuotationController extends Controller
             // 'business_type' => 'required',
         ]);
     
-        // $service = new Service();
+        $service = new Service();
         $code = base64_decode($request->params);
         // dd($code);
         $findData = Quotation::where('code', $code)->first();
@@ -69,47 +68,36 @@ class QuotationController extends Controller
         if (!$findData || $date1 < $date2) {
             abort(404);
         }
-        $apiKey     = Parameter::where('code', 'xendit')->first();
-        Xendit::setApiKey($apiKey->value);
-        
-        $checkXendit = \Xendit\Invoice::retrieve($findData->xendit_id);
 
-        // if ($findData->status == 5) {
-        //     $getParamPhone = Parameter::where('code', 'whatsappPhone')->first();
+        if ($findData->status == 5) {
+            $getParamPhone = Parameter::where('code', 'whatsappPhone')->first();
 
-        //     if (!$getParamPhone) {
-        //         $getParamPhone = Parameter::create([
-        //             'code'  => 'whatsappPhone',
-        //             'name'  => 'Nomor WhatsApp',
-        //             'value' => '6281515141186'
-        //         ]);
-        //     }
+            if (!$getParamPhone) {
+                $getParamPhone = Parameter::create([
+                    'code'  => 'whatsappPhone',
+                    'name'  => 'Nomor WhatsApp',
+                    'value' => '6281515141186'
+                ]);
+            }
 
-        //     $getParamText = Parameter::where('code', 'whatsappText')->first();
+            $getParamText = Parameter::where('code', 'whatsappText')->first();
 
             
-        //     if (!$getParamText) {
-        //         $getParamText = Parameter::create([
-        //             'code'  => 'whatsappText',
-        //             'name'  => 'Text WhatsApp',
-        //             'value' => 'Saya telah melakukan pembayaran dengan nomor Invoice ...'
-        //         ]);
-        //     }
+            if (!$getParamText) {
+                $getParamText = Parameter::create([
+                    'code'  => 'whatsappText',
+                    'name'  => 'Text WhatsApp',
+                    'value' => 'Saya telah melakukan pembayaran dengan nomor Invoice ...'
+                ]);
+            }
 
-        //     $linkWa  = 'https://api.whatsapp.com/send/?phone='. $getParamPhone .'&text='. $getParamText ;
+            $linkWa  = 'https://api.whatsapp.com/send/?phone='. $getParamPhone .'&text='. $getParamText . ' ' . $findData->code;
 
-        //     return view('livewire.pages.success', compact('linkWa'));
-        // }
-        
-        if ($checkXendit['status'] != 'SETTLED') {
-            return response()->json(['message'  => 'Selesaikan pembayaran terlebih dahulu !'], 422);
+            return view('livewire.pages.success', compact('linkWa'));
         }
 
         DB::beginTransaction();
         try {
-
-
-
             $checkCustomer  = Customer::where('email', $request->email)->first();
             
             if (!$checkCustomer) {
@@ -151,51 +139,26 @@ class QuotationController extends Controller
                 $createUser->assignRole('Customer');
             }
 
-            // $xenditData = [
-            //     "currency" => "IDR",
-            //     'code'      => $code,
-            //     "amount" => $findData->total,
-            //     // "redirect_url" => route('success')
-            // ];
+            $xenditData = [
+                "currency" => "IDR",
+                'code'      => $code,
+                "amount" => $findData->total,
+                // "redirect_url" => route('success')
+            ];
             
             $findData->update([
                 'customer_code' => $checkCustomer->code,
                 'customer_name' => $checkCustomer->name,
-                'status'    => 5,
-                'paid_at'   => date('Y-m-d H:i:s')
             ]);
 
-        
-
-            $getParamPhone = Parameter::where('code', 'whatsappPhone')->first();
-        
-            if (!$getParamPhone) {
-                $getParamPhone = Parameter::create([
-                    'code'  => 'whatsappPhone',
-                    'name'  => 'Nomor WhatsApp',
-                    'value' => '6281515141186'
-                ]);
-            }
-    
-            $getParamText = Parameter::where('code', 'whatsappText')->first();
-    
-            
-            if (!$getParamText) {
-                $getParamText = Parameter::create([
-                    'code'  => 'whatsappText',
-                    'name'  => 'Text WhatsApp',
-                    'value' => 'Saya telah melakukan pembayaran dengan nomor Invoice ...'
-                ]);
-            }
-            $findData = Quotation::where('code', $code)->first();
-            $linkWa  = 'https://api.whatsapp.com/send/?phone='. $getParamPhone->value .'&text='. $getParamText->value . ' ' . $findData->code;
             DB::commit();
-            // dd($linkWa);
-            return response()->json(['linkWa' => $linkWa], 200);
+
+            return $service->createInvoice($xenditData);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['message' => $th->getMessage()], 422);
         }
+
 
       
     }
@@ -332,23 +295,6 @@ class QuotationController extends Controller
             'status'    => 5,
             'paid_at'   => date('Y-m-d H:i:s')
         ]);
-        
-        return response()->json(['message'  => 'Pembayaran berhasil !'], 200);
-    }
-
-    public function BackupsuccessPayment($code)
-    {
-        $code = base64_decode(base64_decode($code));
-        $findData = Quotation::where('code', $code)->first();
-
-        if (!$findData) {
-            abort(404);
-        }
-
-        $findData->update([
-            'status'    => 5,
-            'paid_at'   => date('Y-m-d H:i:s')
-        ]);
         $getParamPhone = Parameter::where('code', 'whatsappPhone')->first();
         
         if (!$getParamPhone) {
@@ -373,6 +319,23 @@ class QuotationController extends Controller
         $linkWa  = 'https://api.whatsapp.com/send/?phone='. $getParamPhone->value .'&text='. $getParamText->value ;
         // dd($linkWa);
         return view('livewire.pages.success', compact('linkWa'));
+    }
+
+    public function BackupsuccessPayment($code)
+    {
+        $code = base64_decode(base64_decode($code));
+        $findData = Quotation::where('code', $code)->first();
+
+        if (!$findData) {
+            abort(404);
+        }
+
+        $findData->update([
+            'status'    => 5,
+            'paid_at'   => date('Y-m-d H:i:s')
+        ]);
+        
+        return response()->json(['message'  => 'Pembayaran berhasil !'], 200);
 
     }
 

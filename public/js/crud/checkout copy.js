@@ -114,12 +114,13 @@ var Checkout = (function () {
                                                 onSubmit.removeAttribute(
                                                     "data-kt-indicator"
                                                 );
-                                                console.log(response);
-                                                invoiceUrl = response.linkWa;
+                                                // console.log(response);
+                                                invoiceUrl =
+                                                    response.invoice_url;
                                                 onSubmit.disabled = !1;
-                                                // window.location.replace(
-                                                //     invoiceUrl
-                                                // );
+                                                window.location.replace(
+                                                    invoiceUrl
+                                                );
                                             }, 200);
                                         },
                                         error: function (error) {

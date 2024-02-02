@@ -57,7 +57,7 @@ class UserCompanyController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required'],
             // 'photo' => 'image|max:1024|mimes:jpeg,png,jpg,svg', // 1MB Max
         ]);
@@ -200,6 +200,7 @@ class UserCompanyController extends Controller
     public function update(Request $request, $id)
     {
         $id     = base64_decode($id);
+        // dd($id);
         $findData   = UserCompany::find($id);
 
         if (!$findData) {
@@ -208,7 +209,7 @@ class UserCompanyController extends Controller
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255'],
             // 'password' => ['required', 'confirmed', Password::defaults()],
             // 'photo' => 'image|max:1024|mimes:jpeg,png,jpg,svg', // 1MB Max
         ]);
@@ -232,6 +233,10 @@ class UserCompanyController extends Controller
             'status'    => $request->status,
             'company'   => $request->company ?? auth()->user()->company,
             'phone'     => $request->phone,
+            'storage'     => $request->storage,
+            'link'      => $request->link,
+            'database'     => $request->database,
+            'hosting'     => $request->hosting,
             'photo'     => $imageName,
             'position'  => $request->position,
         ]); 
