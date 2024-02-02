@@ -183,6 +183,11 @@
                                 <th class="min-w-125px">Code</th>
                                 <th class="min-w-125px">Name</th>
                                 <th class="min-w-125px">Email</th>
+                                <th class="min-w-125px">Company</th>
+                                <th class="min-w-125px">Database</th>
+                                <th class="min-w-125px">Link</th>
+                                <th class="min-w-125px">Hosting</th>
+                                <th class="min-w-125px">Storage</th>
                                 <th class="min-w-100px">Status</th>
                                 <th class="text-center min-w-100px">Actions</th>
                             </tr>

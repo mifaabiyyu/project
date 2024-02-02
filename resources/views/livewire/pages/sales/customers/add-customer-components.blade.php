@@ -106,7 +106,7 @@
                                                 <label class="required form-label">Company</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input type="text" name="company" id="company" class="form-control mb-2" placeholder="Company" value="{{ $customer->companies }}" />
+                                                <input type="text" name="company" id="company" class="form-control mb-2" placeholder="Company" value="" />
                                                 <!--end::Input-->
                                                 <!--begin::Description-->
                                                 <!--end::Description-->
@@ -178,6 +178,53 @@
                                     <!--begin::Card header-->
                                     <div class="card-header">
                                         <div class="card-title">
+                                            <h2></h2>
+                                        </div>
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body pt-0">
+                                        <div class="d-flex flex-wrap gap-5 mb-5">
+                                         
+                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
+                                                <label class=" form-label">Database</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                                <input type="text" name="database" id="database" class="form-control mb-2" placeholder="Database" value="" />
+                                            <!--end::Input-->
+                                            </div>
+                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
+                                                <label class=" form-label">Link</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="link" id="link" class="form-control mb-2" placeholder="link" value="" />
+                                                <!--end::Input-->
+                                            </div>
+                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
+                                                <label class=" form-label">Hosting</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="hosting" id="hosting" class="form-control mb-2" placeholder="Hosting" value="" />
+                                                <!--end::Input-->
+                                            </div>
+                                            <div class="mb-5 fv-row text-left w-100 flex-md-root" wire:ignore>
+                                                <label class=" form-label">Storage</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="storage" id="storage" class="form-control mb-2" placeholder="Storage" value="" />
+                                                <!--end::Input-->
+                                            </div>
+                                           
+                                        </div>
+                                        <!--begin::Input group-->
+                                     
+                                    </div>
+                                    <!--end::Card header-->
+                                </div>
+                                {{-- <div class="card card-flush py-4">
+                                    <!--begin::Card header-->
+                                    <div class="card-header">
+                                        <div class="card-title">
                                             <h2>PIC</h2>
                                         </div>
                                     </div>
@@ -213,7 +260,7 @@
                                      
                                     </div>
                                     <!--end::Card header-->
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <!--end::Tab pane-->

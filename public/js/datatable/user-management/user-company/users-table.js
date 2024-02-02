@@ -26,19 +26,7 @@ var UserDatatable = (function () {
                     render: function (data, type, row) {
                         return (
                             `<div class="d-flex align-items-center">
-                                <div class="symbol symbol-50px me-5">
-                                    <span class="symbol-label bg-light">
-                                        <img
-                                            src="${
-                                                row.photo != null
-                                                    ? "images/user/" + row.photo
-                                                    : "image.jpg"
-                                            }"
-                                            class="h-100 align-self-end"
-                                            alt=""
-                                        />
-                                    </span>
-                                </div>
+                      
                                 <div class="d-flex justify-content-start flex-column">
                                     <a
                                         href="#"
@@ -56,10 +44,7 @@ var UserDatatable = (function () {
                 },
                 { data: "email" },
                 { data: "company" },
-                { data: "database" },
-                { data: "link" },
-                { data: "hosting" },
-                { data: "storage" },
+
                 {
                     data: "status",
                     render: function (data, type) {

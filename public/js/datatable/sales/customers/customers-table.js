@@ -23,6 +23,11 @@ var CustomerDataTable = (function () {
                 { data: "code" },
                 { data: "name" },
                 { data: "email" },
+                { data: "companies" },
+                { data: "database" },
+                { data: "link" },
+                { data: "hosting" },
+                { data: "storage" },
                 {
                     data: "status",
                     render: function (data, type, row) {
