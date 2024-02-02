@@ -135,6 +135,7 @@
                                 <th class="min-w-125px">Name</th>
                                 <th class="min-w-125px">Email</th>
                                 <th class="min-w-125px">Company</th>
+                                <th class="min-w-125px">Password</th>
                                 <th class="min-w-125px">Licence</th>
                                 <th class="min-w-125px">Status</th>
                                 <th class="text-center min-w-100px">Actions</th>
@@ -543,7 +544,7 @@
                     <h2 class="fw-bolder">Set Licence</h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
-                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-parameters-modal-action="close">
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal">
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                         <span class="svg-icon svg-icon-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -596,27 +597,7 @@
         <!--end::Modal dialog-->
     </div>
     <script>
-        $("#licence").select2({
-    // placeholder: "-- Select Term --",
-    // allowClear: true,
-    // minimumInputLength: 2,
-            ajax: {
-                type: "get",
-                url: route("user-company.getLicence"),
-                dataType: "json",
-                delay: 0,
-                processResults: function (res) {
-                    return {
-                        results: $.map(res.data, function (item) {
-                            return {
-                                text: item.code + ' (' + (item.total_licence - item.total_usage) + ' / ' + item.total_licence + ')',
-                                id: item.code,
-                            };
-                        }),
-                    };
-                },
-                cache: true,
-            },
-        });
+   
+      
     </script>
 </div>

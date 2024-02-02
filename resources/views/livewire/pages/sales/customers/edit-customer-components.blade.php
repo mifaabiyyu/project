@@ -1,6 +1,9 @@
 @section('title', 'Edit Customers - Sales')
 
 @section('scriptCrud')
+    <script>
+        var kode = "{{ $customer->code }}";
+    </script>
     <script src="{{ asset('js/crud/sales/customers/customer-list/edit.js') }}" ></script>
 @endsection
 
@@ -125,7 +128,7 @@
                                                 <select class="form-select mb-2" name="business_type" data-control="select2" data-hide-search="true" data-placeholder="-- Select Business Type --" id="business_type">
                                                     <option></option>
                                                     @foreach ($businessType as $item)
-                                                        <option value="{{ $item->id }}" {{ $customer->id == $item->id ? 'selected' : '' }}>{{ $customer->name }}</option>
+                                                        <option value="{{ $item->id }}" {{ $customer->business_type == $item->id ? 'selected' : '' }}>{{ $customer->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 <!--begin::Description-->

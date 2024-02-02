@@ -9,6 +9,7 @@ use App\Models\UserCompany;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\Password;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -163,30 +164,40 @@ class UserCompanyController extends Controller
         
         $findData = UserCompany::find($id);
 
-        if (!$findData) {
-            return response()->json(['message'  => 'Data not found'], 422);
-        }
-
-        $checkData  = CustomerLicence::where('code', $request->licence)->first();
+        DB::beginTransaction();
+        try {
+            if (isset($request->licence)) {
+                if (!$findData) {
+                    return response()->json(['message'  => 'Data not found'], 422);
+                }
         
-        if (!$checkData) {
-            return response()->json(['message'  => 'Licence not found'], 422);
+                $checkData  = CustomerLicence::where('code', $request->licence)->first();
+                
+                if (!$checkData) {
+                    return response()->json(['message'  => 'Licence not found'], 422);
+                }
+        
+                if ($checkData->total_licence <= $checkData->total_usage) {
+                    return response()->json(['message'  => 'Maaf kuota licence sudah penuh !'], 422);
+                }
+        
+                $checkData->update([
+                    'total_usage'   => $checkData->total_usage + 1
+                ]);
+        
+                $findData->update([
+                    'status_licence'    => 1,
+                    'customer_licence'  => $request->licence
+                ]);
+                
+                DB::commit();
+                return response()->json(['message'  => 'Licence applied successfully !'], 200);
+            }
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['message'  => $th->getMessage()], 422);
         }
-
-        if ($checkData->total_licence <= $checkData->total_usage) {
-            return response()->json(['message'  => 'Maaf kuota licence sudah penuh !'], 422);
-        }
-
-        $checkData->update([
-            'total_usage'   => $checkData->total_usage + 1
-        ]);
-
-        $findData->update([
-            'status_licence'    => 1,
-            'customer_licence'  => $request->licence
-        ]);
-
-        return response()->json(['message'  => 'Licence applied successfully !'], 200);
+       
     }
 
     public function deactivate($id)

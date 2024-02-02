@@ -48,17 +48,17 @@
 		<script>
 			    //? End Set to Livewire variable
 
-			window.addEventListener("successMessage", (response) => {
-				toastr.success(response.detail.message, options);
-			});
+			// window.addEventListener("successMessage", (response) => {
+			// 	toastr.success(response.detail.message, options);
+			// });
 
-			window.addEventListener("closeModal", (response) => {
-				$(response.detail.modal).modal('hide');
-			});
+			// window.addEventListener("closeModal", (response) => {
+			// 	$(response.detail.modal).modal('hide');
+			// });
 
-			window.addEventListener("error", (response) => {
-				toastr.error(response.detail.message, options);
-			});
+			// window.addEventListener("error", (response) => {
+			// 	toastr.error(response.detail.message, options);
+			// });
 		</script>
 
 		<script>
@@ -97,7 +97,7 @@
 				@livewire('components.aside-component')
 				<!--end::Aside-->
 				<!--begin::Wrapper-->
-				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper" wire:ignore>
 					<!--begin::Header-->
                     @livewire('components.header-component')
 					<!--end::Header-->

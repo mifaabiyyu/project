@@ -148,14 +148,20 @@ class QuotationController extends Controller
                 // "redirect_url" => route('success')
             ];
             
+            $xendit = $service->createInvoice($xenditData);
+
             $findData->update([
                 'customer_code' => $checkCustomer->code,
                 'customer_name' => $checkCustomer->name,
+                'xendit_id'     => $xendit['id'],
+                'xendit_user_id'=> $xendit['user_id'],
             ]);
+
+           
 
             DB::commit();
 
-            return $service->createInvoice($xenditData);
+            return $xendit;
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['message' => $th->getMessage()], 422);
@@ -288,13 +294,19 @@ class QuotationController extends Controller
     {
         $code = base64_decode(base64_decode($code));
         $findData = Quotation::where('code', $code)->first();
-
+        $apiKey     = Parameter::where('code', 'xendit')->first();
+        Xendit::setApiKey($apiKey->value);
+        
+        $checkXendit = \Xendit\Invoice::retrieve($findData->xendit_id);
+        // dd($checkXendit);
         if (!$findData) {
             abort(404);
         }
 
         $findData->update([
             'status'    => 5,
+            'payment_method'    => $checkXendit['payment_method'],
+            'bank_code'    => $checkXendit['payment_channel'],
             'paid_at'   => date('Y-m-d H:i:s')
         ]);
 
@@ -418,7 +430,7 @@ class QuotationController extends Controller
             // "redirect_url" => route('success')
         ];
 
-        $xenditUrl = $service->createInvoice($xenditData);
+        // $xenditUrl = $service->createInvoice($xenditData);
  
         $businessType = BusinessType::all();
 
@@ -427,13 +439,13 @@ class QuotationController extends Controller
             'data'          => $findData,
             'params'        => $oldCode,
             'businessType'  => $businessType,
-            'xenditUrl'  => $xenditUrl['invoice_url'],
+            // 'xenditUrl'  => $xenditUrl['invoice_url'],
         ];
         
-        $findData->update([
-            'xendit_id' => $xenditUrl['id'],
-            'xendit_user_id' => $xenditUrl['user_id'],
-        ]);
+        // $findData->update([
+        //     'xendit_id' => $xenditUrl['id'],
+        //     'xendit_user_id' => $xenditUrl['user_id'],
+        // ]);
 
         return view('livewire.checkout-components', $data);
     }

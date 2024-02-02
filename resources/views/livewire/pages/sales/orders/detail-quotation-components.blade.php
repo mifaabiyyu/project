@@ -182,10 +182,15 @@
                                                 <label class="form-label">Status</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <div>
-                                                    <span class="font-bolder text-center badge badge-light-{{ $data->status == 1 ? 'success' : 'danger' }}">
-                                    {{ $data->get_status->name }}
-                                    </span>
+                                                <div class="d-flex">
+                                                    <span class="me-5 font-bolder text-center badge badge-light-{{ $data->status == 1 ? 'success' : 'danger' }}">
+                                    {{ $data->get_status->name }} 
+                                    </span> 
+                                    @if ($data->status == 5)
+                                    <span class="font-bolder text-center badge badge-light-primary">
+                                        {{ $data->payment_method }} ( {{ $data->bank_code }})
+                    </span>             
+                                    @endif
                                                 </div>
                                             </div>
                                         </div>

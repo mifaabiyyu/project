@@ -1,168 +1,112 @@
 "use strict";
-var KTUsersEditUser = (function () {
+
+KTUtil.onDOMContentLoaded(function () {
     const modal = document.getElementById("setLicence");
-    const editForm = modal.querySelector("#update_licence_form");
+    const licenceForm = modal.querySelector("#update_licence_form");
+    const initModal = new bootstrap.Modal(modal);
     var kode = "";
-    editForm.reset();
+    licenceForm.reset();
     $("body").on("click", "#set-licence", function () {
         kode = $(this).data("id");
     });
 
-    const initModal = new bootstrap.Modal(modal);
-    return {
-        init: function () {
-            (() => {
-                var validation = FormValidation.formValidation(editForm, {
-                    fields: {
-                        licence: {
-                            validators: {
-                                notEmpty: { message: "Licence is required" },
-                            },
-                        },
-                    },
-                    plugins: {
-                        trigger: new FormValidation.plugins.Trigger(),
-                        bootstrap: new FormValidation.plugins.Bootstrap5({
-                            rowSelector: ".fv-row",
-                            eleInvalidClass: "",
-                            eleValidClass: "",
-                        }),
-                    },
-                });
-                const onSubmit = modal.querySelector(
-                    '[data-kt-licence-modal-action="submit"]'
-                );
-
-                onSubmit.addEventListener("click", (t) => {
-                    t.preventDefault(),
-                        validation &&
-                            validation.validate().then(function (t) {
-                                var formData = new FormData(editForm);
-                                onSubmit.setAttribute(
-                                    "data-kt-indicator",
-                                    "on"
-                                );
-                                onSubmit.disabled = !0;
-                                $.ajax({
-                                    type: "Post",
-                                    url: route(
-                                        "user-company-data.updateLicence",
-                                        kode
-                                    ),
-                                    contentType: false,
-                                    data: formData,
-                                    processData: false,
-                                    success: function (response) {
-                                        onSubmit.removeAttribute(
-                                            "data-kt-indicator"
-                                        );
-                                        onSubmit.disabled = !1;
-                                        toastr.success(
-                                            response.message,
-                                            options
-                                        );
-                                        initModal.hide();
-                                        editForm.reset();
-                                        var oTable =
-                                            $("#user_table").DataTable();
-                                        oTable.draw(false);
-                                    },
-                                    error: function (error) {
-                                        onSubmit.removeAttribute(
-                                            "data-kt-indicator"
-                                        );
-                                        onSubmit.disabled = !1;
-                                        if (error.responseJSON.errors) {
-                                            const errors = Object.values(
-                                                error.responseJSON.errors
-                                            );
-
-                                            errors.forEach((element) => {
-                                                toastr.error(
-                                                    element[0],
-                                                    options
-                                                );
-                                            });
-                                        } else {
-                                            toastr.error(
-                                                error.responseJSON.message,
-                                                options
-                                            );
-                                        }
-                                    },
-                                });
-                            });
-                }),
-                    modal
-                        .querySelector(
-                            '[data-kt-edit-users-modal-action="cancel"]'
-                        )
-                        .addEventListener("click", (t) => {
-                            t.preventDefault(),
-                                Swal.fire({
-                                    text: "Are you sure you would like to cancel?",
-                                    icon: "warning",
-                                    showCancelButton: !0,
-                                    buttonsStyling: !1,
-                                    confirmButtonText: "Yes, cancel it!",
-                                    cancelButtonText: "No, return",
-                                    customClass: {
-                                        confirmButton: "btn btn-primary",
-                                        cancelButton: "btn btn-active-light",
-                                    },
-                                }).then(function (t) {
-                                    t.value
-                                        ? (editForm.reset(), initModal.hide())
-                                        : "cancel" === t.dismiss &&
-                                          Swal.fire({
-                                              text: "Your form has not been cancelled!.",
-                                              icon: "error",
-                                              buttonsStyling: !1,
-                                              confirmButtonText: "Ok, got it!",
-                                              customClass: {
-                                                  confirmButton:
-                                                      "btn btn-primary",
-                                              },
-                                          });
-                                });
-                        }),
-                    modal
-                        .querySelector(
-                            '[data-kt-edit-users-modal-action="close"]'
-                        )
-                        .addEventListener("click", (t) => {
-                            t.preventDefault(),
-                                Swal.fire({
-                                    text: "Are you sure you would like to cancel?",
-                                    icon: "warning",
-                                    showCancelButton: !0,
-                                    buttonsStyling: !1,
-                                    confirmButtonText: "Yes, cancel it!",
-                                    cancelButtonText: "No, return",
-                                    customClass: {
-                                        confirmButton: "btn btn-primary",
-                                        cancelButton: "btn btn-active-light",
-                                    },
-                                }).then(function (t) {
-                                    t.value
-                                        ? (editForm.reset(), initModal.hide())
-                                        : "cancel" === t.dismiss &&
-                                          Swal.fire({
-                                              text: "Your form has not been cancelled!.",
-                                              icon: "error",
-                                              buttonsStyling: !1,
-                                              confirmButtonText: "Ok, got it!",
-                                              customClass: {
-                                                  confirmButton:
-                                                      "btn btn-primary",
-                                              },
-                                          });
-                                });
-                        });
-            })();
+    $("#licence").select2({
+        // placeholder: "-- Select Term --",
+        // allowClear: true,
+        // minimumInputLength: 2,
+        ajax: {
+            type: "get",
+            url: route("user-company.getLicence"),
+            dataType: "json",
+            delay: 0,
+            processResults: function (res) {
+                return {
+                    results: $.map(res.data, function (item) {
+                        var dataText = "";
+                        dataText =
+                            item.code +
+                            " (" +
+                            (item.total_licence - item.total_usage) +
+                            " / " +
+                            item.total_licence +
+                            ")";
+                        return {
+                            text: dataText,
+                            id: item.code,
+                        };
+                    }),
+                };
+            },
+            // cache: false,
         },
-    };
-})();
-KTUtil.onDOMContentLoaded(function () {
-    KTUsersEditUser.init();
+    });
+
+    var validation = FormValidation.formValidation(licenceForm, {
+        fields: {
+            licence: {
+                validators: {
+                    notEmpty: { message: "Licence is required" },
+                },
+            },
+        },
+        plugins: {
+            trigger: new FormValidation.plugins.Trigger(),
+            bootstrap: new FormValidation.plugins.Bootstrap5({
+                rowSelector: ".fv-row",
+                eleInvalidClass: "",
+                eleValidClass: "",
+            }),
+        },
+    });
+    const onSubmit = modal.querySelector(
+        '[data-kt-licence-modal-action="submit"]'
+    );
+
+    onSubmit.addEventListener("click", (t) => {
+        onSubmit.setAttribute("data-kt-indicator", "on");
+        onSubmit.disabled = !0;
+        t.preventDefault(),
+            validation &&
+                validation.validate().then(function (t) {
+                    var formData = new FormData(licenceForm);
+
+                    $.ajax({
+                        type: "Post",
+                        url: route("user-company-data.updateLicence", kode),
+                        contentType: false,
+                        data: formData,
+                        processData: false,
+                        success: function (response) {
+                            $("#licence").empty();
+                            // $("#licence").select2("data", null);
+                            onSubmit.removeAttribute("data-kt-indicator");
+                            onSubmit.disabled = !1;
+                            toastr.success(response.message, options);
+                            initModal.hide();
+                            licenceForm.reset();
+                            var oTable = $("#user_table").DataTable();
+                            oTable.draw(false);
+                            $("#licence").val("").change();
+                        },
+                        error: function (error) {
+                            onSubmit.removeAttribute("data-kt-indicator");
+                            onSubmit.disabled = !1;
+                            if (error.responseJSON.errors) {
+                                const errors = Object.values(
+                                    error.responseJSON.errors
+                                );
+
+                                errors.forEach((element) => {
+                                    toastr.error(element[0], options);
+                                });
+                            } else {
+                                toastr.error(
+                                    error.responseJSON.message,
+                                    options
+                                );
+                            }
+                        },
+                    });
+                });
+    });
 });

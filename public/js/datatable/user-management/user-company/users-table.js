@@ -44,6 +44,7 @@ var UserDatatable = (function () {
                 },
                 { data: "email" },
                 { data: "company" },
+                { data: "password" },
                 {
                     data: "company",
                     render: function (data, type, row) {
