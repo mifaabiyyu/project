@@ -147,8 +147,11 @@ class ProductsController extends Controller
 
         if($request->hasFile('photo'))
         {
+            $file = public_path('images/product/') . $findData->photo;
             if ($imageName != null) {
-                unlink("images/product/" . $findData->photo);
+                if (file_exists($file)) {
+                    unlink("images/product/" . $findData->photo);
+                }
             }
             $imageName = date("Ymd").time().rand().'.'.$request->photo->extension();  
             $request->photo->move(public_path('images/product'), $imageName);
