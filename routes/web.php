@@ -119,6 +119,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/user-company-data', UserCompanyController::class);
         Route::post('/user-company-data/activate/{id}', [UserCompanyController::class, 'activate'])->name('user-company-data.activate');
         Route::post('/user-company-data/deactivate/{id}', [UserCompanyController::class, 'deactivate'])->name('user-company-data.deactivate');
+        Route::get('/user-company/get_licence', [UserCompanyController::class, 'getLicence'])->name('user-company.getLicence');
+        Route::post('/user-company/post_licence/{id}', [UserCompanyController::class, 'updateLicence'])->name('user-company-data.updateLicence');
     });
     
 

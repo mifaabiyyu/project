@@ -15,6 +15,7 @@
     <script src="{{ asset('js/datatable/user-management/user-company/users-table.js') }}" ></script>
     <script src="{{ asset('js/crud/user-management/users-company/add.js') }}" ></script>
     <script src="{{ asset('js/crud/user-management/users-company/edit.js') }}" ></script>
+    <script src="{{ asset('js/crud/user-management/users-company/licence.js') }}" ></script>
 @endsection
 
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -134,6 +135,7 @@
                                 <th class="min-w-125px">Name</th>
                                 <th class="min-w-125px">Email</th>
                                 <th class="min-w-125px">Company</th>
+                                <th class="min-w-125px">Licence</th>
                                 <th class="min-w-125px">Status</th>
                                 <th class="text-center min-w-100px">Actions</th>
                             </tr>
@@ -185,7 +187,7 @@
                         <!--begin::Scroll-->
                         @csrf
                         <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
-                            <div class="fv-row mb-7">
+                            {{-- <div class="fv-row mb-7">
                                 <!--begin::Label-->
                                 <label class="d-block fw-bold fs-6 mb-5">Avatar</label>
                                 <!--end::Label-->
@@ -218,7 +220,7 @@
                                 <!--begin::Hint-->
                                 <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
                                 <!--end::Hint-->
-                            </div>
+                            </div> --}}
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
@@ -361,7 +363,7 @@
                         <!--begin::Scroll-->
                         @csrf
                         <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_edit_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_edit_user_header" data-kt-scroll-wrappers="#kt_modal_edit_user_scroll" data-kt-scroll-offset="300px">
-                            <div class="fv-row mb-7">
+                            {{-- <div class="fv-row mb-7">
                                 <!--begin::Label-->
                                 <label class="d-block fw-bold fs-6 mb-5">Avatar</label>
                                 <!--end::Label-->
@@ -394,7 +396,7 @@
                                 <!--begin::Hint-->
                                 <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
                                 <!--end::Hint-->
-                            </div>
+                            </div> --}}
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
                                 <label class="required fw-bold fs-6 mb-2">Full Name</label>
@@ -530,4 +532,91 @@
         <!--end::Modal dialog-->
     </div>
     
+    <div class="modal fade" id="setLicence" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header" id="kt_modal_add_company_header">
+                    <!--begin::Modal title-->
+                    <h2 class="fw-bolder">Set Licence</h2>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-parameters-modal-action="close">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                    <!--begin::Form-->
+                    <form id="update_licence_form" method="post" action="javascript:void(0)" class="form" enctype="multipart/form-data">
+                        <!--begin::Scroll-->
+                        @csrf
+                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_company_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_company_header" data-kt-scroll-wrappers="#kt_modal_add_company_scroll" data-kt-scroll-offset="300px">
+                            <!--begin::Input group-->
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Licence</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <select class="form-select form-select-solid fw-bolder" data-dropdown-parent="#setLicence" name="licence" id="licence" data-placeholder="Select option" data-allow-clear="true" >
+                                    <option></option>
+                                </select>                                <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+                        </div>
+                        <!--end::Scroll-->
+                        <!--begin::Actions-->
+                        <div class="text-center pt-15">
+                            <button type="reset" class="btn btn-light me-3" data-kt-licence-modal-action="cancel">Discard</button>
+                            <button type="submit" class="btn btn-primary" data-kt-licence-modal-action="submit">
+                                <span class="indicator-label">Submit</span>
+                                <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+                    <!--end::Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <script>
+        $("#licence").select2({
+    // placeholder: "-- Select Term --",
+    // allowClear: true,
+    // minimumInputLength: 2,
+            ajax: {
+                type: "get",
+                url: route("user-company.getLicence"),
+                dataType: "json",
+                delay: 0,
+                processResults: function (res) {
+                    return {
+                        results: $.map(res.data, function (item) {
+                            return {
+                                text: item.code + ' (' + (item.total_licence - item.total_usage) + ' / ' + item.total_licence + ')',
+                                id: item.code,
+                            };
+                        }),
+                    };
+                },
+                cache: true,
+            },
+        });
+    </script>
 </div>

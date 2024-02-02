@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomerLicence;
 use App\Models\Quotation;
 use App\Models\Sales\Customer;
 use App\Models\UserCompany;
@@ -109,29 +110,83 @@ class UserCompanyController extends Controller
         if (!$findData || Auth::user()->hasRole('Customer')) {
             return response()->json(['message'  => 'Data not found'], 422);
         }
-        
-        $getQuotation   = Quotation::with('get_detail')->where('customer_code', auth()->user()->customer_id)->where('active_end', '>', date('Y-m-d'))->get();
-
-        foreach ($getQuotation as $key => $value) {
-            foreach ($value as $keys => $values) {
-                $getUser    = UserCompany::where('company', auth()->user()->company)->where('product_code', $values->product_code)->count();
-
-                if ($getUser < $values->user) {
-                    $findData->update([
-                        'status'    => 1,
-                        'product_code'  => $values->product_code
-                    ]);
+        $findData->update([
+            'status'    => 1,
+            // 'product_code'  => $values->product_code
+        ]);
 
 
-                    return response()->json(['message' => 'User activate successfully !'], 200);
-                }
-            }
+        return response()->json(['message' => 'User activate successfully !'], 200);
+        // $getQuotation   = Quotation::with('get_detail')->where('customer_code', auth()->user()->customer_id)->where('active_end', '>', date('Y-m-d'))->get();
+
+        // foreach ($getQuotation as $key => $value) {
+        //     foreach ($value as $keys => $values) {
+        //         $getUser    = UserCompany::where('company', auth()->user()->company)->where('product_code', $values->product_code)->count();
+
+        //         if ($getUser < $values->user) {
+        //             $findData->update([
+        //                 'status'    => 1,
+        //                 'product_code'  => $values->product_code
+        //             ]);
+
+
+        //             return response()->json(['message' => 'User activate successfully !'], 200);
+        //         }
+        //     }
            
-        }
+        // }
 
-        return response()->json(['message'  => 'User melebihi batas aktivasi !'], 422);
+        // return response()->json(['message'  => 'User melebihi batas aktivasi !'], 422);
        
 
+    }
+
+    public function getLicence()
+    {
+        if (Auth::user()->hasRole('Customer')) {
+            $getData    = CustomerLicence::where('customer_code', auth()->user()->customer_id)->get();
+        } else {
+            $getData    = CustomerLicence::all();
+        }
+
+        $response   = [
+            'message'   => 'Data fetched successfully !',
+            'data'      => $getData 
+        ];
+
+        return response()->json($response, 200);
+    }
+
+    public function updateLicence(Request $request, $id)
+    {
+        $id     = base64_decode($id);
+        
+        $findData = UserCompany::find($id);
+
+        if (!$findData) {
+            return response()->json(['message'  => 'Data not found'], 422);
+        }
+
+        $checkData  = CustomerLicence::where('code', $request->licence)->first();
+        
+        if (!$checkData) {
+            return response()->json(['message'  => 'Licence not found'], 422);
+        }
+
+        if ($checkData->total_licence <= $checkData->total_usage) {
+            return response()->json(['message'  => 'Maaf kuota licence sudah penuh !'], 422);
+        }
+
+        $checkData->update([
+            'total_usage'   => $checkData->total_usage + 1
+        ]);
+
+        $findData->update([
+            'status_licence'    => 1,
+            'customer_licence'  => $request->licence
+        ]);
+
+        return response()->json(['message'  => 'Licence applied successfully !'], 200);
     }
 
     public function deactivate($id)

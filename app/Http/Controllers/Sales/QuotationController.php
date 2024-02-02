@@ -11,9 +11,11 @@ use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Services\Checkout\CheckoutService as Service;
+use App\Models\CustomerLicence;
 use App\Models\MasterData\BusinessType;
 use App\Models\MasterData\Parameter;
 use App\Models\User;
+use App\Models\UserCompany;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -295,6 +297,26 @@ class QuotationController extends Controller
             'status'    => 5,
             'paid_at'   => date('Y-m-d H:i:s')
         ]);
+
+        $findCustomerLicence = CustomerLicence::where('customer_code', $findData->customer_code)->first();
+
+        $sumLicence     = QuotationDetail::where('quotation_code', $code)->sum('user');
+        if (!$findCustomerLicence) {
+            
+            $getUser    = UserCompany::where('company', $findData->get_customer?->companies)->count();
+            CustomerLicence::create([
+                'customer_code' => $findData->customer_code,
+                'code'          => 'Licence ' . $findData->customer_name,
+                'total_licence' => $sumLicence,
+                'total_usage'   => $getUser
+            ]);
+        } else {
+            $licenceNow     = $findCustomerLicence->total_licence;
+            $findCustomerLicence->update([
+                'total_licence' => $licenceNow + $sumLicence
+            ]);
+        }
+
         $getParamPhone = Parameter::where('code', 'whatsappPhone')->first();
         
         if (!$getParamPhone) {

@@ -119,6 +119,10 @@ var KTUsersAddUser = (function () {
                                             }, 200);
                                     },
                                     error: function (error) {
+                                        onSubmit.removeAttribute(
+                                            "data-kt-indicator"
+                                        );
+                                        onSubmit.disabled = !1;
                                         if (error.responseJSON.errors) {
                                             const errors = Object.values(
                                                 error.responseJSON.errors

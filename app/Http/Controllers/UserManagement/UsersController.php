@@ -118,8 +118,11 @@ class UsersController extends Controller
    
         if($request->hasFile('photo'))
         {
+            $file = public_path('images/user/') . $findData->photo;
             if ($imageName != null) {
-                unlink("images/user/" . $findData->photo);
+                if (file_exists($file)) {
+                    unlink("images/user/" . $findData->photo);
+                }
             }
             $imageName = date("Ymd").time().rand().'.'.$request->photo->extension();  
             $request->photo->move(public_path('images/user'), $imageName);

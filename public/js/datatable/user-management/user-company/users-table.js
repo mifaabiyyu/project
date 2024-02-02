@@ -44,6 +44,30 @@ var UserDatatable = (function () {
                 },
                 { data: "email" },
                 { data: "company" },
+                {
+                    data: "company",
+                    render: function (data, type, row) {
+                        var message = "Set Licence";
+
+                        var line =
+                            `<a  href="javascript:void(0)" data-bs-toggle="modal" data-id="` +
+                            btoa(row.id) +
+                            `" data-bs-target="#setLicence"  id="set-licence" class="text-primary me-1 fs-8 text-sm">
+                    <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
+                   <span class="text-sm">${message}</span> 
+                    <!--end::Svg Icon-->
+                </a>`;
+                        if (row.customer_licence != null) {
+                            message = row.customer_licence;
+                            line = `<a  href="javascript:void(0)" class="text-black me-1 fs-6 text-xs">
+                        <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
+                       ${message}
+                        <!--end::Svg Icon-->
+                    </a>`;
+                        }
+                        return line;
+                    },
+                },
 
                 {
                     data: "status",
