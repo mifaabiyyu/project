@@ -297,11 +297,13 @@ class QuotationController extends Controller
         $apiKey     = Parameter::where('code', 'xendit')->first();
         Xendit::setApiKey($apiKey->value);
         
-        $checkXendit = \Xendit\Invoice::retrieve($findData->xendit_id);
-        // dd($checkXendit);
+        
         if (!$findData) {
             abort(404);
         }
+
+        $checkXendit = \Xendit\Invoice::retrieve($findData->xendit_id);
+        // dd($checkXendit);
 
         $findData->update([
             'status'    => 5,

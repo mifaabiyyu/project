@@ -240,7 +240,7 @@ BODY {
       // var count = 3;
 
     function makeAlert(){ 
-      window.location.replace('{{ $linkWa }}');
+      window.location.replace("{!! $linkWa !!}");
 };
 
 setInterval(makeAlert, 2000);
